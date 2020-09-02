@@ -5,6 +5,7 @@
 \usepackage{graphicx}
 \usepackage{hyperref}
 \usepackage{natbib}
+\usepackage[export]{adjustbox}
 
 \usepackage{lipsum}
 
@@ -21,11 +22,12 @@
 
 \chapter{O hello world do Git}
 
-É apresentado aqui uma forma muito simples de se usar o Git.
+Este tutorial apresenta uma forma muito simples de se usar o Git.
 Como exemplo, serão feitas algumas versões do clássico programa, 
-``hello world''. Essas versões serão gerenciadas pelo Git.
-A intenção é apresentar uma forma de se usar o Git em apenas
-alguns minutos. É apenas um primeiro contato com a ferramenta.
+``hello world''. Essas versões serão gerenciadas pelo sistema 
+controlador de versões Git.
+A intenção é mostrar uma forma de se começar a usar Git em 
+dentro de poucos minutos. É apenas um primeiro contato com a ferramenta.
 Nenhum conteúdo é abordado por completo ou com profundidade.
 Para isso, são sugeridas obras como \cite{hodson2014ry} e 
 \cite{chacon2014pro}.
@@ -33,7 +35,7 @@ Mesmo assim, é bom deixar claro que Git é um sistema de
 gerenciamento de versões de software.
 Porém, apesar de ter sido idealizado para o desenvolvimento
 de programas, também pode ser usado para outras finalidades
-como escrita compartilhada de textos ou imagens.
+como escrita compartilhada de textos ou edição de imagens.
 O Git mantém um histórico das alterações de um repositório 
 permitindo recuperar informações, dividir as tarefas em ramos
 e mesclar alterações que podem ser feitas independentemente.
@@ -57,7 +59,7 @@ mostra a repetição do comando \texttt{ls -a}.
 \caption{Criando um repositório}
 \label{fig:01}
 \centering
-\includegraphics[scale=0.6]{"images/01-Criando um repositório.png"}
+\includegraphics[scale=0.6,left]{"images/01-Criando um repositório.png"}
 \end{figure}
 
 Note que foi criado um diretório oculto (por que começa com
@@ -80,7 +82,7 @@ desejada.
 \caption{Árvore de diretórios do repositório}
 \label{fig:02}
 \centering
-\includegraphics[scale=0.6]{"images/02-Árvore de diretórios do repositório.png"}
+\includegraphics[scale=0.6,left]{"images/02-Árvore de diretórios do repositório.png"}
 \end{figure}
 
 \section{O comando \texttt{git status}}
@@ -96,7 +98,7 @@ com poucos comandos, sem explorá-los por completo.
 \caption{Status de um repositório recém criado}
 \label{fig:03}
 \centering
-\includegraphics[scale=0.6]{"images/03-Status de um repositório recém criado.png"}
+\includegraphics[scale=0.6,left]{"images/03-Status de um repositório recém criado.png"}
 \end{figure}
 
 A primeira linha de resposta é \texttt{On branch master}.
@@ -143,7 +145,7 @@ opcional. O comando \texttt{ls -a} é só para mostrar que o arquivo
 \caption{Criando o primeiro arquivo do projeto}
 \label{fig:04}
 \centering
-\includegraphics[scale=0.6]{"images/04-Criando o primeiro arquivo do projeto.png"}
+\includegraphics[scale=0.6,left]{"images/04-Criando o primeiro arquivo do projeto.png"}
 \end{figure}
 
 Depois de criado o arquivo \texttt{greet.py}, o comando
@@ -169,7 +171,7 @@ agrupá-las em fotografias separadas.
 \caption{Status com arquivo fora da área de stage}
 \label{fig:05}
 \centering
-\includegraphics[scale=0.6]{"images/05-Status com arquivo fora da área de stage.png"}
+\includegraphics[scale=0.6,left]{"images/05-Status com arquivo fora da área de stage.png"}
 \end{figure}
 
 A figura \ref{fig:06} mostra como adicionar um arquivo na área de 
@@ -185,7 +187,7 @@ do comando \texttt{git status}.
 \caption{Status com arquivo na da área de stage}
 \label{fig:06}
 \centering
-\includegraphics[scale=0.6]{"images/06-Status com arquivo na da área de stage.png"}
+\includegraphics[scale=0.6,left]{"images/06-Status com arquivo na da área de stage.png"}
 \end{figure}
 
 É importante resaltar que até o momento, nenhum arquivo está
@@ -211,7 +213,7 @@ visível através das figuras.
 \caption{Primeira fotografia do repositório}
 \label{fig:07}
 \centering
-\includegraphics[scale=0.6]{"images/07-Primeira fotografia do repositório.png"}
+\includegraphics[scale=0.6,left]{"images/07-Primeira fotografia do repositório.png"}
 \end{figure}
 
 Se você quiser ver a fotografia tirada do sistema
@@ -232,7 +234,7 @@ contém um arquivo novo, e a linha verde que começa com +
 \caption{Vendo detalhes da fotografia mais recente do sistema}
 \label{fig:08}
 \centering
-\includegraphics[scale=0.6]{"images/08-Vendo detalhes da fotografia mais recente do sistema.png"}
+\includegraphics[scale=0.6,left]{"images/08-Vendo detalhes da fotografia mais recente do sistema.png"}
 \end{figure}
 
 Na primeira linha, em amarelo, logo depois da palavra commit,
@@ -263,7 +265,7 @@ para ficar mais clara que uma alteração foi feita.
 \caption{Fazendo uma alteração}
 \label{fig:09}
 \centering
-\includegraphics[scale=0.6]{"images/09-Fazendo uma alteração.png"}
+\includegraphics[scale=0.6,left]{"images/09-Fazendo uma alteração.png"}
 \end{figure}
 
 Depois da alteração do arquivo, o comando \texttt{git status}
@@ -284,7 +286,7 @@ figura \ref{fig:11}.
 \caption{Status com arquivo modificado fora da area de stage}
 \label{fig:10}
 \centering
-\includegraphics[scale=0.6]{"images/10-Status com arquivo modificado fora da area de stage.png"}
+\includegraphics[scale=0.6,left]{"images/10-Status com arquivo modificado fora da area de stage.png"}
 \end{figure}
 
 
@@ -292,7 +294,7 @@ figura \ref{fig:11}.
 \caption{Status com arquivo modificado na da area de stage}
 \label{fig:11}
 \centering
-\includegraphics[scale=0.6]{"images/11-Status com arquivo modificado na da area de stage.png"}
+\includegraphics[scale=0.6,left]{"images/11-Status com arquivo modificado na da area de stage.png"}
 \end{figure}
 
 O resultado do comando \texttt{git status} está muito parecido 
@@ -310,7 +312,7 @@ o sinal $+$ mostram o que foi adicionado.
 \caption{Atualizando o repositório e vendo os detalhes da atualização}
 \label{fig:12}
 \centering
-\includegraphics[scale=0.6]{"images/12-Atualizando o repositório e vendo os detalhes da atualização.png"}
+\includegraphics[scale=0.6,left]{"images/12-Atualizando o repositório e vendo os detalhes da atualização.png"}
 \end{figure}
 
 Vamos fazer mais uma alteração no sistema, que pode ser
@@ -324,7 +326,7 @@ a primeira letra em maiúsculo.
 \caption{Fazendo mais uma alteração}
 \label{fig:13}
 \centering
-\includegraphics[scale=0.6]{"images/13-Fazendo mais uma alteração.png"}
+\includegraphics[scale=0.6,left]{"images/13-Fazendo mais uma alteração.png"}
 \end{figure}
 
 Depois dessa alteração, o comando \texttt{git status}
@@ -343,7 +345,7 @@ as linhas verdes e vermelhas.
 \caption{Atualizando com a terceira alteração}
 \label{fig:14}
 \centering
-\includegraphics[scale=0.6]{"images/14-Atualizando com a terceira alteração.png"}
+\includegraphics[scale=0.6,left]{"images/14-Atualizando com a terceira alteração.png"}
 \end{figure}
 
 Agora temos cópias seguras das versões anteriores
@@ -362,7 +364,7 @@ Mas vocë deve testar sem essa opção também.
 \caption{Listando as fotografias do repositório}
 \label{fig:15}
 \centering
-\includegraphics[scale=0.6]{"images/15-Listando as fotografias do repositório.png"}
+\includegraphics[scale=0.6,left]{"images/15-Listando as fotografias do repositório.png"}
 \end{figure}
 
 As fotografias do repositório são apresentadas em ordem cronológica
@@ -387,7 +389,7 @@ listada na figura \ref{fig:15}.
 \caption{Vendo detalhes da fotografia anterior}
 \label{fig:16}
 \centering
-\includegraphics[scale=0.6]{"images/16-Vendo detalhes da fotografia anterior.png"}
+\includegraphics[scale=0.6,left]{"images/16-Vendo detalhes da fotografia anterior.png"}
 \end{figure}
 
 A figura \ref{fig:17} mostra a primeira fotografia do repositório.
@@ -396,7 +398,7 @@ A figura \ref{fig:17} mostra a primeira fotografia do repositório.
 \caption{Vendo detalhes da fotografia da primeira fotografia}
 \label{fig:17}
 \centering
-\includegraphics[scale=0.6]{"images/17-Vendo detalhes da fotografia da primeira fotografia.png"}
+\includegraphics[scale=0.6,left]{"images/17-Vendo detalhes da fotografia da primeira fotografia.png"}
 \end{figure}
 
 \newpage
@@ -412,7 +414,7 @@ foi criada.
 \caption{Voltando o sistema para o estado da fotografia anterior}
 \label{fig:18}
 \centering
-\includegraphics[scale=0.6]{"images/18-Voltando o sistema para o estado da fotografia anterior.png"}
+\includegraphics[scale=0.6,left]{"images/18-Voltando o sistema para o estado da fotografia anterior.png"}
 \end{figure}
 
 Veja na figura \ref{fig:20} que o programa \texttt{greet.py}
@@ -422,7 +424,7 @@ voltou ao seu estado anterior.
 \caption{Estados dos arquivos do sistema depois de voltar uma fotografia}
 \label{fig:20}
 \centering
-\includegraphics[scale=0.6]{"images/20-Estados dos arquivos do sistema depois de voltar uma fotografia.png"}
+\includegraphics[scale=0.6,left]{"images/20-Estados dos arquivos do sistema depois de voltar uma fotografia.png"}
 \end{figure}
 
 Ao listar as fotografias do repositório, como mostra a figura 
@@ -434,7 +436,7 @@ alteração.
 \caption{Listando fotografias tão ou mais antigas que a atual}
 \label{fig:19}
 \centering
-\includegraphics[scale=0.6]{"images/19-Listando tão ou mais antigas que a atual.png"}
+\includegraphics[scale=0.6,left]{"images/19-Listando tão ou mais antigas que a atual.png"}
 \end{figure}
 
 Você pode estar se perguntando ``Git é então um complexo ctrl+z?''. Claro que não!
@@ -443,11 +445,11 @@ pode ser visualizada com a opção \texttt{--all}
 no comando \texttt{git log}, como mostra a 
 figura \ref{fig:21}.
 
-\begin{figure}[h!]
+\begin{figure}[!h]
 \caption{Listando todas fotografias do repositório}
 \label{fig:21}
 \centering
-\includegraphics[scale=0.6]{"images/21-Listando todas fotografias do repositório.png"}
+\includegraphics[scale=0.6,left]{"images/21-Listando todas fotografias do repositório.png"}
 \end{figure}
 
 %Na verdade, o Git sempre adiciona informação ao repositório.
@@ -461,7 +463,7 @@ estado da fotografia mais recente.
 \caption{Voltando para versão mais recente do sistema}
 \label{fig:22}
 \centering
-\includegraphics[scale=0.6]{"images/22-Voltando para versão mais recente do sistema.png"}
+\includegraphics[scale=0.6,left]{"images/22-Voltando para versão mais recente do sistema.png"}
 \end{figure}
 
 Observe que \textbf{HEAD} não está mais apontando para 
@@ -481,38 +483,38 @@ opção \texttt{-a}. Esta opção permite usar a opção
 \caption{Criando etiquetas para a fotografia atual}
 \label{fig:23}
 \centering
-\includegraphics[scale=0.6]{"images/23-Criando etiquetas para a fotografia atual.png"}
+\includegraphics[scale=0.6,left]{"images/23-Criando etiquetas para a fotografia atual.png"}
 \end{figure}
 
 O comando \texttt{git tag} coloca a etiqueta na fotografia atual
 do sistema, mas é possível etiquetar outras fotografias 
 através de seu hash, como mostra a figura \ref{fig:25}.
 
-\begin{figure}[h!]
+\begin{figure}[!h]
 \caption{Etiquetando uma fotografia mais antiga}
 \label{fig:25}
 \centering
-\includegraphics[scale=0.6]{"images/25-Etiquetando uma fotografia mais antiga.png"}
+\includegraphics[scale=0.6,left]{"images/25-Etiquetando uma fotografia mais antiga.png"}
 \end{figure}
 
 A figura \ref{fig:26} mostra coma acessar uma fotografia antiga 
 através de sua etiqueta
 
-\begin{figure}[h!]
+\begin{figure}[!h]
 \caption{Acessando uma fotografia antiga através da sua etiqueta}
 \label{fig:26}
 \centering
-\includegraphics[scale=0.6]{"images/26-Acessando uma fotografia antiga através da sua etiqueta.png"}
+\includegraphics[scale=0.6,left]{"images/26-Acessando uma fotografia antiga através da sua etiqueta.png"}
 \end{figure}
 
 O comando \texttt{git tag} pode ser usado para listar as
 etiqueta, como mostra a figura \ref{fig:28}.
 
-\begin{figure}[h!]
+\begin{figure}[!h]
 \caption{Listando todas as etiquetas do repositório}
 \label{fig:28}
 \centering
-\includegraphics[scale=0.6]{"images/28-Listando todas as etiquetas do repositório.png"}
+\includegraphics[scale=0.6,left]{"images/28-Listando todas as etiquetas do repositório.png"}
 \end{figure}
 
 %Listagens mais complexas, com caracteres coringa por exemplo, 
@@ -525,11 +527,11 @@ A informação de quem fez a etiqueta (tagger) e de quando
 a etiqueta foi criada só é gravada se a opção \texttt{-a}
 for usada na criação dela.
 
-\begin{figure}[h!]
+\begin{figure}[!h]
 \caption{Mostrando fotografias usando etiquetas}
 \label{fig:24}
 \centering
-\includegraphics[scale=0.6]{"images/24-Mostrando fotografias usando etiquetas.png"}
+\includegraphics[scale=0.6,left]{"images/24-Mostrando fotografias usando etiquetas.png"}
 \end{figure}
 
 
@@ -540,7 +542,7 @@ comando mostrada na figura \ref{fig:27}.
 \caption{Acessando a fotografia mais recente através da sua etiqueta}
 \label{fig:27}
 \centering
-\includegraphics[scale=0.6]{"images/27-Acessando a fotografia mais recente através da sua etiqueta.png"}
+\includegraphics[scale=0.6,left]{"images/27-Acessando a fotografia mais recente através da sua etiqueta.png"}
 \end{figure}
 
 É importante notar que \textbf{HEAD} não aponta para nenhum
@@ -554,7 +556,7 @@ figura \ref{fig:29}, para que \textbf{HEAD} aponte para
 \caption{Acessando o branch master}
 \label{fig:29}
 \centering
-\includegraphics[scale=0.6]{"images/29-Acessando o branch master.png"}
+\includegraphics[scale=0.6,left]{"images/29-Acessando o branch master.png"}
 \end{figure}
 
 Visto que este é um tutorial superficial, não será explicado o motivo deste procedimento.
@@ -592,7 +594,7 @@ Agora a fotografia mais recente tem dois ramos (na cor verde),
 \caption{Criando um novo branch}
 \label{fig:30}
 \centering
-\includegraphics[scale=0.6]{"images/30-Criando um novo branch.png"}
+\includegraphics[scale=0.6,left]{"images/30-Criando um novo branch.png"}
 \end{figure}
 
 Para fazer um alteração no ramo \textbf{pt-br}, deve-se mudar 
@@ -603,7 +605,7 @@ Para fazer um alteração no ramo \textbf{pt-br}, deve-se mudar
 \caption{Acessando um branch}
 \label{fig:31}
 \centering
-\includegraphics[scale=0.6]{"images/31-Acessando um branch.png"}
+\includegraphics[scale=0.6,left]{"images/31-Acessando um branch.png"}
 \end{figure}
 
 Quando só existia o ramo \textbf{master}, cada comando
@@ -626,7 +628,7 @@ figura \ref{fig:32}.
 \caption{Alterando o sistema no branch atual}
 \label{fig:32}
 \centering
-\includegraphics[scale=0.6]{"images/32-Alterando o sistema no branch atual.png"}
+\includegraphics[scale=0.6,left]{"images/32-Alterando o sistema no branch atual.png"}
 \end{figure}
 
 A resposta do comando \texttt{git status} da figura
@@ -639,7 +641,7 @@ que mostra que ramo atual é o \textbf{pt-br}
 \caption{Status do novo branch com arquivo modificado fora da área de stage}
 \label{fig:33}
 \centering
-\includegraphics[scale=0.6]{"images/33-Status do novo branch com arquivo modificado fora da área de stage.png"}
+\includegraphics[scale=0.6,left]{"images/33-Status do novo branch com arquivo modificado fora da área de stage.png"}
 \end{figure}
 
 O status após adicionar a alteração na área de stage
@@ -650,18 +652,18 @@ diferente do que já foi visto.
 \caption{Status do novo branch com arquivo modificado na da área de stage}
 \label{fig:34}
 \centering
-\includegraphics[scale=0.6]{"images/34-Status do novo branch com arquivo modificado na da área de stage.png"}
+\includegraphics[scale=0.6,left]{"images/34-Status do novo branch com arquivo modificado na da área de stage.png"}
 \end{figure}
 
 O resultado dos comandos \texttt{git commit} 
 e \texttt{git show} apresentados na
 figura \ref{fig:35} também não apresentam muita novidade.
 
-\begin{figure}[h!]
+\begin{figure}[!h]
 \caption{Fotografia da versão brasileira do sistema}
 \label{fig:35}
 \centering
-\includegraphics[scale=0.6]{"images/35-Fotografia da versão brasileira do sistema.png"}
+\includegraphics[scale=0.6,left]{"images/35-Fotografia da versão brasileira do sistema.png"}
 \end{figure}
 
 Note que o ramo \textbf{master} não tem nada de especial.
@@ -681,7 +683,7 @@ o ramo \textbf{master}, mas poderia ser qualquer outro nome.
 \caption{Parametrizando o sistema}
 \label{fig:36}
 \centering
-\includegraphics[scale=0.6]{"images/36-Parametrizando o sistema.png"}
+\includegraphics[scale=0.6,left]{"images/36-Parametrizando o sistema.png"}
 \end{figure}
 
 Depois de colocar a nova alteração na área de stage
@@ -692,7 +694,7 @@ fotografia listada na figura \ref{fig:38}.
 \caption{Lista das fotografias após a versão brasileira parametrizada}
 \label{fig:38}
 \centering
-\includegraphics[scale=0.6]{"images/38-Lista das fotografias após a versão brasileira parametrizada.png"}
+\includegraphics[scale=0.6,left]{"images/38-Lista das fotografias após a versão brasileira parametrizada.png"}
 \end{figure}
 
 A figura \ref{fig:37} mostra como ficou a fotografia
@@ -704,7 +706,7 @@ mais recente, caso ache interessante.
 \caption{Fotografia da versão brasileira atualizada}
 \label{fig:37}
 \centering
-\includegraphics[scale=0.6]{"images/37-Fotografia da versão brasileira atualizada.png"}
+\includegraphics[scale=0.6,left]{"images/37-Fotografia da versão brasileira atualizada.png"}
 \end{figure}
 
 \section{Mesclando o ramo atual com o ramo principal}
@@ -723,7 +725,7 @@ para mesclar o ramo \textbf{pt-br} com o ramo atual.
 \caption{Mesclando a versão brasileira com a versão original}
 \label{fig:39}
 \centering
-\includegraphics[scale=0.6]{"images/39-Mesclando a versão brasileira com a versão original.png"}
+\includegraphics[scale=0.6,left]{"images/39-Mesclando a versão brasileira com a versão original.png"}
 \end{figure}
 
 A figura \ref{fig:40} mostra a lista de fotografias
@@ -733,7 +735,7 @@ depois da mesclagem de ramos.
 \caption{Listando as fotografias do repositório após mesclar versões do sistema}
 \label{fig:40}
 \centering
-\includegraphics[scale=0.6]{"images/40-Listando as fotografias do repositório após mesclar versões do sistema.png"}
+\includegraphics[scale=0.6,left]{"images/40-Listando as fotografias do repositório após mesclar versões do sistema.png"}
 \end{figure}
 
 Na segunda linha da reposta do comando
@@ -764,7 +766,7 @@ ramo, como mostra a figura \ref{fig:41}.
 \caption{Criando um branch para uma versão em alemão}
 \label{fig:41}
 \centering
-\includegraphics[scale=0.6]{"images/41-Criando um branch para uma versão em alemão.png"}
+\includegraphics[scale=0.6,left]{"images/41-Criando um branch para uma versão em alemão.png"}
 \end{figure}
 
 Para trabalhar no novo ramo, deve-se usar o comando
@@ -776,7 +778,7 @@ O resoltado pode ser visto na figura \ref{fig:42}.
 \caption{Acessando o branch onde será implementada a versão alemã do sistema}
 \label{fig:42}
 \centering
-\includegraphics[scale=0.6]{"images/42-Acessando o branch onde será implementada a versão alemã do sistema.png"}
+\includegraphics[scale=0.6,left]{"images/42-Acessando o branch onde será implementada a versão alemã do sistema.png"}
 \end{figure}
 
 Depois de fazer a alteração sugerida na figura \ref{fig:43},
@@ -787,7 +789,7 @@ gravada as alterações no repositório.
 \caption{Alteração feita para versão alemã do sistema}
 \label{fig:43}
 \centering
-\includegraphics[scale=0.6]{"images/43-Alteração feita para versão alemã do sistema.png"}
+\includegraphics[scale=0.6,left]{"images/43-Alteração feita para versão alemã do sistema.png"}
 \end{figure}
 
 A fotografia do último \textit{commit} está na figura
@@ -797,17 +799,17 @@ A fotografia do último \textit{commit} está na figura
 \caption{Fotografando a versão alemã do sistema}
 \label{fig:44}
 \centering
-\includegraphics[scale=0.6]{"images/44-Fotografando a versão alemã do sistema.png"}
+\includegraphics[scale=0.6,left]{"images/44-Fotografando a versão alemã do sistema.png"}
 \end{figure}
 
 A figura \ref{fig:45} mostra que o sistema possui seis 
 fotografias até o momento.
 
-\begin{figure}[h!]
+\begin{figure}[!h]
 \caption{Listando as fotografias após a inclusão da versão alemã}
 \label{fig:45}
 \centering
-\includegraphics[scale=0.6]{"images/45-Listando as fotografias após a inclusão da versão alemã.png"}
+\includegraphics[scale=0.6,left]{"images/45-Listando as fotografias após a inclusão da versão alemã.png"}
 \end{figure}
 
 Na condição atual, no exemplo co capítulo anterior,
@@ -846,7 +848,7 @@ criar um novo branch, como na figura \ref{fig:46}.
 \caption{Criando um branch para implementar uma versão italiana a partir da versão brasileira}
 \label{fig:46}
 \centering
-\includegraphics[scale=0.6]{"images/46-Criando um branch para implementar uma versão italiana a partir da versão brasileira.png"}
+\includegraphics[scale=0.6,left]{"images/46-Criando um branch para implementar uma versão italiana a partir da versão brasileira.png"}
 \end{figure}
 
 Note que \textbf{HEAD} continua apontando para
@@ -858,7 +860,7 @@ ramo, como figura \ref{fig:47}.
 \caption{Acessando o branch da versão italiana}
 \label{fig:47}
 \centering
-\includegraphics[scale=0.6]{"images/47-Acessando o branch da versão italiana.png"}
+\includegraphics[scale=0.6,left]{"images/47-Acessando o branch da versão italiana.png"}
 \end{figure}
 
 Implemente a alteração sugerida na figura \ref{fig:48}.
@@ -867,7 +869,7 @@ Implemente a alteração sugerida na figura \ref{fig:48}.
 \caption{Implementando a versão italiana}
 \label{fig:48}
 \centering
-\includegraphics[scale=0.6]{"images/48-Implementando a versão italiana.png"}
+\includegraphics[scale=0.6,left]{"images/48-Implementando a versão italiana.png"}
 \end{figure}
 
 Adicione as alterações na área de stage e execute
@@ -881,7 +883,7 @@ o comando \texttt{git commit} para fazer a nova fotografia.
 %\caption{Visualizando a fotografia da versão italiana}
 %\label{fig:49}
 %\centering
-%\includegraphics[scale=0.6]{"images/49-Visualizando a fotografia da versão italiana.png"}
+%\includegraphics[scale=0.6,left]{"images/49-Visualizando a fotografia da versão italiana.png"}
 %\end{figure}
 
 \newpage
@@ -892,11 +894,11 @@ lista as fotografias do repositório em forma de grafo,
 como na figura \ref{fig:50}.
 
 
-\begin{figure}[h!]
+\begin{figure}[!h]
 \caption{Listando todas as fotografias do repositório em forma de grafo}
 \label{fig:50}
 \centering
-\includegraphics[scale=0.6]{"images/50-Listando todas as fotografias do repositório em forma de grafo.png"}
+\includegraphics[scale=0.6,left]{"images/50-Listando todas as fotografias do repositório em forma de grafo.png"}
 \end{figure}
 
 Note que acima do ramo \textbf{master} as linhas estão
@@ -921,18 +923,18 @@ sem nenhum problema.
 \caption{Mesclando a versão italiana com a principal}
 \label{fig:51}
 \centering
-\includegraphics[scale=0.6]{"images/51-Mesclando a versão italiana com a principal.png"}
+\includegraphics[scale=0.6,left]{"images/51-Mesclando a versão italiana com a principal.png"}
 \end{figure}
 
 Na figura \ref{fig:52} podemos ver que o grafo não foi 
 alterado, mas agora \textbf{HEAD} e \textbf{master}
 estão na fotografia mais recente.
 
-\begin{figure}[h!]
+\begin{figure}[!h]
 \caption{Listando todas as fotografias do repositório em forma de grafo após mesclar a versão italiana}
 \label{fig:52}
 \centering
-\includegraphics[scale=0.6]{"images/52-Listando todas as fotografias do repositório em forma de grafo após mesclar a versão italiana.png"}
+\includegraphics[scale=0.6,left]{"images/52-Listando todas as fotografias do repositório em forma de grafo após mesclar a versão italiana.png"}
 \end{figure}
 
 \newpage
@@ -945,28 +947,28 @@ mesclar o ramo alemão com o ramo princial.
 \caption{Mesclando a versão alemã com a principal}
 \label{fig:53}
 \centering
-\includegraphics[scale=0.6]{"images/53-Mesclando a versão alemã com a principal.png"}
+\includegraphics[scale=0.6,left]{"images/53-Mesclando a versão alemã com a principal.png"}
 \end{figure}
 
 O comando \texttt{git mergetool --tool-help}
 lista as disponíveis no seu sistema operacional
 (figura \ref{fig:54}).
 
-\begin{figure}[h!]
+\begin{figure}[!h]
 \caption{Buscando ajuda com mergetool}
 \label{fig:54}
 \centering
-\includegraphics[scale=0.6]{"images/54-Buscando ajuda com mergetool.png"}
+\includegraphics[scale=0.6,left]{"images/54-Buscando ajuda com mergetool.png"}
 \end{figure}
 
 Conforme a figura \ref{fig:54}, a ferramenta \texttt{vimdiff}
 pode ser selecionada como na figura \ref{fig:55}.
 
-\begin{figure}[h!]
+\begin{figure}[!h]
 \caption{Escolhendo programa para usar com mergetool}
 \label{fig:55}
 \centering
-\includegraphics[scale=0.6]{"images/55-Escolhendo programa para usar com mergetool.png"}
+\includegraphics[scale=0.6,left]{"images/55-Escolhendo programa para usar com mergetool.png"}
 \end{figure}
 
 A figura \ref{fig:56} mostra como deve estar o
@@ -976,22 +978,22 @@ resolução do conflito que ocorreu.
 Outras soluções poderiam ter resolvido o conflito 
 também.
 
-\begin{figure}[ht]
+\begin{figure}[!ht]
 \caption{Programa após a resolução de conflitos}
 \label{fig:56}
 \centering
-\includegraphics[scale=0.6]{"images/56-Programa após a resolução de conflitos.png"}
+\includegraphics[scale=0.6,left]{"images/56-Programa após a resolução de conflitos.png"}
 \end{figure}
 
 A utilização do \texttt{vimdiff} excede o escopo deste 
 tutorial, mas você pode ver como é a apresentação dessa 
 ferramenta na figura \ref{fig:57}.
 
-\begin{figure}[h!]
+\begin{figure}[!h]
 \caption{vimdiff}
 \label{fig:57}
 \centering
-\includegraphics[scale=0.32]{"images/57-vimdiff.png"}
+\includegraphics[scale=0.31]{"images/57-vimdiff.png"}
 \end{figure}
 
 
@@ -1003,11 +1005,11 @@ os conflitos foram solucionados.
 A figura \ref{fig:58} mostra como os ramos separados 
 se juntam depois da solução de conflitos.
 
-\begin{figure}[h!]
+\begin{figure}[!h]
 \caption{Listando todas as fotografias do repositório em forma de grafo após mesclar a versão alemã}
 \label{fig:58}
 \centering
-\includegraphics[scale=0.5]{"images/58-Listando todas as fotografias do repositório em forma de grafo após mesclar a versão alemã.png"}
+\includegraphics[scale=0.5,left]{"images/58-Listando todas as fotografias do repositório em forma de grafo após mesclar a versão alemã.png"}
 \end{figure}
 
 Agora, você já sabe uma forma de se usar o Git.
