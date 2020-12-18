@@ -68,7 +68,7 @@ desejada.
 image::02-Árvore de diretórios do repositório.png[]
 
 
-=== O comando `git status
+=== O comando `git status`
 
 Um comando que é usado o tempo todo em um repositório Git é o comando
 `git status` apresentado na figura <<fig:03>>.
@@ -278,7 +278,7 @@ a primeira letra em maiúsculo.
 [[fig:13, {counter:refnum}]]
 image::13-Fazendo mais uma alteração.png[]
 
-Depois dessa alteração, o comando `git status
+Depois dessa alteração, o comando `git status`
 apresentará o mesmo retorno visto na figura <<fig:10>>.
 Vamos adicionar à área de stage a nova alteração com
 o comando `git add greet.py`.
@@ -297,7 +297,7 @@ image::14-Atualizando com a terceira alteração.png[]
 Agora temos cópias seguras das versões anteriores
 do nosso projeto. 
 
-\newpage
+
 === Listando as fotografias do repositório
 
 A figura <<fig:15>> mostra como listar as fotografias do 
@@ -321,7 +321,7 @@ Por exemplo, é possível ver uma fotografia mais antiga
 onde normalmente a parte do hash que aparece na figura
 <<fig:15>> é suficiente para identificá-la.
 
-\newpage
+
 === Mostrando o conteúdo de fotografias
 
 Na figura <<fig:16>> o comando `git show
@@ -338,7 +338,7 @@ A figura <<fig:17>> mostra a primeira fotografia do repositório.
 [[fig:17, {counter:refnum}]]
 image::17-Vendo detalhes da fotografia da primeira fotografia.png[]
 
-\newpage
+
 === Alterando o estado do sistema
 
 O comando `git checkout` permite colocar o repositório
@@ -552,7 +552,7 @@ Note que o ramo *master* não tem nada de especial.
 Usar outro nome para um ramo não muda nada no processo
 de fotografar as versões do sistema.
 
-\newpage
+
 === Terminado a alteração desejada
 
 Para mostrar como colocar uma alteração no ramo estável do
@@ -676,7 +676,7 @@ não temos certeza que a resposta correta em alemão
 é _hallo_.
 Por isso, vamos adiar a mesclagem com o ramo principal.
 
-\newpage
+
 === Criando mais um ramo comum
 
 Normalmente, conflitos de mesclagem não são criados 
@@ -726,7 +726,7 @@ deverá estar parecida com a da figura <<fig:49>>.
 [[fig:49, {counter:refnum}]]
 image::49-Visualizando a fotografia da versão italiana.png[]
 
-\newpage
+
 === Listando as fotografias em forma de grafo
 
 A opção `--graph` do comando `git log`
@@ -767,7 +767,7 @@ estão na fotografia mais recente.
 [[fig:52, {counter:refnum}]]
 image::52-Listando todas as fotografias do repositório em forma de grafo após mesclar a versão italiana.png[]
 
-\newpage
+
 === Quando não corre tudo bem na mesclagem
 
 Agora, veja figura <<fig:53>> o que ocorre quando tentamos 
@@ -840,6 +840,6 @@ sofre alterações em ramos diferentes.
 
 [bibliography]
 == Bibliografia
-- [[[hodson2014ry, {counter:refnum`]]] Ryan Hodson. Ry's Git Tutorial. RyPress. 2014.
-- [[[chacon2014pro, {counter:refnum`]]] Scott Chacon & Ben Straub. Pro Git. Spring Nature. 2014.
+. [[hodson2014ry, ({counter:bibnum})]] Ryan Hodson. _Ry's Git Tutorial_. RyPress. 2014.
+. [[chacon2014pro, ({counter:bibnum})]] Scott Chacon & Ben Straub. _Pro Git_. Spring Nature. 2014.
 
