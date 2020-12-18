@@ -1,6 +1,6 @@
 = Hello Git: Um tutorial para usar o Git imediatamente
 Francisco de Assis Boldt <boldt.pro.br>
-v0.1 2020-12
+v0.1 2020-09
 :doctype: book
 :toc:
 :toc-title: Sumário
@@ -8,7 +8,7 @@ v0.1 2020-12
 :chapter-label: Capítulo
 :imagesdir: ./images
 :figure-caption: Figura
-:source-highlighter: prettify
+:source-highlighter: highlightjs
 
 == O hello world do Git
 Este tutorial apresenta uma forma muito simples de se usar o Git.
