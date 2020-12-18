@@ -1,0 +1,845 @@
+= Hello Git: Um tutorial para usar o Git imediatamente
+Francisco de Assis Boldt <boldt.pro.br>
+v0.1 2020-12
+:doctype: book
+:toc:
+:toc-title: Sumário
+:sectnums:
+:chapter-label: Capítulo
+:imagesdir: ./images
+:figure-caption: Figura
+:source-highlighter: prettify
+
+== O hello world do Git
+Este tutorial apresenta uma forma muito simples de se usar o Git.
+Como exemplo, serão feitas algumas versões do clássico programa, 
+"hello world". Essas versões serão gerenciadas pelo sistema 
+controlador de versões Git.
+A intenção é mostrar uma forma de se começar a usar Git em 
+dentro de poucos minutos. É apenas um primeiro contato com a ferramenta.
+Nenhum conteúdo é abordado por completo ou com profundidade.
+Para isso, são sugeridas obras como <<hodson2014ry>> e 
+<<chacon2014pro>>.
+Mesmo assim, é bom deixar claro que Git é um sistema de
+gerenciamento de versões de software.
+Porém, apesar de ter sido idealizado para o desenvolvimento
+de programas, também pode ser usado para outras finalidades
+como escrita compartilhada de textos ou edição de imagens.
+O Git mantém um histórico das alterações de um repositório 
+permitindo recuperar informações, dividir as tarefas em ramos
+e mesclar alterações que podem ser feitas independentemente.
+
+=== Iniciando um repositório
+Fisicamente no computador, um repositório Git é apenas um
+diretório com algumas metainformações sobre as alterações 
+dos arquivos do projeto que está no diretório.
+A figura <<fig:01>> mostra como criar um repositório Git do zero.
+O comando `mkdir greetings` cria o diretório
+onde colocaremos o código do nosso projeto de exemplo e o
+comando `cd greetings`  acessa o diretório criado.
+Pode-se ver pelo comando `ls -a` que ainda não existe
+nenhum  arquivo no diretório. Para transformar esse diretório
+vazio em um repositório Git basta executar o comando
+`git init`, que o repositório será iniciado, conforme
+mostra a repetição do comando `ls -a`.
+
+.Criando um repositório
+[[fig:01, {counter:refnum}]]
+image::01-Criando um repositório.png[]
+
+Note que foi criado um diretório oculto (por que começa com
+um ponto (.)), e por isso só é listado (`ls`) quando
+se usa o parâmetro `-a`. A árvore com todos os arquivos
+e subdiretórios criado pelo comando `git init` pode ser
+vista na figura <<fig:02>>. O comando `tree .git` foi
+usado para exibir essa árvore. O diretório `.git` contém
+metadados. Ou seja, é um diretório com dados para o Git
+controlar os dados do repositórios. É a forma do Git
+"lembrar" da história do projeto.
+Um repositório Git nada mais é do que um diretório com um
+subdiretório `.git` adequadamente estruturado.
+O subdiretório `.git` não deve ser alterado diretamente.
+Suas alterações devem ser feitas através do comando
+`git` acompanhado dos parâmetros correspondentes à ação
+desejada.
+
+.Árvore de diretórios do repositório
+[[fig:02, {counter:refnum}]]
+image::02-Árvore de diretórios do repositório.png[]
+
+
+=== O comando `git status
+
+Um comando que é usado o tempo todo em um repositório Git é o comando
+`git status` apresentado na figura <<fig:03>>.
+Apesar desse comando estar em uma seção dedicada a ele, 
+devido a sua importância, ele não será abordado em profundidade,
+uma vez que nosso objetivo aqui é mostrar uma utilização do Git
+com poucos comandos, sem explorá-los por completo.
+
+.Status de um repositório recém criado
+[[fig:03, {counter:refnum}]]
+image::03-Status de um repositório recém criado.png[]
+
+A primeira linha de resposta é `On branch master*.
+_Banches_ são ramificações de um projeto Git, 
+que podem tomar rumos diferentes durante seu desenvolvimento.
+Diferentes ramos podem ser mesclados ou se tornarem novos projetos.
+O nome `master* é o nome padrão para o ramo inicial do projeto Git.
+Particularmente, eu nunca vi um projeto Git sem o ramo master,
+mas não existe nenhuma exigência de que esse ramo exista.
+É que normalmente não se muda esse nome.
+
+A segunda linha é `No commits yet`.
+Os _commits_ são fotografias do sistema que o Git mantém
+em seus metadados no diretório `.git`.
+Como não fizemos nenhum _commit_ ainda, não existe nenhuma
+"fotografia" no Git.
+
+A terceira linha é 
+`nothing to commit (creat/copy files and use "git add" to track)`.
+Não há nada para "fotografar" (_commit_) por que o diretório
+do projeto está vazio.
+Nenhum arquivo está sendo monitorado.
+Para monitorar um arquivo temos que usar o comando `git add`,
+que é apresentado na pŕoxima seção.
+
+=== Criando e monitorando um arquivo
+
+Como pode ser traduzido da terceira linha de resposta da figura
+<<fig:03>>, o Git monitora (_track_) arquivos criados
+ou copiados para dentro do diretório do repositório.
+A figura <<fig:04>> mostra o conteúdo que queremos no arquivo
+`greet.py`.
+Este arquivo em texto simples pode ser criado dentro do diretório
+ou copiado para dentro dele.
+É um arquivo escrito em linguagem de programação Python 3.
+Porém, não é necessário saber Python para acompanhar este tutorial.
+Basta notar que o arquivo será alterado e cada alteração será monitorada
+pelo Git. A execução do arquivo com o comando `python greed.py` é 
+opcional. O comando `ls -a` é só para mostrar que o arquivo 
+`greed.py` foi criado.
+
+.Criando o primeiro arquivo do projeto
+[[fig:04, {counter:refnum}]]
+image::04-Criando o primeiro arquivo do projeto.png[]
+
+Depois de criado o arquivo `greet.py`, o comando
+`git status` mostrará uma resposta um pouco diferente,
+como mostra a figura figura <<fig:05>>.
+As duas primeiras linhas de resposta continuam iguais,
+mais agora, a terceira linha de resposta lista o arquivo
+`greet.py` em vermelho, e diz que ele não está
+sendo monitorado (_untracked_).
+Veja que a resposta do comando já diz como adicionar
+a modificação no monitoramento (`git add <file>`).
+Aqui é um ponto que merece uma atenção especial quando se usa o Git.
+O Git só "fotografa" (_commit_) as alterações que estão
+em uma área abstrata de sua organização chamada _stage_.
+Isso por que, muitas vezes fazemos alterações que não queremos 
+gravar. Testamos algo, não gostamos do resultado, e queremos descartar
+o que foi feito. Outras vezes, queremos gravar só algumas alterações,
+mas não todas. 
+Esse processo também nos permite fazer alterações variadas e 
+agrupá-las em fotografias separadas.
+
+.Status com arquivo fora da área de stage
+[[fig:05, {counter:refnum}]]
+image::05-Status com arquivo fora da área de stage.png[]
+
+A figura <<fig:06>> mostra como adicionar um arquivo na área de 
+_stage` do Git, com o comando `git add greet.py`.
+Note que agora o arquivo está listado em verde, mas ainda não foi
+"fotografado" (_committed_).
+Se você colocar um arquivo na área de _stage_ por engano,
+pode removê-lo de lá, sem excluí-lo do diretório, com o 
+comando `git rm --cached <file>`, como mostra a resposta 
+do comando `git status`.
+
+.Status com arquivo na da área de stage
+[[fig:06, {counter:refnum}]]
+image::06-Status com arquivo na da área de stage.png[]
+
+É importante resaltar que até o momento, nenhum arquivo está
+sendo monitorado pelo Git.
+O arquivo `greet.py` está pronto para ser "fotografado" e,
+a partir daí, ser monitorado.
+Para fotografar as mudanças que estão na área de _stage
+deve-se executar o comando da figura <<fig:07>>.
+Entretanto, o comando só será aceito se você estiver com 
+seu nome e email configurado.
+Para não entrar em detalhes de configuração agora, 
+você pode digitar os comandos 
+`git config user.name `SEU_PRIMEIRO_NOME SEU_ULTIMO_NOME'` e
+`git config user.email `SEU_EMAIL@example.com'`.
+Quando se executa o comando `git commit` sem o parâmetro
+`-m `comentário'`, o Git abre um editor de texto para que 
+um comentário sobre a fotografia seja escrito.
+O Git não permite commits sem comentários.
+Então, foi usado aqui o `-m` para ficar mais resumido e 
+visível através das figuras.
+
+.Primeira fotografia do repositório
+[[fig:07, {counter:refnum}]]
+image::07-Primeira fotografia do repositório.png[]
+
+Se você quiser ver a fotografia tirada do sistema
+você pode usar o comando `git show` e terá um resultado
+parecido com o da figura <<fig:08>>.
+Vamos entender essa fotografia, mas sem seguir a ordem em que 
+os dados aparecem.
+Vemos o comentário inserido pelo comando `git commit`.
+Também vemos a data e hora de quando o commit foi executado,
+que pode ser entendida como o momento da fotografia.
+A linha que começa com `Author` tem os dados inseridos
+pelos comandos `git config <etc>`.
+Em negrito, está indicado que essa é uma fotografia que
+contém um arquivo novo, e a linha verde que começa com +
+é o conteúdo do arquivo.
+
+.Vendo detalhes da fotografia mais recente do sistema
+[[fig:08, {counter:refnum}]]
+image::08-Vendo detalhes da fotografia mais recente do sistema.png[]
+
+Na primeira linha, em amarelo, logo depois da palavra commit,
+está o _hash_ da fotografia.
+O _hash_ é a assinatura, o identificador, da fotografia.
+Podemos usar esse identificador para acessar a fotografia
+posteriormente. Na mesma linha, em negrito e verde, temos a
+palavra *master*,
+indicando que o ramo do projeto chamado *master* está
+apontando para esta fotografia no momento.
+Ainda na mesma linha, em azul, temos a palavra *HEAD* 
+seguida
+dos sinais de $-$ e $>$ representando uma seta (`->`).
+Esta seta indica que o estado do sistema que estamos vendo no
+momento está apontando para o ramos master.
+Isso ficará mais claro a seguir.
+
+== Criando fotografias novas e acessando fotografias antigas
+
+O Git só vai tirar uma nova fotografia do sistema se algo for 
+alterado e colocado na área de stage.
+A figura <<fig:09>> mostra a alteração sugerida.
+O resultado do programa continuou quase igual, por isso
+a palavra "hello" foi colocada toda em maiúsculo 
+para ficar mais clara que uma alteração foi feita.
+
+.Fazendo uma alteração
+[[fig:09, {counter:refnum}]]
+image::09-Fazendo uma alteração.png[]
+
+Depois da alteração do arquivo, o comando `git status
+apresenta um retorno diferente, como mostra a figura 
+<<fig:10>>.
+Novamente o arquivo `greet.py` está em vermelho
+por não estar na área de stage,
+mas agora esse arquivo está sendo monitorado. 
+Então temos duas opções.
+Podemos descartar as alterações com o comando 
+`git restore greet.py` ou podemos adicionar 
+as alterações na área de stage com o comando
+`git add greet.py`.
+Adicionaremos as alterações na área de stage, como mostra a
+figura <<fig:11>>.
+
+.Status com arquivo modificado fora da area de stage
+[[fig:10, {counter:refnum}]]
+image::10-Status com arquivo modificado fora da area de stage.png[]
+
+
+.Status com arquivo modificado na da area de stage
+[[fig:11, {counter:refnum}]]
+image::11-Status com arquivo modificado na da area de stage.png[]
+
+O resultado do comando `git status` está muito parecido 
+com o da figura <<fig:06>>. Agora, em verde, não aparece
+mais "arquivo novo" (new file), mas "modificado" (modified).
+
+A figura <<fig:12>> mostra o comando `git commit` com o
+parâmetro `-m` e um comentário relacionado à alteração feita.
+O comando `git show` mostra como ficou a fotografia.
+A linha em vermelho que inicia com o sinal $-$ mostra
+o que foi removido, e as linhas em verde que iniciam com
+o sinal $+$ mostram o que foi adicionado.
+
+.Atualizando o repositório e vendo os detalhes da atualização
+[[fig:12, {counter:refnum}]]
+image::12-Atualizando o repositório e vendo os detalhes da atualização.png[]
+
+Vamos fazer mais uma alteração no sistema, que pode ser
+vista na figura <<fig:13>>.
+Novamente, o resultado do programa é virtualmente o mesmo,
+e para que a alteração seja um pouco mais evidente, 
+a palavra _Hello_ foi colocada agora apenas com
+a primeira letra em maiúsculo.
+
+.Fazendo mais uma alteração
+[[fig:13, {counter:refnum}]]
+image::13-Fazendo mais uma alteração.png[]
+
+Depois dessa alteração, o comando `git status
+apresentará o mesmo retorno visto na figura <<fig:10>>.
+Vamos adicionar à área de stage a nova alteração com
+o comando `git add greet.py`.
+Após executado esse comando, o status do repositório
+será igual ao apresentado na figura <<fig:11>>.
+
+Agora estamos prontos para executar o comando `commit` 
+como mostra a figura <<fig:14>>.
+Novamente podem ser vistas as alterações feitas observando-se
+as linhas verdes e vermelhas.
+
+.Atualizando com a terceira alteração
+[[fig:14, {counter:refnum}]]
+image::14-Atualizando com a terceira alteração.png[]
+
+Agora temos cópias seguras das versões anteriores
+do nosso projeto. 
+
+\newpage
+=== Listando as fotografias do repositório
+
+A figura <<fig:15>> mostra como listar as fotografias do 
+sistema com o comando `git log`.
+A opção `--oneline` foi usada aqui para que 
+as fotografias sejam vistas de um forma mais compacta.
+Mas vocë deve testar sem essa opção também.
+
+.Listando as fotografias do repositório
+[[fig:15, {counter:refnum}]]
+image::15-Listando as fotografias do repositório.png[]
+
+As fotografias do repositório são apresentadas em ordem cronológica
+reversa. Ou seja, a última fotografia é a primeira a ser apresentada
+e a primeira fotografia é a última.
+Em amarelo vemos o hash de cada fotografia.
+Normalmente, essa parte do hash é suficiente para acessar a
+fotografia.
+Por exemplo, é possível ver uma fotografia mais antiga 
+(ou mais recente) com o comando `git show <hash>`,
+onde normalmente a parte do hash que aparece na figura
+<<fig:15>> é suficiente para identificá-la.
+
+\newpage
+=== Mostrando o conteúdo de fotografias
+
+Na figura <<fig:16>> o comando `git show
+mostra a fotografia anterior usando apenas a parte de seu hash
+listada na figura <<fig:15>>.
+
+.Vendo detalhes da fotografia anterior
+[[fig:16, {counter:refnum}]]
+image::16-Vendo detalhes da fotografia anterior.png[]
+
+A figura <<fig:17>> mostra a primeira fotografia do repositório.
+
+.Vendo detalhes da fotografia da primeira fotografia
+[[fig:17, {counter:refnum}]]
+image::17-Vendo detalhes da fotografia da primeira fotografia.png[]
+
+\newpage
+=== Alterando o estado do sistema
+
+O comando `git checkout` permite colocar o repositório
+em um estado gravado em alguma fotografia. 
+A figura <<fig:18>> mostra como fazer o repositório
+voltar para o estado em que a função `main
+foi criada.
+
+.Voltando o sistema para o estado da fotografia anterior
+[[fig:18, {counter:refnum}]]
+image::18-Voltando o sistema para o estado da fotografia anterior.png[]
+
+Veja na figura <<fig:20>> que o programa `greet.py
+voltou ao seu estado anterior.
+
+.Estados dos arquivos do sistema depois de voltar uma fotografia
+[[fig:20, {counter:refnum}]]
+image::20-Estados dos arquivos do sistema depois de voltar uma fotografia.png[]
+
+Ao listar as fotografias do repositório, como mostra a figura 
+<<fig:19>>, o comando `git log` não mostra mais o brach master, nem a fotografia da última alteração feita.
+Além disso, *HEAD* agora está na fotografia da segunda 
+alteração.
+
+.Listando fotografias tão ou mais antigas que a atual
+[[fig:19, {counter:refnum}]]
+image::19-Listando tão ou mais antigas que a atual.png[]
+
+Você pode estar se perguntando "Git é então um complexo ctrl+z?". Claro que não!
+A fotografia mais recente continua sendo monitorada e 
+pode ser visualizada com a opção `--all
+no comando `git log`, como mostra a 
+figura <<fig:21>>.
+
+.Listando todas fotografias do repositório
+[[fig:21, {counter:refnum}]]
+image::21-Listando todas fotografias do repositório.png[]
+
+Na verdade, o Git sempre adiciona informação ao repositório.
+Mesmo sendo possível remover informações de um repositório,
+isso é raramente recomendado.
+
+A figura <<fig:22>> mostra como colocar o sistema no
+estado da fotografia mais recente.
+
+.Voltando para versão mais recente do sistema
+[[fig:22, {counter:refnum}]]
+image::22-Voltando para versão mais recente do sistema.png[]
+
+Observe que *HEAD* não está mais apontando para 
+*master*. *HEAD* sempre estará no estado 
+atual do repositório. Mas isso não significa que o estado 
+atual é o mais recente.
+
+=== Criando etiquetas para fotografias
+
+Para facilitar o acesso das fotografias pode-se etiquetá-las.
+O tipo de etiqueta mais comum é mostrado na figura
+<<fig:23>>, que usa o comando `git tag` com a
+opção `-a`. Esta opção permite usar a opção 
+`-m` para inserir um comentário na etiqueta.
+
+.Criando etiquetas para a fotografia atual
+[[fig:23, {counter:refnum}]]
+image::23-Criando etiquetas para a fotografia atual.png[]
+
+O comando `git tag` coloca a etiqueta na fotografia atual
+do sistema, mas é possível etiquetar outras fotografias 
+através de seu hash, como mostra a figura <<fig:25>>.
+
+.Etiquetando uma fotografia mais antiga
+[[fig:25, {counter:refnum}]]
+image::25-Etiquetando uma fotografia mais antiga.png[]
+
+A figura <<fig:26>> mostra coma acessar uma fotografia antiga 
+através de sua etiqueta
+
+.Acessando uma fotografia antiga através da sua etiqueta
+[[fig:26, {counter:refnum}]]
+image::26-Acessando uma fotografia antiga através da sua etiqueta.png[]
+
+O comando `git tag` pode ser usado para listar as
+etiqueta, como mostra a figura <<fig:28>>.
+
+.Listando todas as etiquetas do repositório
+[[fig:28, {counter:refnum}]]
+image::28-Listando todas as etiquetas do repositório.png[]
+
+Listagens mais complexas, com caracteres coringa por exemplo, 
+podem ser feitas com esse comando, mas não serão exploradas aqui.
+
+Quando se executa o comando `git show` com uma etiqueta,
+ele mostra também os dados da etiqueta, como pode ser visto na
+figura <<fig:24>>.
+A informação de quem fez a etiqueta (tagger) e de quando 
+a etiqueta foi criada só é gravada se a opção `-a
+for usada na criação dela.
+
+.Mostrando fotografias usando etiquetas
+[[fig:24, {counter:refnum}]]
+image::24-Mostrando fotografias usando etiquetas.png[]
+
+Para acessar a fotografia mais recente podemos usar o 
+comando mostrada na figura <<fig:27>>.
+
+.Acessando a fotografia mais recente através da sua etiqueta
+[[fig:27, {counter:refnum}]]
+image::27-Acessando a fotografia mais recente através da sua etiqueta.png[]
+
+É importante notar que *HEAD* não aponta para nenhum
+branch. No caso, não aponta para *master*, que é 
+o único branch do repositório.
+Para continuar o tutorial execute o comando da
+figura <<fig:29>>, para que *HEAD* aponte para 
+*master*.
+
+.Acessando o branch master
+[[fig:29, {counter:refnum}]]
+image::29-Acessando o branch master.png[]
+
+Visto que este é um tutorial superficial, não será explicado o motivo deste procedimento.
+
+== Ramos no projeto
+
+As etiquetas são fixadas em uma fotografia, mas ramos
+(braches) são vivos e acompanham novas fotografias que 
+são criadas.
+Há muitas formas de se usar os braches.
+Neste capítulo mostraremos uma delas.
+Também há vários motivos para se usar os branches.
+Um deles é que você pode inserir uma alteração instável
+no sistema e querer que essa alteração fique gravada.
+Ou seja, você fez uma alteração que não está pronta,
+mas quer que essa alteração seja monitorada pelo Git por
+algum motivo.
+Talvez você não tenha certeza que o próximo passo vai funcionar,
+ou talvez você queira testar o próximo passo de mais do que uma
+forma. Ou ainda, pode ser que outra pessoa termine essa 
+atualização parcial que você fez.
+O fato é que você não quer que esta seja a versão usada até 
+que ela esteja terminada.
+
+=== Criando ramos
+
+Como ilustração, faremos uma versão brasileira para o nosso
+programa. Como eu supostamente ainda não sei se isso será
+fácil ou difícil de terminar, farei um branch como mostra a
+figura <<fig:30>>.
+Agora a fotografia mais recente tem dois ramos (na cor verde),
+*master* e *pt-br*.
+
+.Criando um novo branch
+[[fig:30, {counter:refnum}]]
+image::30-Criando um novo branch.png[]
+
+Para fazer um alteração no ramo *pt-br*, deve-se mudar 
+*HEAD* para esse ramo, como apresentado na figura
+<<fig:31>>. Agora *HEAD* aponta para *pt-br*.
+
+.Acessando um branch
+[[fig:31, {counter:refnum}]]
+image::31-Acessando um branch.png[]
+
+Quando só existia o ramo *master*, cada comando
+`commit` movia o ramo *master* para a
+fotografia mais recente.
+Agora que *HEAD* aponta para *pt-br*,
+o comando `commit` vai mover o ramo *pt-br*
+para as novas fotografias, deixando o ramo
+*master* na fotografia atual.
+Assim, fica claro para todos os envolvidos no projeto
+que o ramo *master* contém uma versão estável
+do sistema.
+
+=== Uma alteração incompleta para o ramos atual
+
+Como ilustração será feita a alteração proposta na
+figura <<fig:32>>.
+
+.Alterando o sistema no branch atual
+[[fig:32, {counter:refnum}]]
+image::32-Alterando o sistema no branch atual.png[]
+
+A resposta do comando `git status` da figura
+<<fig:33>> já é conhecida. 
+A única diferença do que já foi visto é a primeira linha
+que mostra que ramo atual é o *pt-br* 
+(_On branch pt-br_).
+
+.Status do novo branch com arquivo modificado fora da área de stage
+[[fig:33, {counter:refnum}]]
+image::33-Status do novo branch com arquivo modificado fora da área de stage.png[]
+
+O status após adicionar a alteração na área de stage
+mostrado na figura <<fig:34>> também não é muito 
+diferente do que já foi visto.
+
+.Status do novo branch com arquivo modificado na da área de stage
+[[fig:34, {counter:refnum}]]
+image::34-Status do novo branch com arquivo modificado na da área de stage.png[]
+
+O resultado dos comandos `git commit` 
+e `git show` apresentados na
+figura <<fig:35>> também não apresentam muita novidade.
+
+.Fotografia da versão brasileira do sistema
+[[fig:35, {counter:refnum}]]
+image::35-Fotografia da versão brasileira do sistema.png[]
+
+Note que o ramo *master* não tem nada de especial.
+Usar outro nome para um ramo não muda nada no processo
+de fotografar as versões do sistema.
+
+\newpage
+=== Terminado a alteração desejada
+
+Para mostrar como colocar uma alteração no ramo estável do
+sistema, vamos fazer a alteração proposta na 
+figura <<fig:36>>.
+Estamos considerando o ramo estável deste repositório
+o ramo *master*, mas poderia ser qualquer outro nome.
+
+.Parametrizando o sistema
+[[fig:36, {counter:refnum}]]
+image::36-Parametrizando o sistema.png[]
+
+Depois de colocar a nova alteração na área de stage
+e executar o comando `commit` podemos ver a nova 
+fotografia listada na figura <<fig:38>>.
+
+.Lista das fotografias após a versão brasileira parametrizada
+[[fig:38, {counter:refnum}]]
+image::38-Lista das fotografias após a versão brasileira parametrizada.png[]
+
+A figura <<fig:37>> mostra como ficou a fotografia
+mais recente do repositório.
+Também mostra como executar o programa na versão
+mais recente, caso ache interessante.
+
+.Fotografia da versão brasileira atualizada
+[[fig:37, {counter:refnum}]]
+image::37-Fotografia da versão brasileira atualizada.png[]
+
+=== Mesclando o ramo atual com o ramo principal
+
+Agora que a alteração já foi finalizada, é hora de 
+mesclar a atualização no ramo principal.
+A figura <<fig:39>> apresenta um procedimento que pode
+ser executado com essa finalidade.
+Primeiro, temos que fazer *HEAD* apontar
+para o ramo principal com o comando 
+`git checkout master`.
+Depois, usamos o comando `git merge pt-br`
+para mesclar o ramo *pt-br* com o ramo atual.
+
+.Mesclando a versão brasileira com a versão original
+[[fig:39, {counter:refnum}]]
+image::39-Mesclando a versão brasileira com a versão original.png[]
+
+A figura <<fig:40>> mostra a lista de fotografias
+depois da mesclagem de ramos.
+
+.Listando as fotografias do repositório após mesclar versões do sistema
+[[fig:40, {counter:refnum}]]
+image::40-Listando as fotografias do repositório após mesclar versões do sistema.png[]
+
+Na segunda linha da reposta do comando
+`git merge pt-br` na figura <<fig:39>> 
+está escrito _Fast-forward_.
+Isso significa que nenhuma alteração foi feita no
+ramo *master* enquanto o ramo *pt-br*
+estava sendo alterado.
+Assim, não houve nenhum conflito para juntar as versões
+porque a versão mais recente de *pt-br*
+era como uma versão futura de *master*.
+A seguir, veremos um situação que isso não é resolvido tão
+facilmente.
+
+== Criando bifurcações no projeto
+
+O capítulo anterior mostrou uma mesclagem do tipo
+_fast-forward_, que é um tipo sem conflito.
+Aqui, veremos como resolver conflitos quando ele acontecem.
+
+=== Criando um ramo comum
+
+Agora faremos uma versão do sistema em alemão.
+Para manter uma boa prática de Git vamos criar um novo
+ramo, como mostra a figura <<fig:41>>.
+
+.Criando um branch para uma versão em alemão
+[[fig:41, {counter:refnum}]]
+image::41-Criando um branch para uma versão em alemão.png[]
+
+Para trabalhar no novo ramo, deve-se usar o comando
+`git checkout`. O comando `git log`
+mostra o ramo para o qual *HEAD* aponta.
+O resoltado pode ser visto na figura <<fig:42>>.
+
+.Acessando o branch onde será implementada a versão alemã do sistema
+[[fig:42, {counter:refnum}]]
+image::42-Acessando o branch onde será implementada a versão alemã do sistema.png[]
+
+Depois de fazer a alteração sugerida na figura <<fig:43>>,
+execute o comando `git commit` para deixar 
+gravada as alterações no repositório.
+
+.Alteração feita para versão alemã do sistema
+[[fig:43, {counter:refnum}]]
+image::43-Alteração feita para versão alemã do sistema.png[]
+
+A fotografia do último _commit_ está na figura
+<<fig:44>>.
+
+.Fotografando a versão alemã do sistema
+[[fig:44, {counter:refnum}]]
+image::44-Fotografando a versão alemã do sistema.png[]
+
+A figura <<fig:45>> mostra que o sistema possui seis 
+fotografias até o momento.
+
+.Listando as fotografias após a inclusão da versão alemã
+[[fig:45, {counter:refnum}]]
+image::45-Listando as fotografias após a inclusão da versão alemã.png[]
+
+Na condição atual, no exemplo co capítulo anterior,
+o ramo foi mesclado com o ramo estável.
+Mas para exemplificar um conflito, não vamos mesclá-lo 
+agora.
+Um motivo para não mesclar é não ter feito todos os
+testes no seu ramo.
+Ou o ramo ainda não está terminado.
+Vamos supor me nossa situações hipotética que 
+não temos certeza que a resposta correta em alemão
+é _hallo_.
+Por isso, vamos adiar a mesclagem com o ramo principal.
+
+\newpage
+=== Criando mais um ramo comum
+
+Normalmente, conflitos de mesclagem não são criados 
+intencionalemente. Mas para ilustrar a resolução 
+de conflitos que inevitavelmente acontecerão,
+vamos fazer uma versão em italiano do nosso 
+sistema para forçar um conflito.
+Para isso, vamos começar criando um novo ramo a
+partir de *master*.
+Após fotografarmos a alteração do sistema
+com a versão italiana, teremos dois ramos que
+nasceram a partir de *master*.
+Um deles é facilmente mesclável. O outro, nem tanto.
+
+Uma forma de se criar um ramo a partir de *master*
+é estando com *HEAD* apontando para *master*.
+Em seguida, usa-se o comando `git branch` para 
+criar um novo branch, como na figura <<fig:46>>.
+
+.Criando um branch para implementar uma versão italiana a partir da versão brasileira
+[[fig:46, {counter:refnum}]]
+image::46-Criando um branch para implementar uma versão italiana a partir da versão brasileira.png[]
+
+Note que *HEAD* continua apontando para
+*master*.
+Portanto é necessário mover *HEAD* para o novo
+ramo, como figura <<fig:47>>.
+
+.Acessando o branch da versão italiana
+[[fig:47, {counter:refnum}]]
+image::47-Acessando o branch da versão italiana.png[]
+
+Implemente a alteração sugerida na figura <<fig:48>>.
+
+.Implementando a versão italiana
+[[fig:48, {counter:refnum}]]
+image::48-Implementando a versão italiana.png[]
+
+Adicione as alterações na área de stage e execute
+o comando `git commit` para fazer a nova fotografia.
+
+Após adicionar as alterações na área de stage e executar
+o comando `git commit` a fotografia mais atual
+deverá estar parecida com a da figura <<fig:49>>.
+
+.Visualizando a fotografia da versão italiana
+[[fig:49, {counter:refnum}]]
+image::49-Visualizando a fotografia da versão italiana.png[]
+
+\newpage
+=== Listando as fotografias em forma de grafo
+
+A opção `--graph` do comando `git log`
+lista as fotografias do repositório em forma de grafo,
+como na figura <<fig:50>>.
+
+
+.Listando todas as fotografias do repositório em forma de grafo
+[[fig:50, {counter:refnum}]]
+image::50-Listando todas as fotografias do repositório em forma de grafo.png[]
+
+Note que acima do ramo *master* as linhas estão
+vermelhas, indicando um possível conflito.
+Observe que o ramo *de* (alemão), que é mais
+antigo que o ramo *it* (italiano), se mostra como
+um ramo que está saindo de um galho.
+
+
+=== Mesclando o último ramo antes do primeiro
+
+O último ramo criado foi o ramo *it*,
+mas aqui vasmos mesclá-lo ao ramo principal
+antes do ramo mais antigo, que é o ramo *de*.
+A figura <<fig:51>> mostra uma forma de como isso 
+pode ser feito.
+Ocorreu uma mesclagem do tipo _fast-forward_
+sem nenhum problema.
+
+.Mesclando a versão italiana com a principal
+[[fig:51, {counter:refnum}]]
+image::51-Mesclando a versão italiana com a principal.png[]
+
+Na figura <<fig:52>> podemos ver que o grafo não foi 
+alterado, mas agora *HEAD* e *master*
+estão na fotografia mais recente.
+
+.Listando todas as fotografias do repositório em forma de grafo após mesclar a versão italiana
+[[fig:52, {counter:refnum}]]
+image::52-Listando todas as fotografias do repositório em forma de grafo após mesclar a versão italiana.png[]
+
+\newpage
+=== Quando não corre tudo bem na mesclagem
+
+Agora, veja figura <<fig:53>> o que ocorre quando tentamos 
+mesclar o ramo alemão com o ramo princial.
+
+.Mesclando a versão alemã com a principal
+[[fig:53, {counter:refnum}]]
+image::53-Mesclando a versão alemã com a principal.png[]
+
+O comando `git mergetool --tool-help`
+lista as disponíveis no seu sistema operacional
+(figura <<fig:54>>).
+
+.Buscando ajuda com mergetool
+[[fig:54, {counter:refnum}]]
+image::54-Buscando ajuda com mergetool.png[]
+
+Conforme a figura <<fig:54>>, a ferramenta `vimdiff`
+pode ser selecionada como na figura <<fig:55>>.
+
+.Escolhendo programa para usar com mergetool
+[[fig:55, {counter:refnum}]]
+image::55-Escolhendo programa para usar com mergetool.png[]
+
+A figura <<fig:56>> mostra como deve estar o
+arquivo `greet.py` depois de resolvidos os conflitos.
+A solução apresentada é apenas uma sugestão da
+resolução do conflito que ocorreu.
+Outras soluções poderiam ter resolvido o conflito 
+também.
+
+
+.Programa após a resolução de conflitos
+[[fig:56, {counter:refnum}]]
+image::56-Programa após a resolução de conflitos.png[]
+
+A utilização do `vimdiff` excede o escopo deste 
+tutorial, mas você pode ver como é a apresentação dessa 
+ferramenta na figura <<fig:57>>.
+
+.vimdiff
+[[fig:57, {counter:refnum}]]
+image::57-vimdiff.png[]
+
+Depois de usar uma ferremanta de solução de conflitos
+para solucioná-los, o comando `git commit
+deve ser executado para fotografar a forma como
+os conflitos foram solucionados.
+
+A figura <<fig:58>> mostra como os ramos separados 
+se juntam depois da solução de conflitos.
+
+.Listando todas as fotografias do repositório em forma de grafo após mesclar a versão alemã
+[[fig:58, {counter:refnum}]]
+image::58-Listando todas as fotografias do repositório em forma de grafo após mesclar a versão alemã.png[]
+
+Agora, você já sabe uma forma de se usar o Git.
+A forma apresentada aqui não é a única, nem a melhor. 
+É um exemplo para ser aplicado imediatamente.
+É claro que um projeto real, que necessite de um
+gerenciador de versões, possívelmente terá mais arquivos
+no que o exemplo `hello world` apresentado aqui.
+Porém, trabalhar com mais arquivos pode facilitar o
+gerenciamento das versões.
+Conflitos geralmente ocorrem quando o mesmo arquivo
+sofre alterações em ramos diferentes.
+
+
+
+
+[bibliography]
+== Bibliografia
+- [[[hodson2014ry, {counter:refnum`]]] Ryan Hodson. Ry's Git Tutorial. RyPress. 2014.
+- [[[chacon2014pro, {counter:refnum`]]] Scott Chacon & Ben Straub. Pro Git. Spring Nature. 2014.
+
