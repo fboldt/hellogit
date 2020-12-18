@@ -824,6 +824,7 @@ se juntam depois da solução de conflitos.
 [[fig:58, {counter:refnum}]]
 image::58-Listando todas as fotografias do repositório em forma de grafo após mesclar a versão alemã.png[]
 
+== Conclusão
 Agora, você já sabe uma forma de se usar o Git.
 A forma apresentada aqui não é a única, nem a melhor. 
 É um exemplo para ser aplicado imediatamente.
