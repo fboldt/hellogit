@@ -1,0 +1,186 @@
+== Iniciando um repositório local
+Fisicamente no computador, um repositório Git é apenas um
+diretório com algumas metainformações sobre as alterações 
+dos arquivos do projeto que está no diretório.
+A figura <<fig:01>> mostra como criar um repositório Git do zero.
+O comando `mkdir greetings` cria o diretório
+onde colocaremos o código do nosso projeto de exemplo e o
+comando `cd greetings`  acessa o diretório criado.
+Pode-se ver pelo comando `ls -a` que ainda não existe
+nenhum  arquivo no diretório. Para transformar esse diretório
+vazio em um repositório Git basta executar o comando
+`git init`, que o repositório será iniciado, conforme
+mostra a repetição do comando `ls -a`.
+
+.Criando um repositório
+[[fig:01, {counter:refnum}]]
+image::01-Criando um repositório.png[]
+
+Note que foi criado um diretório oculto (por que começa com
+um ponto (.)), e por isso só é listado (`ls`) quando
+se usa o parâmetro `-a`. A árvore com todos os arquivos
+e subdiretórios criado pelo comando `git init` pode ser
+vista na figura <<fig:02>>. O comando `tree .git` foi
+usado para exibir essa árvore. O diretório `.git` contém
+metadados. Ou seja, é um diretório com dados para o Git
+controlar os dados do repositórios. É a forma do Git
+"lembrar" da história do projeto.
+Um repositório Git nada mais é do que um diretório com um
+subdiretório `.git` adequadamente estruturado.
+O subdiretório `.git` não deve ser alterado diretamente.
+Suas alterações devem ser feitas através do comando
+`git` acompanhado dos parâmetros correspondentes à ação
+desejada.
+
+.Árvore de diretórios do repositório
+[[fig:02, {counter:refnum}]]
+image::02-Árvore de diretórios do repositório.png[]
+
+
+=== O comando `git status`
+
+Um comando que é usado o tempo todo em um repositório Git é o comando
+`git status` apresentado na figura <<fig:03>>.
+Apesar desse comando estar em uma seção dedicada a ele, 
+devido a sua importância, ele não será abordado em profundidade,
+uma vez que nosso objetivo aqui é mostrar uma utilização do Git
+com poucos comandos, sem explorá-los por completo.
+
+.Status de um repositório recém criado
+[[fig:03, {counter:refnum}]]
+image::03-Status de um repositório recém criado.png[]
+
+A primeira linha de resposta é `On branch master*.
+_Banches_ são ramificações de um projeto Git, 
+que podem tomar rumos diferentes durante seu desenvolvimento.
+Diferentes ramos podem ser mesclados ou se tornarem novos projetos.
+O nome `master* é o nome padrão para o ramo inicial do projeto Git.
+Particularmente, eu nunca vi um projeto Git sem o ramo master,
+mas não existe nenhuma exigência de que esse ramo exista.
+É que normalmente não se muda esse nome.
+
+A segunda linha é `No commits yet`.
+Os _commits_ são fotografias do sistema que o Git mantém
+em seus metadados no diretório `.git`.
+Como não fizemos nenhum _commit_ ainda, não existe nenhuma
+"fotografia" no Git.
+
+A terceira linha é 
+`nothing to commit (creat/copy files and use "git add" to track)`.
+Não há nada para "fotografar" (_commit_) por que o diretório
+do projeto está vazio.
+Nenhum arquivo está sendo monitorado.
+Para monitorar um arquivo temos que usar o comando `git add`,
+que é apresentado na pŕoxima seção.
+
+=== Criando e monitorando um arquivo
+
+Como pode ser traduzido da terceira linha de resposta da figura
+<<fig:03>>, o Git monitora (_track_) arquivos criados
+ou copiados para dentro do diretório do repositório.
+A figura <<fig:04>> mostra o conteúdo que queremos no arquivo
+`greet.py`.
+Este arquivo em texto simples pode ser criado dentro do diretório
+ou copiado para dentro dele.
+É um arquivo escrito em linguagem de programação Python 3.
+Porém, não é necessário saber Python para acompanhar este tutorial.
+Basta notar que o arquivo será alterado e cada alteração será monitorada
+pelo Git. A execução do arquivo com o comando `python greed.py` é 
+opcional. O comando `ls -a` é só para mostrar que o arquivo 
+`greed.py` foi criado.
+
+.Criando o primeiro arquivo do projeto
+[[fig:04, {counter:refnum}]]
+image::04-Criando o primeiro arquivo do projeto.png[]
+
+Depois de criado o arquivo `greet.py`, o comando
+`git status` mostrará uma resposta um pouco diferente,
+como mostra a figura figura <<fig:05>>.
+As duas primeiras linhas de resposta continuam iguais,
+mais agora, a terceira linha de resposta lista o arquivo
+`greet.py` em vermelho, e diz que ele não está
+sendo monitorado (_untracked_).
+Veja que a resposta do comando já diz como adicionar
+a modificação no monitoramento (`git add <file>`).
+Aqui é um ponto que merece uma atenção especial quando se usa o Git.
+O Git só "fotografa" (_commit_) as alterações que estão
+em uma área abstrata de sua organização chamada _stage_.
+Isso por que, muitas vezes fazemos alterações que não queremos 
+gravar. Testamos algo, não gostamos do resultado, e queremos descartar
+o que foi feito. Outras vezes, queremos gravar só algumas alterações,
+mas não todas. 
+Esse processo também nos permite fazer alterações variadas e 
+agrupá-las em fotografias separadas.
+
+.Status com arquivo fora da área de stage
+[[fig:05, {counter:refnum}]]
+image::05-Status com arquivo fora da área de stage.png[]
+
+A figura <<fig:06>> mostra como adicionar um arquivo na área de 
+_stage` do Git, com o comando `git add greet.py`.
+Note que agora o arquivo está listado em verde, mas ainda não foi
+"fotografado" (_committed_).
+Se você colocar um arquivo na área de _stage_ por engano,
+pode removê-lo de lá, sem excluí-lo do diretório, com o 
+comando `git rm --cached <file>`, como mostra a resposta 
+do comando `git status`.
+
+.Status com arquivo na da área de stage
+[[fig:06, {counter:refnum}]]
+image::06-Status com arquivo na da área de stage.png[]
+
+É importante resaltar que até o momento, nenhum arquivo está
+sendo monitorado pelo Git.
+O arquivo `greet.py` está pronto para ser "fotografado" e,
+a partir daí, ser monitorado.
+Para fotografar as mudanças que estão na área de _stage
+deve-se executar o comando da figura <<fig:07>>.
+Entretanto, o comando só será aceito se você estiver com 
+seu nome e email configurado.
+Para não entrar em detalhes de configuração agora, 
+você pode digitar os comandos 
+`git config user.name `SEU_PRIMEIRO_NOME SEU_ULTIMO_NOME'` e
+`git config user.email `SEU_EMAIL@example.com'`.
+Quando se executa o comando `git commit` sem o parâmetro
+`-m `comentário'`, o Git abre um editor de texto para que 
+um comentário sobre a fotografia seja escrito.
+O Git não permite commits sem comentários.
+Então, foi usado aqui o `-m` para ficar mais resumido e 
+visível através das figuras.
+
+.Primeira fotografia do repositório
+[[fig:07, {counter:refnum}]]
+image::07-Primeira fotografia do repositório.png[]
+
+Se você quiser ver a fotografia tirada do sistema
+você pode usar o comando `git show` e terá um resultado
+parecido com o da figura <<fig:08>>.
+Vamos entender essa fotografia, mas sem seguir a ordem em que 
+os dados aparecem.
+Vemos o comentário inserido pelo comando `git commit`.
+Também vemos a data e hora de quando o commit foi executado,
+que pode ser entendida como o momento da fotografia.
+A linha que começa com `Author` tem os dados inseridos
+pelos comandos `git config <etc>`.
+Em negrito, está indicado que essa é uma fotografia que
+contém um arquivo novo, e a linha verde que começa com +
+é o conteúdo do arquivo.
+
+.Vendo detalhes da fotografia mais recente do sistema
+[[fig:08, {counter:refnum}]]
+image::08-Vendo detalhes da fotografia mais recente do sistema.png[]
+
+Na primeira linha, em amarelo, logo depois da palavra commit,
+está o _hash_ da fotografia.
+O _hash_ é a assinatura, o identificador, da fotografia.
+Podemos usar esse identificador para acessar a fotografia
+posteriormente. Na mesma linha, em negrito e verde, temos a
+palavra *master*,
+indicando que o ramo do projeto chamado *master* está
+apontando para esta fotografia no momento.
+Ainda na mesma linha, em azul, temos a palavra *HEAD* 
+seguida
+dos sinais de $-$ e $>$ representando uma seta (`->`).
+Esta seta indica que o estado do sistema que estamos vendo no
+momento está apontando para o ramos master.
+Isso ficará mais claro a seguir.

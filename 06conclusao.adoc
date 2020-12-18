@@ -1,0 +1,11 @@
+== Conclusão
+Agora, você já sabe uma forma de se usar o Git.
+A forma apresentada aqui não é a única, nem a melhor. 
+É um exemplo para ser aplicado imediatamente.
+É claro que um projeto real, que necessite de um
+gerenciador de versões, possívelmente terá mais arquivos
+no que o exemplo `hello world` apresentado aqui.
+Porém, trabalhar com mais arquivos pode facilitar o
+gerenciamento das versões.
+Conflitos geralmente ocorrem quando o mesmo arquivo
+sofre alterações em ramos diferentes.
