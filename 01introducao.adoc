@@ -21,7 +21,17 @@ permitindo recuperar informações, dividir as tarefas em ramos
 e mesclar alterações que podem ser feitas independentemente.
 
 === Por que usar Git?
+
 Quem nunca fez uma cópia de um arquivo que 
 desejamos alterar (só pra garantir)? Fazemos isso
 tanto para um código de programa quanto
 para algum outro tipo documento.
+O Git mantém essas cópias de forma mais eficiente e organizada.
+
+=== Como ler este livro?
+
+A figura <<fig:ler>> mostra uma sugestão de como ler este livro.
+
+.Como ler este livro?
+[[fig:ler, {counter:refnum}]]
+image::lerestelivro.png[]
