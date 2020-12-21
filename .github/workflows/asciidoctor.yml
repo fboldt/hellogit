@@ -18,3 +18,9 @@ jobs:
           program: "asciidoctor hellogit.adoc"
     - name: Print execution time
       run: echo "Time ${{ steps.adocbuild.outputs.time }}"
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_branch: gh-pages
+        publish_dir: ./
