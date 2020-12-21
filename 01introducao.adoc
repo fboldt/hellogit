@@ -1,4 +1,5 @@
 == Introdução: O hello world do Git
+
 Este tutorial apresenta uma forma muito simples de se usar o Git.
 Como exemplo, serão feitas algumas versões do clássico programa, 
 "hello world". Essas versões serão gerenciadas pelo sistema 
