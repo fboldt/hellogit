@@ -1,0 +1,15 @@
+O <<cod01>> mostra como criar um repositório Git do zero.
+
+.Código 1
+[[cod01]]
+[source]
+----
+~$ mkdir greetings
+~$ cd greetings
+~/greetings$ ls -a
+. ..
+~/greetings$ git init
+Initialized empty Git repository in home/filano/greetings/.git/
+~/greetings$ ls -a
+. .. .git
+----

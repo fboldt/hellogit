@@ -1,0 +1,362 @@
+== Ramos no projeto
+
+As etiquetas são fixadas em uma fotografia, mas ramos
+(braches) são vivos e acompanham novas fotografias que 
+são criadas.
+Há muitas formas de se usar os braches.
+Neste capítulo mostraremos uma delas.
+Também há vários motivos para se usar os branches.
+Um deles é que você pode inserir uma alteração instável
+no sistema e querer que essa alteração fique gravada.
+Ou seja, você fez uma alteração que não está pronta,
+mas quer que essa alteração seja monitorada pelo Git por
+algum motivo.
+Talvez você não tenha certeza que o próximo passo vai funcionar,
+ou talvez você queira testar o próximo passo de mais do que uma
+forma. Ou ainda, pode ser que outra pessoa termine essa 
+atualização parcial que você fez.
+O fato é que você não quer que esta seja a versão usada até 
+que ela esteja terminada.
+
+=== Criando ramos
+
+Como ilustração, faremos uma versão brasileira para o nosso
+programa. Como eu supostamente ainda não sei se isso será
+fácil ou difícil de terminar, farei um branch como mostra a
+figura <<fig:30>>.
+Agora a fotografia mais recente tem dois ramos (na cor verde),
+*master* e *pt-br*.
+
+.Criando um novo branch
+[[fig:30, {counter:refnum}]]
+image::30-Criando um novo branch.png[]
+
+Para fazer um alteração no ramo *pt-br*, deve-se mudar 
+*HEAD* para esse ramo, como apresentado na figura
+<<fig:31>>. Agora *HEAD* aponta para *pt-br*.
+
+.Acessando um branch
+[[fig:31, {counter:refnum}]]
+image::31-Acessando um branch.png[]
+
+Quando só existia o ramo *master*, cada comando
+`commit` movia o ramo *master* para a
+fotografia mais recente.
+Agora que *HEAD* aponta para *pt-br*,
+o comando `commit` vai mover o ramo *pt-br*
+para as novas fotografias, deixando o ramo
+*master* na fotografia atual.
+Assim, fica claro para todos os envolvidos no projeto
+que o ramo *master* contém uma versão estável
+do sistema.
+
+=== Uma alteração incompleta para o ramos atual
+
+Como ilustração será feita a alteração proposta na
+figura <<fig:32>>.
+
+.Alterando o sistema no branch atual
+[[fig:32, {counter:refnum}]]
+image::32-Alterando o sistema no branch atual.png[]
+
+A resposta do comando `git status` da figura
+<<fig:33>> já é conhecida. 
+A única diferença do que já foi visto é a primeira linha
+que mostra que ramo atual é o *pt-br* 
+(_On branch pt-br_).
+
+.Status do novo branch com arquivo modificado fora da área de stage
+[[fig:33, {counter:refnum}]]
+image::33-Status do novo branch com arquivo modificado fora da área de stage.png[]
+
+O status após adicionar a alteração na área de stage
+mostrado na figura <<fig:34>> também não é muito 
+diferente do que já foi visto.
+
+.Status do novo branch com arquivo modificado na da área de stage
+[[fig:34, {counter:refnum}]]
+image::34-Status do novo branch com arquivo modificado na da área de stage.png[]
+
+O resultado dos comandos `git commit` 
+e `git show` apresentados na
+figura <<fig:35>> também não apresentam muita novidade.
+
+.Fotografia da versão brasileira do sistema
+[[fig:35, {counter:refnum}]]
+image::35-Fotografia da versão brasileira do sistema.png[]
+
+Note que o ramo *master* não tem nada de especial.
+Usar outro nome para um ramo não muda nada no processo
+de fotografar as versões do sistema.
+
+
+=== Terminado a alteração desejada
+
+Para mostrar como colocar uma alteração no ramo estável do
+sistema, vamos fazer a alteração proposta na 
+figura <<fig:36>>.
+Estamos considerando o ramo estável deste repositório
+o ramo *master*, mas poderia ser qualquer outro nome.
+
+.Parametrizando o sistema
+[[fig:36, {counter:refnum}]]
+image::36-Parametrizando o sistema.png[]
+
+Depois de colocar a nova alteração na área de stage
+e executar o comando `commit` podemos ver a nova 
+fotografia listada na figura <<fig:38>>.
+
+.Lista das fotografias após a versão brasileira parametrizada
+[[fig:38, {counter:refnum}]]
+image::38-Lista das fotografias após a versão brasileira parametrizada.png[]
+
+A figura <<fig:37>> mostra como ficou a fotografia
+mais recente do repositório.
+Também mostra como executar o programa na versão
+mais recente, caso ache interessante.
+
+.Fotografia da versão brasileira atualizada
+[[fig:37, {counter:refnum}]]
+image::37-Fotografia da versão brasileira atualizada.png[]
+
+=== Mesclando o ramo atual com o ramo principal
+
+Agora que a alteração já foi finalizada, é hora de 
+mesclar a atualização no ramo principal.
+A figura <<fig:39>> apresenta um procedimento que pode
+ser executado com essa finalidade.
+Primeiro, temos que fazer *HEAD* apontar
+para o ramo principal com o comando 
+`git checkout master`.
+Depois, usamos o comando `git merge pt-br`
+para mesclar o ramo *pt-br* com o ramo atual.
+
+.Mesclando a versão brasileira com a versão original
+[[fig:39, {counter:refnum}]]
+image::39-Mesclando a versão brasileira com a versão original.png[]
+
+A figura <<fig:40>> mostra a lista de fotografias
+depois da mesclagem de ramos.
+
+.Listando as fotografias do repositório após mesclar versões do sistema
+[[fig:40, {counter:refnum}]]
+image::40-Listando as fotografias do repositório após mesclar versões do sistema.png[]
+
+Na segunda linha da reposta do comando
+`git merge pt-br` na figura <<fig:39>> 
+está escrito _Fast-forward_.
+Isso significa que nenhuma alteração foi feita no
+ramo *master* enquanto o ramo *pt-br*
+estava sendo alterado.
+Assim, não houve nenhum conflito para juntar as versões
+porque a versão mais recente de *pt-br*
+era como uma versão futura de *master*.
+A seguir, veremos um situação que isso não é resolvido tão
+facilmente.
+
+== Criando bifurcações no projeto
+
+O capítulo anterior mostrou uma mesclagem do tipo
+_fast-forward_, que é um tipo sem conflito.
+Aqui, veremos como resolver conflitos quando ele acontecem.
+
+=== Criando um ramo comum
+
+Agora faremos uma versão do sistema em alemão.
+Para manter uma boa prática de Git vamos criar um novo
+ramo, como mostra a figura <<fig:41>>.
+
+.Criando um branch para uma versão em alemão
+[[fig:41, {counter:refnum}]]
+image::41-Criando um branch para uma versão em alemão.png[]
+
+Para trabalhar no novo ramo, deve-se usar o comando
+`git checkout`. O comando `git log`
+mostra o ramo para o qual *HEAD* aponta.
+O resoltado pode ser visto na figura <<fig:42>>.
+
+.Acessando o branch onde será implementada a versão alemã do sistema
+[[fig:42, {counter:refnum}]]
+image::42-Acessando o branch onde será implementada a versão alemã do sistema.png[]
+
+Depois de fazer a alteração sugerida na figura <<fig:43>>,
+execute o comando `git commit` para deixar 
+gravada as alterações no repositório.
+
+.Alteração feita para versão alemã do sistema
+[[fig:43, {counter:refnum}]]
+image::43-Alteração feita para versão alemã do sistema.png[]
+
+A fotografia do último _commit_ está na figura
+<<fig:44>>.
+
+.Fotografando a versão alemã do sistema
+[[fig:44, {counter:refnum}]]
+image::44-Fotografando a versão alemã do sistema.png[]
+
+A figura <<fig:45>> mostra que o sistema possui seis 
+fotografias até o momento.
+
+.Listando as fotografias após a inclusão da versão alemã
+[[fig:45, {counter:refnum}]]
+image::45-Listando as fotografias após a inclusão da versão alemã.png[]
+
+Na condição atual, no exemplo co capítulo anterior,
+o ramo foi mesclado com o ramo estável.
+Mas para exemplificar um conflito, não vamos mesclá-lo 
+agora.
+Um motivo para não mesclar é não ter feito todos os
+testes no seu ramo.
+Ou o ramo ainda não está terminado.
+Vamos supor me nossa situações hipotética que 
+não temos certeza que a resposta correta em alemão
+é _hallo_.
+Por isso, vamos adiar a mesclagem com o ramo principal.
+
+
+=== Criando mais um ramo comum
+
+Normalmente, conflitos de mesclagem não são criados 
+intencionalemente. Mas para ilustrar a resolução 
+de conflitos que inevitavelmente acontecerão,
+vamos fazer uma versão em italiano do nosso 
+sistema para forçar um conflito.
+Para isso, vamos começar criando um novo ramo a
+partir de *master*.
+Após fotografarmos a alteração do sistema
+com a versão italiana, teremos dois ramos que
+nasceram a partir de *master*.
+Um deles é facilmente mesclável. O outro, nem tanto.
+
+Uma forma de se criar um ramo a partir de *master*
+é estando com *HEAD* apontando para *master*.
+Em seguida, usa-se o comando `git branch` para 
+criar um novo branch, como na figura <<fig:46>>.
+
+.Criando um branch para implementar uma versão italiana a partir da versão brasileira
+[[fig:46, {counter:refnum}]]
+image::46-Criando um branch para implementar uma versão italiana a partir da versão brasileira.png[]
+
+Note que *HEAD* continua apontando para
+*master*.
+Portanto é necessário mover *HEAD* para o novo
+ramo, como figura <<fig:47>>.
+
+.Acessando o branch da versão italiana
+[[fig:47, {counter:refnum}]]
+image::47-Acessando o branch da versão italiana.png[]
+
+Implemente a alteração sugerida na figura <<fig:48>>.
+
+.Implementando a versão italiana
+[[fig:48, {counter:refnum}]]
+image::48-Implementando a versão italiana.png[]
+
+Adicione as alterações na área de stage e execute
+o comando `git commit` para fazer a nova fotografia.
+
+Após adicionar as alterações na área de stage e executar
+o comando `git commit` a fotografia mais atual
+deverá estar parecida com a da figura <<fig:49>>.
+
+.Visualizando a fotografia da versão italiana
+[[fig:49, {counter:refnum}]]
+image::49-Visualizando a fotografia da versão italiana.png[]
+
+
+=== Listando as fotografias em forma de grafo
+
+A opção `--graph` do comando `git log`
+lista as fotografias do repositório em forma de grafo,
+como na figura <<fig:50>>.
+
+
+.Listando todas as fotografias do repositório em forma de grafo
+[[fig:50, {counter:refnum}]]
+image::50-Listando todas as fotografias do repositório em forma de grafo.png[]
+
+Note que acima do ramo *master* as linhas estão
+vermelhas, indicando um possível conflito.
+Observe que o ramo *de* (alemão), que é mais
+antigo que o ramo *it* (italiano), se mostra como
+um ramo que está saindo de um galho.
+
+
+=== Mesclando o último ramo antes do primeiro
+
+O último ramo criado foi o ramo *it*,
+mas aqui vasmos mesclá-lo ao ramo principal
+antes do ramo mais antigo, que é o ramo *de*.
+A figura <<fig:51>> mostra uma forma de como isso 
+pode ser feito.
+Ocorreu uma mesclagem do tipo _fast-forward_
+sem nenhum problema.
+
+.Mesclando a versão italiana com a principal
+[[fig:51, {counter:refnum}]]
+image::51-Mesclando a versão italiana com a principal.png[]
+
+Na figura <<fig:52>> podemos ver que o grafo não foi 
+alterado, mas agora *HEAD* e *master*
+estão na fotografia mais recente.
+
+.Listando todas as fotografias do repositório em forma de grafo após mesclar a versão italiana
+[[fig:52, {counter:refnum}]]
+image::52-Listando todas as fotografias do repositório em forma de grafo após mesclar a versão italiana.png[]
+
+
+=== Quando não corre tudo bem na mesclagem
+
+Agora, veja figura <<fig:53>> o que ocorre quando tentamos 
+mesclar o ramo alemão com o ramo princial.
+
+.Mesclando a versão alemã com a principal
+[[fig:53, {counter:refnum}]]
+image::53-Mesclando a versão alemã com a principal.png[]
+
+O comando `git mergetool --tool-help`
+lista as disponíveis no seu sistema operacional
+(figura <<fig:54>>).
+
+.Buscando ajuda com mergetool
+[[fig:54, {counter:refnum}]]
+image::54-Buscando ajuda com mergetool.png[]
+
+Conforme a figura <<fig:54>>, a ferramenta `vimdiff`
+pode ser selecionada como na figura <<fig:55>>.
+
+.Escolhendo programa para usar com mergetool
+[[fig:55, {counter:refnum}]]
+image::55-Escolhendo programa para usar com mergetool.png[]
+
+A figura <<fig:56>> mostra como deve estar o
+arquivo `greet.py` depois de resolvidos os conflitos.
+A solução apresentada é apenas uma sugestão da
+resolução do conflito que ocorreu.
+Outras soluções poderiam ter resolvido o conflito 
+também.
+
+
+.Programa após a resolução de conflitos
+[[fig:56, {counter:refnum}]]
+image::56-Programa após a resolução de conflitos.png[]
+
+A utilização do `vimdiff` excede o escopo deste 
+tutorial, mas você pode ver como é a apresentação dessa 
+ferramenta na figura <<fig:57>>.
+
+.vimdiff
+[[fig:57, {counter:refnum}]]
+image::57-vimdiff.png[]
+
+Depois de usar uma ferremanta de solução de conflitos
+para solucioná-los, o comando `git commit
+deve ser executado para fotografar a forma como
+os conflitos foram solucionados.
+
+A figura <<fig:58>> mostra como os ramos separados 
+se juntam depois da solução de conflitos.
+
+.Listando todas as fotografias do repositório em forma de grafo após mesclar a versão alemã
+[[fig:58, {counter:refnum}]]
+image::58-Listando todas as fotografias do repositório em forma de grafo após mesclar a versão alemã.png[]
