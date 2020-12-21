@@ -1,0 +1,206 @@
+== Criando bifurcações no projeto
+
+O capítulo anterior mostrou uma mesclagem do tipo
+_fast-forward_, que é um tipo sem conflito.
+Aqui, veremos como resolver conflitos quando ele acontecem.
+
+=== Criando um ramo comum
+
+Agora faremos uma versão do sistema em alemão.
+Para manter uma boa prática de Git vamos criar um novo
+ramo, como mostra a figura <<fig:41>>.
+
+.Criando um branch para uma versão em alemão
+[[fig:41, {counter:refnum}]]
+image::41-Criando um branch para uma versão em alemão.png[]
+
+Para trabalhar no novo ramo, deve-se usar o comando
+`git checkout`. O comando `git log`
+mostra o ramo para o qual *HEAD* aponta.
+O resoltado pode ser visto na figura <<fig:42>>.
+
+.Acessando o branch onde será implementada a versão alemã do sistema
+[[fig:42, {counter:refnum}]]
+image::42-Acessando o branch onde será implementada a versão alemã do sistema.png[]
+
+Depois de fazer a alteração sugerida na figura <<fig:43>>,
+execute o comando `git commit` para deixar 
+gravada as alterações no repositório.
+
+.Alteração feita para versão alemã do sistema
+[[fig:43, {counter:refnum}]]
+image::43-Alteração feita para versão alemã do sistema.png[]
+
+A fotografia do último _commit_ está na figura
+<<fig:44>>.
+
+.Fotografando a versão alemã do sistema
+[[fig:44, {counter:refnum}]]
+image::44-Fotografando a versão alemã do sistema.png[]
+
+A figura <<fig:45>> mostra que o sistema possui seis 
+fotografias até o momento.
+
+.Listando as fotografias após a inclusão da versão alemã
+[[fig:45, {counter:refnum}]]
+image::45-Listando as fotografias após a inclusão da versão alemã.png[]
+
+Na condição atual, no exemplo co capítulo anterior,
+o ramo foi mesclado com o ramo estável.
+Mas para exemplificar um conflito, não vamos mesclá-lo 
+agora.
+Um motivo para não mesclar é não ter feito todos os
+testes no seu ramo.
+Ou o ramo ainda não está terminado.
+Vamos supor me nossa situações hipotética que 
+não temos certeza que a resposta correta em alemão
+é _hallo_.
+Por isso, vamos adiar a mesclagem com o ramo principal.
+
+
+=== Criando mais um ramo comum
+
+Normalmente, conflitos de mesclagem não são criados 
+intencionalemente. Mas para ilustrar a resolução 
+de conflitos que inevitavelmente acontecerão,
+vamos fazer uma versão em italiano do nosso 
+sistema para forçar um conflito.
+Para isso, vamos começar criando um novo ramo a
+partir de *master*.
+Após fotografarmos a alteração do sistema
+com a versão italiana, teremos dois ramos que
+nasceram a partir de *master*.
+Um deles é facilmente mesclável. O outro, nem tanto.
+
+Uma forma de se criar um ramo a partir de *master*
+é estando com *HEAD* apontando para *master*.
+Em seguida, usa-se o comando `git branch` para 
+criar um novo branch, como na figura <<fig:46>>.
+
+.Criando um branch para implementar uma versão italiana a partir da versão brasileira
+[[fig:46, {counter:refnum}]]
+image::46-Criando um branch para implementar uma versão italiana a partir da versão brasileira.png[]
+
+Note que *HEAD* continua apontando para
+*master*.
+Portanto é necessário mover *HEAD* para o novo
+ramo, como figura <<fig:47>>.
+
+.Acessando o branch da versão italiana
+[[fig:47, {counter:refnum}]]
+image::47-Acessando o branch da versão italiana.png[]
+
+Implemente a alteração sugerida na figura <<fig:48>>.
+
+.Implementando a versão italiana
+[[fig:48, {counter:refnum}]]
+image::48-Implementando a versão italiana.png[]
+
+Adicione as alterações na área de stage e execute
+o comando `git commit` para fazer a nova fotografia.
+
+Após adicionar as alterações na área de stage e executar
+o comando `git commit` a fotografia mais atual
+deverá estar parecida com a da figura <<fig:49>>.
+
+.Visualizando a fotografia da versão italiana
+[[fig:49, {counter:refnum}]]
+image::49-Visualizando a fotografia da versão italiana.png[]
+
+
+=== Listando as fotografias em forma de grafo
+
+A opção `--graph` do comando `git log`
+lista as fotografias do repositório em forma de grafo,
+como na figura <<fig:50>>.
+
+
+.Listando todas as fotografias do repositório em forma de grafo
+[[fig:50, {counter:refnum}]]
+image::50-Listando todas as fotografias do repositório em forma de grafo.png[]
+
+Note que acima do ramo *master* as linhas estão
+vermelhas, indicando um possível conflito.
+Observe que o ramo *de* (alemão), que é mais
+antigo que o ramo *it* (italiano), se mostra como
+um ramo que está saindo de um galho.
+
+
+=== Mesclando o último ramo antes do primeiro
+
+O último ramo criado foi o ramo *it*,
+mas aqui vasmos mesclá-lo ao ramo principal
+antes do ramo mais antigo, que é o ramo *de*.
+A figura <<fig:51>> mostra uma forma de como isso 
+pode ser feito.
+Ocorreu uma mesclagem do tipo _fast-forward_
+sem nenhum problema.
+
+.Mesclando a versão italiana com a principal
+[[fig:51, {counter:refnum}]]
+image::51-Mesclando a versão italiana com a principal.png[]
+
+Na figura <<fig:52>> podemos ver que o grafo não foi 
+alterado, mas agora *HEAD* e *master*
+estão na fotografia mais recente.
+
+.Listando todas as fotografias do repositório em forma de grafo após mesclar a versão italiana
+[[fig:52, {counter:refnum}]]
+image::52-Listando todas as fotografias do repositório em forma de grafo após mesclar a versão italiana.png[]
+
+
+=== Quando não corre tudo bem na mesclagem
+
+Agora, veja figura <<fig:53>> o que ocorre quando tentamos 
+mesclar o ramo alemão com o ramo princial.
+
+.Mesclando a versão alemã com a principal
+[[fig:53, {counter:refnum}]]
+image::53-Mesclando a versão alemã com a principal.png[]
+
+O comando `git mergetool --tool-help`
+lista as disponíveis no seu sistema operacional
+(figura <<fig:54>>).
+
+.Buscando ajuda com mergetool
+[[fig:54, {counter:refnum}]]
+image::54-Buscando ajuda com mergetool.png[]
+
+Conforme a figura <<fig:54>>, a ferramenta `vimdiff`
+pode ser selecionada como na figura <<fig:55>>.
+
+.Escolhendo programa para usar com mergetool
+[[fig:55, {counter:refnum}]]
+image::55-Escolhendo programa para usar com mergetool.png[]
+
+A figura <<fig:56>> mostra como deve estar o
+arquivo `greet.py` depois de resolvidos os conflitos.
+A solução apresentada é apenas uma sugestão da
+resolução do conflito que ocorreu.
+Outras soluções poderiam ter resolvido o conflito 
+também.
+
+
+.Programa após a resolução de conflitos
+[[fig:56, {counter:refnum}]]
+image::56-Programa após a resolução de conflitos.png[]
+
+A utilização do `vimdiff` excede o escopo deste 
+tutorial, mas você pode ver como é a apresentação dessa 
+ferramenta na figura <<fig:57>>.
+
+.vimdiff
+[[fig:57, {counter:refnum}]]
+image::57-vimdiff.png[]
+
+Depois de usar uma ferremanta de solução de conflitos
+para solucioná-los, o comando `git commit
+deve ser executado para fotografar a forma como
+os conflitos foram solucionados.
+
+A figura <<fig:58>> mostra como os ramos separados 
+se juntam depois da solução de conflitos.
+
+.Listando todas as fotografias do repositório em forma de grafo após mesclar a versão alemã
+[[fig:58, {counter:refnum}]]
+image::58-Listando todas as fotografias do repositório em forma de grafo após mesclar a versão alemã.png[]
