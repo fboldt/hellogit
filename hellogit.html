@@ -530,15 +530,34 @@ mostra a repetição do comando <code>ls -a</code>.</p>
 <div id="com01" class="listingblock">
 <div class="title">Lista de comandos 1. Criando um repositório vazio.</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">~$ mkdir greetings
-~$ cd greetings
-~/greetings$ ls -a
+<pre class="highlightjs highlight"><code class="language-none hljs">~$ mkdir greetings // <b class="conum">(1)</b>
+~$ cd greetings // <b class="conum">(2)</b>
+~/greetings$ ls -a //<b class="conum">(3)</b>
 . ..
-~/greetings$ git init
+~/greetings$ git init // <b class="conum">(4)</b>
 Initialized empty Git repository in home/fulano/greetings/.git/
-~/greetings$ ls -a
+~/greetings$ ls -a // <b class="conum">(5)</b>
 . .. .git</code></pre>
 </div>
+</div>
+<div class="colist arabic">
+<ol>
+<li>
+<p>Cria diretório greetings</p>
+</li>
+<li>
+<p>Acessa diretório greetings</p>
+</li>
+<li>
+<p>Lista diretório incluindo arquivos ocultos</p>
+</li>
+<li>
+<p>Cria um repositório a partir do diretório atual</p>
+</li>
+<li>
+<p>Lista arquivos ocultos incluindo o diretório .git</p>
+</li>
+</ol>
 </div>
 <div class="paragraph">
 <p>Note que foi criado um diretório oculto (por que começa com
@@ -1559,7 +1578,7 @@ sofre alterações em ramos diferentes.</p>
 <div id="footer">
 <div id="footer-text">
 Version 0.1 2020-09<br>
-Last updated 2020-12-21 19:02:01 UTC
+Last updated 2020-12-21 19:04:08 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">
