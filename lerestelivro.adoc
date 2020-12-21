@@ -1,0 +1,22 @@
+[graphviz, "lerestelivro", png]
+....
+digraph G {
+    intro [shape=box, label="Introdução"];
+    cap02 [shape=box, label="Capítulo 2"];
+    cap03 [shape=box, label="Capítulo 3"];
+    cap04 [shape=box, label="Capítulo 4, 5, 6 e conclusão"];
+
+    cond02 [shape=diamond, label="Sei como criar\num repositório\na partir de um\ndiretório local."]
+    intro -> cond02;
+    cond02 -> cap02 [label="Não"];
+
+    cond03 [shape=diamond, label="Sei como criar\num repositório\nno GitHub."];
+    cond02 -> cond03 [label="Sim"];
+    cap02 -> cond03;
+    cond03 -> cap03 [label="Não"];
+    
+    cond03 -> cap04 [label="Sim"];
+    cap03 -> cap04;
+
+}
+....

@@ -20,7 +20,9 @@ include::04fotografias.adoc[]
 
 include::05ramos.adoc[]
 
-include::06conclusao.adoc[]
+include::06bifurcacoes.adoc[]
 
-include::07bibliografia.adoc[]
+include::07conclusao.adoc[]
+
+include::08bibliografia.adoc[]
 
