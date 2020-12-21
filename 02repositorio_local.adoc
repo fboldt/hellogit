@@ -1,4 +1,5 @@
 == Iniciando um repositório local
+
 Fisicamente no computador, um repositório Git é apenas um
 diretório com algumas metainformações sobre as alterações 
 dos arquivos do projeto que está no diretório.
