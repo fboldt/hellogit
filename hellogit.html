@@ -447,7 +447,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc">
 <div id="toctitle">Sumário</div>
 <ul class="sectlevel1">
-<li><a href="#_introdução_o_hello_world_do_git">1. Introdução: O hello world do Git</a></li>
+<li><a href="#_introdução_o_hello_world_do_git">1. Introdução: O hello world do Git</a>
+<ul class="sectlevel2">
+<li><a href="#_por_que_usar_git">1.1. Por que usar Git?</a></li>
+</ul>
+</li>
 <li><a href="#_iniciando_um_repositório_local">2. Iniciando um repositório local</a>
 <ul class="sectlevel2">
 <li><a href="#_o_comando_git_status">2.1. O comando <code>git status</code></a></li>
@@ -492,13 +496,17 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Este tutorial apresenta uma forma muito simples de se usar o Git.
 Como exemplo, serão feitas algumas versões do clássico programa,
 "hello world". Essas versões serão gerenciadas pelo sistema
-controlador de versões Git.
-A intenção é mostrar uma forma de se começar a usar Git em
+controlador de versões Git.</p>
+</div>
+<div class="paragraph">
+<p>A intenção é mostrar uma forma de se começar a usar Git em
 dentro de poucos minutos. É apenas um primeiro contato com a ferramenta.
 Nenhum conteúdo é abordado por completo ou com profundidade.
 Para isso, são sugeridas obras como <a href="#hodson2014ry">[hodson2014ry]</a> e
-<a href="#chacon2014pro">[chacon2014pro]</a>.
-Mesmo assim, é bom deixar claro que Git é um sistema de
+<a href="#chacon2014pro">[chacon2014pro]</a>.</p>
+</div>
+<div class="paragraph">
+<p>Mesmo assim, é bom deixar claro que Git é um sistema de
 gerenciamento de versões de software.
 Porém, apesar de ter sido idealizado para o desenvolvimento
 de programas, também pode ser usado para outras finalidades
@@ -506,6 +514,15 @@ como escrita compartilhada de textos ou edição de imagens.
 O Git mantém um histórico das alterações de um repositório
 permitindo recuperar informações, dividir as tarefas em ramos
 e mesclar alterações que podem ser feitas independentemente.</p>
+</div>
+<div class="sect2">
+<h3 id="_por_que_usar_git">1.1. Por que usar Git?</h3>
+<div class="paragraph">
+<p>Quem nunca fez uma cópia de um arquivo que
+desejamos alterar (só pra garantir)? Fazemos isso
+tanto para um código de programa quanto
+para algum outro tipo documento.</p>
+</div>
 </div>
 </div>
 </div>
@@ -1578,7 +1595,7 @@ sofre alterações em ramos diferentes.</p>
 <div id="footer">
 <div id="footer-text">
 Version 0.1 2020-09<br>
-Last updated 2020-12-21 19:26:08 UTC
+Last updated 2020-12-21 19:56:03 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">
