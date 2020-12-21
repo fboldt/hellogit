@@ -1,3 +1,4 @@
+[#bifurcacoes]
 == Criando bifurcações no projeto
 
 O capítulo anterior mostrou uma mesclagem do tipo

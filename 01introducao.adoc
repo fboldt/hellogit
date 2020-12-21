@@ -1,10 +1,11 @@
+[#intro]
 == Introdução: O hello world do Git
 
-Este tutorial apresenta uma forma muito simples de se usar o Git.
-Como exemplo, serão feitas algumas versões do clássico programa, 
-"hello world". Essas versões serão gerenciadas pelo sistema 
+Este livro é um tutorial que
+apresenta uma forma muito simples de se usar o Git.
+Como exemplo, serão feitas algumas versões do clássico programa "hello world". 
+Essas versões serão gerenciadas pelo sistema 
 controlador de versões Git.
-
 A intenção é mostrar uma forma de se começar a usar Git em 
 dentro de poucos minutos. É apenas um primeiro contato com a ferramenta.
 Nenhum conteúdo é abordado por completo ou com profundidade.
@@ -23,15 +24,75 @@ e mesclar alterações que podem ser feitas independentemente.
 === Por que usar Git?
 
 Quem nunca fez uma cópia de um arquivo que 
-desejamos alterar (só pra garantir)? Fazemos isso
+desejava alterar (só pra garantir)? Fazemos isso
 tanto para um código de programa quanto
 para algum outro tipo documento.
 O Git mantém essas cópias de forma mais eficiente e organizada.
+Com o Git, uma equipe consegue trabalhar em funcionalidades 
+simultaneamente. As cópias só guardam o que foi alretado de
+uma versão do documento para a outra. 
+Por isso é mais eficiente.
+O Git te ajuda a trabalhar mesmo que você esteja trabalhando
+sozinho.
+
+Pessoalmente, várias vezes eu testei alguma alteração 
+em um programa que estava desenvolvendo, e algumas vezes 
+essa alteração saiu muito errada. Não precisei me desesperar.
+Simplesmente descartei todas as alterações e o programa 
+voltou a funcionar como antes.
+Mas nem sempre foi assim. Eu mesmo já usei o Git como um
+cliente para enviar meu código para o GitHub como um backup.
+Muitas vezes eu precisei excluir o repositório local e 
+baixar novamente o backup. Fiz isso por não saber o básico
+do Git. Espero que você, após ler este livro, não precise
+cometer os mesmos erros que eu cometi.
+
+===  Qual a diferença entre Git e GitHub?
+
+Como já mencionado, Git é um programa que gerencia o controle
+de versões de programas e outros documentos.
+O GitHub é uma plataforma de hospedagem de código que,
+como o nome já deixa claro, usa o Git
+como interface de interação.
+É uma das plataformas mais usadas e famosas. 
+Porém, existem outras como Bitbucket e Gitlab.
+Neste livro, os exemplos de repositórios remotos será
+com o Github. Mas os conceitos são os mesmos para 
+qualquer plataforma de hospedagem que use o Git como
+interface de interação.
+
+O que muda são alguns detalhes da interface web de
+cada serviço.
+Também muda o que cada plataforma oferece para seus usuários.
+Duas ferramentas que eu acho muito úteis no GitHub é o 
+GitHub Pages e o GitHub Actions.
+Minha página pessoal é hospedada no GitHub pages.
+Estou usando o GitHub Actions para renderizar este livro
+toda vez que faço uma atualização no servidor.
+Apesar de serem muito interessantes, não abordaremos estas
+funcionalidades aqui, por que este livro só apresenta 
+o mínimo necessário para você começar a trabalhar com o Git.
 
 === Como ler este livro?
 
-A figura <<fig:ler>> mostra uma sugestão de como ler este livro.
+Este livro foi pensado para quem nunca teve contato com
+o Git e nem sabe direito o que ele é.
+Mas se você já tem uma noção, ou já usou o Git de alguma 
+forma, a figura <<fig:ler>> mostra uma sugestão de como ler este livro.
 
 .Como ler este livro?
 [[fig:ler, {counter:refnum}]]
-image::lerestelivro.png[Fluxograma,185,80]
+image::lerestelivro.png[Fluxograma,185,80,align='center']
+
+O capítulo <<#local>> mostra como criar um repositório no seu 
+computador a partir de um diretório.
+Como criar um repositório no GitHub e utilizá-lo no seu 
+computador é mostrado no capítulo <<#remoto>>.
+No capítulo <<#fotografias>> é mostrado como criar versões e acessar versões 
+anteriores.
+Veremos como trabalhar simultaneamente com versões direntes
+de um programa no capítulo <<#ramos>>.
+Você verá o mínimo necessário para mesclar bifurcações no 
+capítulo <<#bifurcacoes>>.
+O capítulo <<#conclusao>> reforça o que foi aprendido nos demais capítulos
+e sugere obras para você continuar seu aprendizado.

@@ -1,3 +1,4 @@
+[#local]
 == Iniciando um repositório local
 
 Fisicamente no computador, um repositório Git é apenas um
