@@ -34,4 +34,4 @@ A figura <<fig:ler>> mostra uma sugestão de como ler este livro.
 
 .Como ler este livro?
 [[fig:ler, {counter:refnum}]]
-image::lerestelivro.png[]
+image::lerestelivro.png[Fluxograma,185,80]
