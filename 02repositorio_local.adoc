@@ -3,7 +3,9 @@
 Fisicamente no computador, um repositório Git é apenas um
 diretório com algumas metainformações sobre as alterações 
 dos arquivos do projeto que está no diretório.
-A figura <<fig:01>> mostra como criar um repositório Git do zero.
+// A figura <<fig:01>> 
+A lista de comandos <<com01>>
+mostra como criar um repositório Git do zero.
 O comando `mkdir greetings` cria o diretório
 onde colocaremos o código do nosso projeto de exemplo e o
 comando `cd greetings`  acessa o diretório criado.
@@ -13,9 +15,25 @@ vazio em um repositório Git basta executar o comando
 `git init`, que o repositório será iniciado, conforme
 mostra a repetição do comando `ls -a`.
 
-.Criando um repositório
-[[fig:01, {counter:refnum}]]
-image::01-Criando um repositório.png[]
+// .Criando um repositório
+// [[fig:01, {counter:refnum}]]
+// image::01-Criando um repositório.png[]
+
+
+.Criando um repositório vazio.
+[[com01, {counter:refcode}]]
+[source]
+----
+~$ mkdir greetings
+~$ cd greetings
+~/greetings$ ls -a
+. ..
+~/greetings$ git init
+Initialized empty Git repository in home/fulano/greetings/.git/
+~/greetings$ ls -a
+. .. .git
+----
+
 
 Note que foi criado um diretório oculto (por que começa com
 um ponto (.)), e por isso só é listado (`ls`) quando
