@@ -14,7 +14,7 @@ include::01introducao.adoc[]
 
 include::02repositorio_local.adoc[]
 
-//include::03repositorio_remoto.adoc[]
+include::03repositorio_remoto.adoc[]
 
 include::04fotografias.adoc[]
 
