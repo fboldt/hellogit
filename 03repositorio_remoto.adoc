@@ -1,3 +1,10 @@
 == Trabalhando com um repositório remoto
 
-Aqui vai entrar o uso cdo GitHub.
+Se não tiver, criar uma conta no GitHub.com.
+
+Criar um repositório.
+
+Clonar o repositório em seu computador local.
+
+Usar `git push` para enviar atualizações e `git fetch` para 
+verificar se existem atulizações no repositório remoto.
