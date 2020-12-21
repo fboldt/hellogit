@@ -1,4 +1,4 @@
 [bibliography]
 == Bibliografia
-. [[hodson2014ry, ({counter:bibnum})]] Ryan Hodson. _Ry's Git Tutorial_. RyPress. 2014.
-. [[chacon2014pro, ({counter:bibnum})]] Scott Chacon & Ben Straub. _Pro Git_. Spring Nature. 2014.
+. [[hodson2014ry]] Ryan Hodson. _Ry's Git Tutorial_. RyPress. 2014.
+. [[chacon2014pro]] Scott Chacon & Ben Straub. _Pro Git_. Spring Nature. 2014.
