@@ -16,6 +16,11 @@ jobs:
       uses: avattathil/asciidoctor-action@master
       with:
           program: "asciidoctor hellogit.adoc"
+    - name: Make pdf
+      id: adocbuild-pdf
+      uses: avattathil/asciidoctor-action@master
+      with:
+          program: "asciidoctor-pdf hellogit.adoc"
     - name: Print execution time
       run: echo "Time ${{ steps.adocbuild.outputs.time }}"
     - name: Deploy
