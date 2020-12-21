@@ -1,4 +1,5 @@
 == Conclusão
+
 Agora, você já sabe uma forma de se usar o Git.
 A forma apresentada aqui não é a única, nem a melhor. 
 É um exemplo para ser aplicado imediatamente.
