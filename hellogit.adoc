@@ -9,6 +9,7 @@ v0.1 2020-09
 :imagesdir: ./images
 :figure-caption: Figura
 :source-highlighter: highlightjs
+:listing-caption: Lista de comandos
 
 include::01introducao.adoc[]
 
