@@ -24,15 +24,20 @@ mostra a repetição do comando `ls -a`.
 [[com01, {counter:refcode}]]
 [source]
 ----
-~$ mkdir greetings
-~$ cd greetings
-~/greetings$ ls -a
+~$ mkdir greetings // <1>
+~$ cd greetings // <2>
+~/greetings$ ls -a //<3>
 . ..
-~/greetings$ git init
+~/greetings$ git init // <4>
 Initialized empty Git repository in home/fulano/greetings/.git/
-~/greetings$ ls -a
+~/greetings$ ls -a // <5>
 . .. .git
 ----
+<1> Cria diretório greetings
+<2> Acessa diretório greetings
+<3> Lista diretório incluindo arquivos ocultos
+<4> Cria um repositório a partir do diretório atual
+<5> Lista arquivos ocultos incluindo o diretório .git
 
 
 Note que foi criado um diretório oculto (por que começa com
