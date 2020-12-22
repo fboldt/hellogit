@@ -309,11 +309,10 @@ descartar as alterações antes delas entrarem na área de
 Tudo voltará como estava no início. 
 
 Mas, se você tinha achado que a alteração seria uma boa idéia
-ou simplesmente executou o comando `git add .` sem querer.
-O Comando `git add .` adiciona na área de *_stage_* todas
-as alterações feitas no repositório.
-Nenhum motivo para desespero.
+ou simplesmente executou o comando `git add .` sem querer,
+nenhum motivo para desespero.
 Basta usar o comando `git reset \-- greet.py`.
+O Comando `git add .` adiciona na área de *_stage_* todas as alterações feitas no repositório.
 Se você usar o comando `git reset` todas as adições para 
 a área de *_stage_* serão removidas para a lista de 
 não monitorados. Daí você pode adicionar à *_stage_* somente
