@@ -5,7 +5,7 @@ Fisicamente no computador, um repositório Git é apenas um
 diretório com algumas metainformações sobre as alterações 
 dos arquivos do projeto que está no diretório.
 // A figura <<fig:01>> 
-A lista de comandos <<com01>>
+A lista de comandos <<fig:01>>
 mostra como criar um repositório Git do zero.
 O comando `mkdir greetings` cria o diretório
 onde colocaremos o código do nosso projeto de exemplo e o
@@ -22,7 +22,7 @@ mostra a repetição do comando `ls -a`.
 
 
 .Criando um repositório vazio.
-[[com01, {counter:refcode}]]
+[[fig:01, {counter:refcode}]]
 [source]
 ----
 ~$ mkdir greetings // <1>
@@ -45,7 +45,7 @@ Note que foi criado um diretório oculto (por que começa com
 um ponto (.)), e por isso só é listado (`ls`) quando
 se usa o parâmetro `-a`. A árvore com todos os arquivos
 e subdiretórios criado pelo comando `git init` pode ser
-vista na figura <<fig:02>>. O comando `tree .git` foi
+vista na lista de comandos <<fig:02>>. O comando `tree .git` foi
 usado para exibir essa árvore. O diretório `.git` contém
 metadados. Ou seja, é um diretório com dados para o Git
 controlar os dados do repositórios. É a forma do Git
@@ -57,10 +57,44 @@ Suas alterações devem ser feitas através do comando
 `git` acompanhado dos parâmetros correspondentes à ação
 desejada.
 
-.Árvore de diretórios do repositório
-[[fig:02, {counter:refnum}]]
-image::02-Árvore de diretórios do repositório.png[]
+// .Árvore de diretórios do repositório
+// [[fig:02, {counter:refnum}]]
+// image::02-Árvore de diretórios do repositório.png[]
 
+.Árvore de diretórios do repositório.
+[[fig:02, {counter:refcode}]]
+[source]
+----
+francisco@i7titanv:~/greetings$ tree .git
+.git
+├── branches
+├── config
+├── description
+├── HEAD
+├── hooks
+│   ├── applypatch-msg.sample
+│   ├── commit-msg.sample
+│   ├── fsmonitor-watchman.sample
+│   ├── post-update.sample
+│   ├── pre-applypatch.sample
+│   ├── pre-commit.sample
+│   ├── pre-merge-commit.sample
+│   ├── prepare-commit-msg.sample
+│   ├── pre-push.sample
+│   ├── pre-rebase.sample
+│   ├── pre-receive.sample
+│   └── update.sample
+├── info
+│   └── exclude
+├── objects
+│   ├── info
+│   └── pack
+└── refs
+    ├── heads
+    └── tags
+
+9 directories, 16 files
+----
 
 === O comando `git status`
 
@@ -71,15 +105,27 @@ devido a sua importância, ele não será abordado em profundidade,
 uma vez que nosso objetivo aqui é mostrar uma utilização do Git
 com poucos comandos, sem explorá-los por completo.
 
-.Status de um repositório recém criado
-[[fig:03, {counter:refnum}]]
-image::03-Status de um repositório recém criado.png[]
+// .Status de um repositório recém criado
+// [[fig:03, {counter:refnum}]]
+// image::03-Status de um repositório recém criado.png[]
 
-A primeira linha de resposta é `On branch master*.
+.Árvore de diretórios do repositório.
+[[fig:03, {counter:refcode}]]
+[source]
+----
+francisco@i7titanv:~/greetings$ git status
+On branch master
+
+No commits yet
+
+nothing to commit (create/copy files and use "git add" to track)
+----
+
+A primeira linha de resposta é `On branch master`.
 _Banches_ são ramificações de um projeto Git, 
 que podem tomar rumos diferentes durante seu desenvolvimento.
 Diferentes ramos podem ser mesclados ou se tornarem novos projetos.
-O nome `master* é o nome padrão para o ramo inicial do projeto Git.
+O nome `master` é o nome padrão para o ramo inicial do projeto Git.
 Particularmente, eu nunca vi um projeto Git sem o ramo master,
 mas não existe nenhuma exigência de que esse ramo exista.
 É que normalmente não se muda esse nome.
@@ -115,8 +161,16 @@ opcional. O comando `ls -a` é só para mostrar que o arquivo
 `greed.py` foi criado.
 
 .Criando o primeiro arquivo do projeto
-[[fig:04, {counter:refnum}]]
-image::04-Criando o primeiro arquivo do projeto.png[]
+[[fig:04, {counter:refcode}]]
+[source]
+----
+francisco@i7titanv:~/greetings$ cat greet.py 
+print("hello")
+francisco@i7titanv:~/greetings$ python greet.py 
+hello
+francisco@i7titanv:~/greetings$ ls -a
+.  ..  .git  greet.py
+----
 
 Depois de criado o arquivo `greet.py`, o comando
 `git status` mostrará uma resposta um pouco diferente,
@@ -138,8 +192,20 @@ Esse processo também nos permite fazer alterações variadas e
 agrupá-las em fotografias separadas.
 
 .Status com arquivo fora da área de stage
-[[fig:05, {counter:refnum}]]
-image::05-Status com arquivo fora da área de stage.png[]
+[[fig:05, {counter:refcode}]]
+[source]
+----
+francisco@i7titanv:~/greetings$ git status
+On branch master
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	greet.py
+
+nothing added to commit but untracked files present (use "git add" to track)
+----
 
 A figura <<fig:06>> mostra como adicionar um arquivo na área de 
 _stage` do Git, com o comando `git add greet.py`.
@@ -151,8 +217,20 @@ comando `git rm --cached <file>`, como mostra a resposta
 do comando `git status`.
 
 .Status com arquivo na da área de stage
-[[fig:06, {counter:refnum}]]
-image::06-Status com arquivo na da área de stage.png[]
+[[fig:06, {counter:refcode}]]
+[source]
+----
+francisco@i7titanv:~/greetings$ git add greet.py 
+francisco@i7titanv:~/greetings$ git status
+On branch master
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+	new file:   greet.py
+
+----
 
 É importante resaltar que até o momento, nenhum arquivo está
 sendo monitorado pelo Git.
@@ -174,8 +252,14 @@ Então, foi usado aqui o `-m` para ficar mais resumido e
 visível através das figuras.
 
 .Primeira fotografia do repositório
-[[fig:07, {counter:refnum}]]
-image::07-Primeira fotografia do repositório.png[]
+[[fig:07, {counter:refcode}]]
+[source]
+----
+francisco@i7titanv:~/greetings$ git commit -m 'primeira fotografia do sistema'
+[master (root-commit) 06cbe0b] primeira fotografia do sistema
+ 1 file changed, 1 insertion(+)
+ create mode 100644 greet.py
+----
 
 Se você quiser ver a fotografia tirada do sistema
 você pode usar o comando `git show` e terá um resultado
@@ -192,8 +276,24 @@ contém um arquivo novo, e a linha verde que começa com +
 é o conteúdo do arquivo.
 
 .Vendo detalhes da fotografia mais recente do sistema
-[[fig:08, {counter:refnum}]]
-image::08-Vendo detalhes da fotografia mais recente do sistema.png[]
+[[fig:08, {counter:refcode}]]
+[source]
+----
+francisco@i7titanv:~/greetings$ git show
+commit 06cbe0b360ee871baf55d48aa1914d8b73708b4b (HEAD -> master)
+Author: Francisco de Assis Boldt <fboldt@gmail.com>
+Date:   Tue Dec 22 08:21:39 2020 -0300
+
+    primeira fotografia do sistema
+
+diff --git a/greet.py b/greet.py
+new file mode 100644
+index 0000000..11b15b1
+--- /dev/null
++++ b/greet.py
+@@ -0,0 +1 @@
++print("hello")
+----
 
 Na primeira linha, em amarelo, logo depois da palavra commit,
 está o _hash_ da fotografia.
