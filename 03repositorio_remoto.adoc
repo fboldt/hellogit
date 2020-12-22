@@ -1,5 +1,5 @@
 [#remoto]
-== Trabalhando com um repositório remoto
+== Repositório remoto no GitHub
 
 .Página inicial do GitHub.
 [[gh01, {counter:refnum}]]

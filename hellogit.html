@@ -457,10 +457,12 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#local">2. Iniciando um repositório local</a>
 <ul class="sectlevel2">
 <li><a href="#_o_comando_git_status">2.1. O comando <code>git status</code></a></li>
-<li><a href="#_criando_e_monitorando_um_arquivo">2.2. Criando e monitorando um arquivo</a></li>
+<li><a href="#_criando_um_arquivo_novo">2.2. Criando um arquivo novo</a></li>
+<li><a href="#_monitorando_o_arquivo_criado">2.3. Monitorando o arquivo criado</a></li>
+<li><a href="#_conclusão">2.4. Conclusão</a></li>
 </ul>
 </li>
-<li><a href="#remoto">3. Trabalhando com um repositório remoto</a></li>
+<li><a href="#remoto">3. Repositório remoto no GitHub</a></li>
 <li><a href="#fotografias">4. Criando fotografias novas e acessando fotografias antigas</a>
 <ul class="sectlevel2">
 <li><a href="#_listando_as_fotografias_do_repositório">4.1. Listando as fotografias do repositório</a></li>
@@ -525,8 +527,9 @@ desejava alterar (só pra garantir)? Fazemos isso
 tanto para um código de programa quanto
 para algum outro tipo documento.
 O Git mantém essas cópias de forma mais eficiente e organizada.
-Com o Git, uma equipe consegue trabalhar em funcionalidades
-simultaneamente. As cópias só guardam o que foi alretado de
+Com o Git, uma equipe consegue trabalhar em diferentes
+funcionalidades simultaneamente.
+As cópias só guardam o que foi alterado de
 uma versão do documento para a outra.
 Por isso é mais eficiente.
 O Git te ajuda a trabalhar mesmo que você esteja trabalhando
@@ -538,34 +541,33 @@ em um programa que estava desenvolvendo, e algumas vezes
 essa alteração saiu muito errada. Não precisei me desesperar.
 Simplesmente descartei todas as alterações e o programa
 voltou a funcionar como antes.
-Mas nem sempre foi assim. Eu mesmo já usei o Git como um
+Mas nem sempre foi assim. Eu mesmo já usei o Git como um simples
 cliente para enviar meu código para o GitHub como um backup.
 Muitas vezes eu precisei excluir o repositório local e
-baixar novamente o backup. Fiz isso por não saber o básico
-do Git. Espero que você, após ler este livro, não precise
+baixar novamente o backup. Fiz isso por que eu não conhecia nem
+os comandos básicos do Git.
+Espero que você, após ler este livro, não precise
 cometer os mesmos erros que eu cometi.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_qual_a_diferença_entre_git_e_github">1.2. Qual a diferença entre Git e GitHub?</h3>
 <div class="paragraph">
-<p>Como já mencionado, Git é um programa que gerencia o controle
-de versões de programas e outros documentos.
+<p>Como já mencionado, Git é um programa que gerencia as versões de programas e outros documentos.
 O GitHub é uma plataforma de hospedagem de código que,
 como o nome já deixa claro, usa o Git
 como interface de interação.
 É uma das plataformas mais usadas e famosas.
 Porém, existem outras como Bitbucket e Gitlab.
-Neste livro, os exemplos de repositórios remotos será
+Neste livro, os exemplos de repositórios remotos serão
 com o Github. Mas os conceitos são os mesmos para
 qualquer plataforma de hospedagem que use o Git como
-interface de interação.</p>
-</div>
-<div class="paragraph">
-<p>O que muda são alguns detalhes da interface web de
-cada serviço.
+interface de interação.
+O que muda entre as plataformas de hospedagem de código
+são alguns detalhes da interface web de cada serviço.
 Também muda o que cada plataforma oferece para seus usuários.
-Duas ferramentas que eu acho muito úteis no GitHub é o
+Por exemplo,
+duas ferramentas que eu acho muito úteis no GitHub é o
 GitHub Pages e o GitHub Actions.
 Minha página pessoal é hospedada no GitHub pages.
 Estou usando o GitHub Actions para renderizar este livro
@@ -583,25 +585,38 @@ o Git e nem sabe direito o que ele é.
 Mas se você já tem uma noção, ou já usou o Git de alguma
 forma, a figura <a href="#fig:ler">1</a> mostra uma sugestão de como ler este livro.</p>
 </div>
-<div id="fig:ler" class="imageblock text-center">
+<div id="fig:ler" class="imageblock right text-center">
 <div class="content">
 <img src="./images/lerestelivro.png" alt="Fluxograma" width="185" height="80">
 </div>
 <div class="title">Figura 1. Como ler este livro?</div>
 </div>
 <div class="paragraph">
-<p>O capítulo <a href="#local">Iniciando um repositório local</a> mostra como criar um repositório no seu
-computador a partir de um diretório.
+<p>O capítulo 2 (<a href="#local">Iniciando um repositório local</a>) mostra como criar um repositório no
+seu computador a partir de um diretório.
 Como criar um repositório no GitHub e utilizá-lo no seu
-computador é mostrado no capítulo <a href="#remoto">Trabalhando com um repositório remoto</a>.
-No capítulo <a href="#fotografias">Criando fotografias novas e acessando fotografias antigas</a> é mostrado como criar versões e acessar versões
-anteriores.
+computador é mostrado no capítulo 3 (<a href="#remoto">Repositório remoto no GitHub</a>).
+No capítulo 4 (<a href="#fotografias">Criando fotografias novas e acessando fotografias antigas</a>) é mostrado como criar versões
+e acessar versões anteriores.
 Veremos como trabalhar simultaneamente com versões direntes
-de um programa no capítulo <a href="#ramos">Ramos no projeto</a>.
+de um programa no capítulo 5 (<a href="#ramos">Ramos no projeto</a>).
 Você verá o mínimo necessário para mesclar bifurcações no
-capítulo <a href="#bifurcacoes">Criando bifurcações no projeto</a>.
-O capítulo <a href="#conclusao">Conclusão</a> reforça o que foi aprendido nos demais capítulos
-e sugere obras para você continuar seu aprendizado.</p>
+capítulo 6 (<a href="#bifurcacoes">Criando bifurcações no projeto</a>).
+O capítulo 7 (<a href="#conclusao">Conclusão</a>) reforça o que foi mostrado nos
+demais capítulos e sugere obras para você continuar seu
+aprendizado.</p>
+</div>
+<div class="paragraph">
+<p>Neste livro, tudo será apresentado pela linha de comando.
+O mais importante é entender os conceitos e o motivo de se usar
+cada comando. Sem estes conceitos uma interface gráfica é
+inútil. Por isso, acredito que pela linha de comando você
+entenderá o necessário para usar uma interface gráfica
+posteriormente.
+Além disso, os comandos de terminal são os mesmos para
+Windows, Linux e Mac.
+Você encontra como instalar o Git em seu computador em
+<a href="https://git-scm.com/book/pt-br/v2/Come%C3%A7ando-Instalando-o-Git">Instalando o Git</a> (<a href="https://git-scm.com/book/pt-br/v2" class="bare">https://git-scm.com/book/pt-br/v2</a>).</p>
 </div>
 </div>
 </div>
@@ -615,14 +630,9 @@ diretório com algumas metainformações sobre as alterações
 dos arquivos do projeto que está no diretório.
 A lista de comandos <a href="#fig:01">1</a>
 mostra como criar um repositório Git do zero.
-O comando <code>mkdir greetings</code> cria o diretório
-onde colocaremos o código do nosso projeto de exemplo e o
-comando <code>cd greetings</code>  acessa o diretório criado.
-Pode-se ver pelo comando <code>ls -a</code> que ainda não existe
-nenhum  arquivo no diretório. Para transformar esse diretório
-vazio em um repositório Git basta executar o comando
-<code>git init</code>, que o repositório será iniciado, conforme
-mostra a repetição do comando <code>ls -a</code>.</p>
+Note que foi criado um diretório oculto, por que começa com
+um ponto (.), e por isso só é listado (<code>ls</code>) quando
+se usa o parâmetro <code>-a</code>.</p>
 </div>
 <div id="fig:01" class="listingblock">
 <div class="title">Lista de comandos 1. Criando um repositório vazio.</div>
@@ -640,26 +650,24 @@ Initialized empty Git repository in home/fulano/greetings/.git/
 <div class="colist arabic">
 <ol>
 <li>
-<p>Cria diretório greetings</p>
+<p>Cria diretório greetings, onde colocaremos o código do nosso projeto.</p>
 </li>
 <li>
-<p>Acessa diretório greetings</p>
+<p>Acessa diretório greetings.</p>
 </li>
 <li>
-<p>Lista diretório incluindo arquivos ocultos</p>
+<p>Lista diretório incluindo arquivos ocultos.</p>
 </li>
 <li>
-<p>Cria um repositório a partir do diretório atual</p>
+<p>Cria um repositório a partir do diretório atual.</p>
 </li>
 <li>
-<p>Lista arquivos ocultos incluindo o diretório .git</p>
+<p>Lista arquivos ocultos incluindo o diretório .git.</p>
 </li>
 </ol>
 </div>
 <div class="paragraph">
-<p>Note que foi criado um diretório oculto (por que começa com
-um ponto (.)), e por isso só é listado (<code>ls</code>) quando
-se usa o parâmetro <code>-a</code>. A árvore com todos os arquivos
+<p>A árvore com todos os arquivos
 e subdiretórios criado pelo comando <code>git init</code> pode ser
 vista na lista de comandos <a href="#fig:02">2</a>. O comando <code>tree .git</code> foi
 usado para exibir essa árvore. O diretório <code>.git</code> contém
@@ -676,7 +684,7 @@ desejada.</p>
 <div id="fig:02" class="listingblock">
 <div class="title">Lista de comandos 2. Árvore de diretórios do repositório.</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">francisco@i7titanv:~/greetings$ tree .git
+<pre class="highlightjs highlight"><code class="language-none hljs">~/greetings$ tree .git
 .git
 ├── branches
 ├── config
@@ -710,8 +718,8 @@ desejada.</p>
 <div class="sect2">
 <h3 id="_o_comando_git_status">2.1. O comando <code>git status</code></h3>
 <div class="paragraph">
-<p>Um comando que é usado o tempo todo em um repositório Git é o comando
-<code>git status</code> apresentado na figura <a href="#fig:03">3</a>.
+<p>Um comando que é usado o tempo todo em um repositório Git é o
+comando <code>git status</code> apresentado na lista de comandos <a href="#fig:03">3</a>.
 Apesar desse comando estar em uma seção dedicada a ele,
 devido a sua importância, ele não será abordado em profundidade,
 uma vez que nosso objetivo aqui é mostrar uma utilização do Git
@@ -720,109 +728,139 @@ com poucos comandos, sem explorá-los por completo.</p>
 <div id="fig:03" class="listingblock">
 <div class="title">Lista de comandos 3. Árvore de diretórios do repositório.</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">francisco@i7titanv:~/greetings$ git status
-On branch master
+<pre class="highlightjs highlight"><code class="language-none hljs">~/greetings$ git status
+On branch master // <b class="conum">(1)</b>
 
-No commits yet
+No commits yet // <b class="conum">(2)</b>
 
-nothing to commit (create/copy files and use "git add" to track)</code></pre>
+nothing to commit (create/copy files and use "git add" to track) // <b class="conum">(3)</b></code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>A primeira linha de resposta é <code>On branch master</code>.
+<div class="colist arabic">
+<ol>
+<li>
+<p>A resposta desta linha é <code>On branch master</code>.
 <em>Banches</em> são ramificações de um projeto Git,
 que podem tomar rumos diferentes durante seu desenvolvimento.
-Diferentes ramos podem ser mesclados ou se tornarem novos projetos.
-O nome <code>master</code> é o nome padrão para o ramo inicial do projeto Git.
-Particularmente, eu nunca vi um projeto Git sem o ramo master,
-mas não existe nenhuma exigência de que esse ramo exista.
-É que normalmente não se muda esse nome.</p>
-</div>
-<div class="paragraph">
-<p>A segunda linha é <code>No commits yet</code>.
+Diferentes ramos podem ser mesclados ou se tornarem novos
+projetos. O nome <code>master</code> é o nome padrão para o ramo inicial
+do projeto Git.
+Não existe nenhuma exigência de que esse ramo exista.
+É que raramente se muda esse nome.</p>
+</li>
+<li>
+<p>Esta linha mostra <code>No commits yet</code>.
 Os <em>commits</em> são fotografias do sistema que o Git mantém
 em seus metadados no diretório <code>.git</code>.
 Como não fizemos nenhum <em>commit</em> ainda, não existe nenhuma
 "fotografia" no Git.</p>
-</div>
-<div class="paragraph">
-<p>A terceira linha é
+</li>
+<li>
+<p>Aqui aparece
 <code>nothing to commit (creat/copy files and use "git add" to track)</code>.
 Não há nada para "fotografar" (<em>commit</em>) por que o diretório
 do projeto está vazio.
 Nenhum arquivo está sendo monitorado.
 Para monitorar um arquivo temos que usar o comando <code>git add</code>,
 que é apresentado na pŕoxima seção.</p>
+</li>
+</ol>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_criando_e_monitorando_um_arquivo">2.2. Criando e monitorando um arquivo</h3>
+<h3 id="_criando_um_arquivo_novo">2.2. Criando um arquivo novo</h3>
 <div class="paragraph">
-<p>Como pode ser traduzido da terceira linha de resposta da figura
+<p>Como pode ser traduzido da terceira linha de resposta da lista de comandos
 <a href="#fig:03">3</a>, o Git monitora (<em>track</em>) arquivos criados
 ou copiados para dentro do diretório do repositório.
-A figura <a href="#fig:04">4</a> mostra o conteúdo que queremos no arquivo
-<code>greet.py</code>.
-Este arquivo em texto simples pode ser criado dentro do diretório
-ou copiado para dentro dele.
+A lista de comandos <a href="#fig:04">4</a> mostra o conteúdo que queremos no arquivo
+<code>greet.py</code>. Este arquivo em texto simples pode ser criado
+dentro do diretório ou copiado para dentro dele.
 É um arquivo escrito em linguagem de programação Python 3.
-Porém, não é necessário saber Python para acompanhar este tutorial.
-Basta notar que o arquivo será alterado e cada alteração será monitorada
-pelo Git. A execução do arquivo com o comando <code>python greed.py</code> é
-opcional. O comando <code>ls -a</code> é só para mostrar que o arquivo
-<code>greed.py</code> foi criado.</p>
+Porém, não é necessário saber Python para acompanhar este
+tutorial. Basta notar que o arquivo será alterado e cada
+alteração será monitorada pelo Git.</p>
 </div>
 <div id="fig:04" class="listingblock">
 <div class="title">Lista de comandos 4. Criando o primeiro arquivo do projeto</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">francisco@i7titanv:~/greetings$ cat greet.py
+<pre class="highlightjs highlight"><code class="language-none hljs">~/greetings$ cat greet.py / <b class="conum">(1)</b>
 print("hello")
-francisco@i7titanv:~/greetings$ python greet.py
+~/greetings$ python greet.py // <b class="conum">(2)</b>
 hello
-francisco@i7titanv:~/greetings$ ls -a
+~/greetings$ ls -a // <b class="conum">(3)</b>
 .  ..  .git  greet.py</code></pre>
 </div>
+</div>
+<div class="colist arabic">
+<ol>
+<li>
+<p>Mostra o conteúdo do arquivo <code>greet.py</code>.</p>
+</li>
+<li>
+<p>(Opcional) Executa o arquivo criado com o comando <code>python
+greed.py</code>.</p>
+</li>
+<li>
+<p>Só para mostrar que o arquivo <code>greed.py</code> foi criado.</p>
+</li>
+</ol>
 </div>
 <div class="paragraph">
 <p>Depois de criado o arquivo <code>greet.py</code>, o comando
 <code>git status</code> mostrará uma resposta um pouco diferente,
-como mostra a figura figura <a href="#fig:05">5</a>.
-As duas primeiras linhas de resposta continuam iguais,
-mais agora, a terceira linha de resposta lista o arquivo
-<code>greet.py</code> em vermelho, e diz que ele não está
-sendo monitorado (<em>untracked</em>).
-Veja que a resposta do comando já diz como adicionar
-a modificação no monitoramento (<code>git add &lt;file&gt;</code>).
-Aqui é um ponto que merece uma atenção especial quando se usa o Git.
-O Git só "fotografa" (<em>commit</em>) as alterações que estão
-em uma área abstrata de sua organização chamada <em>stage</em>.
-Isso por que, muitas vezes fazemos alterações que não queremos
-gravar. Testamos algo, não gostamos do resultado, e queremos descartar
-o que foi feito. Outras vezes, queremos gravar só algumas alterações,
-mas não todas.
-Esse processo também nos permite fazer alterações variadas e
-agrupá-las em fotografias separadas.</p>
+como mostra a lista de comandos <a href="#fig:05">5</a>.</p>
 </div>
 <div id="fig:05" class="listingblock">
 <div class="title">Lista de comandos 5. Status com arquivo fora da área de stage</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">francisco@i7titanv:~/greetings$ git status
-On branch master
+<pre class="highlightjs highlight"><code class="language-none hljs">~/greetings$ git status
+On branch master // <b class="conum">(1)</b>
 
-No commits yet
+No commits yet // <b class="conum">(2)</b>
 
-Untracked files:
+Untracked files: // <b class="conum">(3)</b>
   (use "git add &lt;file&gt;..." to include in what will be committed)
 	greet.py
 
-nothing added to commit but untracked files present (use "git add" to track)</code></pre>
+nothing added to commit but untracked files present (use "git add" to track) // <b class="conum">(4)</b></code></pre>
 </div>
+</div>
+<div class="colist arabic">
+<ol>
+<li>
+<p>A primeira</p>
+</li>
+<li>
+<p>e a segunda linha de resposta continuam iguais,</p>
+</li>
+<li>
+<p>mas a terceira linha de resposta lista o arquivo
+<code>greet.py</code> em vermelho, e diz que ele não está
+sendo monitorado (<em>untracked</em>).</p>
+</li>
+<li>
+<p>Veja que a resposta do comando já diz como adicionar
+a modificação no monitoramento (<code>git add &lt;file&gt;</code>).</p>
+</li>
+</ol>
 </div>
 <div class="paragraph">
-<p>A figura <a href="#fig:06">6</a> mostra como adicionar um arquivo na área de
+<p>Aqui é um ponto que merece uma atenção especial quando se usa o Git.
+O Git só "fotografa" (<em>commit</em>) as alterações que estão
+em uma área abstrata de sua organização chamada <strong><em>stage</em></strong>.
+Isso por que, muitas vezes fazemos alterações que não queremos
+gravar. Testamos algo, não gostamos do resultado, e queremos
+descartar o que foi feito. Outras vezes, queremos gravar só
+algumas alterações, mas não todas.
+Esse processo também nos permite fazer alterações variadas e
+agrupá-las em fotografias separadas.</p>
+</div>
+<div class="paragraph">
+<p>A lista de comandos <a href="#fig:06">6</a> mostra como adicionar um arquivo na área de
 <em>stage` do Git, com o comando <code>git add greet.py</code>.
-Note que agora o arquivo está listado em verde, mas ainda não foi
-"fotografado" (_committed</em>).
+Note que agora o arquivo está sendo monitorado, mas ainda não
+foi "fotografado" (_committed</em>).
 Se você colocar um arquivo na área de <em>stage</em> por engano,
 pode removê-lo de lá, sem excluí-lo do diretório, com o
 comando <code>git rm --cached &lt;file&gt;</code>, como mostra a resposta
@@ -831,8 +869,8 @@ do comando <code>git status</code>.</p>
 <div id="fig:06" class="listingblock">
 <div class="title">Lista de comandos 6. Status com arquivo na da área de stage</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">francisco@i7titanv:~/greetings$ git add greet.py
-francisco@i7titanv:~/greetings$ git status
+<pre class="highlightjs highlight"><code class="language-none hljs">~/greetings$ git add greet.py
+~/greetings$ git status
 On branch master
 
 No commits yet
@@ -842,13 +880,16 @@ Changes to be committed:
 	new file:   greet.py</code></pre>
 </div>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_monitorando_o_arquivo_criado">2.3. Monitorando o arquivo criado</h3>
 <div class="paragraph">
 <p>É importante resaltar que até o momento, nenhum arquivo está
 sendo monitorado pelo Git.
 O arquivo <code>greet.py</code> está pronto para ser "fotografado" e,
 a partir daí, ser monitorado.
-Para fotografar as mudanças que estão na área de _stage
-deve-se executar o comando da figura <a href="#fig:07">7</a>.
+Para fotografar as mudanças que estão na área de <strong><em>stage</em></strong>
+deve-se executar o comando da lista de comandos <a href="#fig:07">7</a>.
 Entretanto, o comando só será aceito se você estiver com
 seu nome e email configurado.
 Para não entrar em detalhes de configuração agora,
@@ -856,16 +897,16 @@ você pode digitar os comandos
 <code>git config user.name `SEU_PRIMEIRO_NOME SEU_ULTIMO_NOME'</code> e
 <code>git config user.email `<a href="mailto:SEU_EMAIL@example.com">SEU_EMAIL@example.com</a>'</code>.
 Quando se executa o comando <code>git commit</code> sem o parâmetro
-<code>-m `comentário'</code>, o Git abre um editor de texto para que
+<code>-m 'comentário'</code> o Git abre um editor de texto para que
 um comentário sobre a fotografia seja escrito.
 O Git não permite commits sem comentários.
 Então, foi usado aqui o <code>-m</code> para ficar mais resumido e
-visível através das figuras.</p>
+visível através das listas de comandos.</p>
 </div>
 <div id="fig:07" class="listingblock">
 <div class="title">Lista de comandos 7. Primeira fotografia do repositório</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">francisco@i7titanv:~/greetings$ git commit -m 'primeira fotografia do sistema'
+<pre class="highlightjs highlight"><code class="language-none hljs">~/greetings$ git commit -m 'primeira fotografia do sistema'
 [master (root-commit) 06cbe0b] primeira fotografia do sistema
  1 file changed, 1 insertion(+)
  create mode 100644 greet.py</code></pre>
@@ -873,59 +914,109 @@ visível através das figuras.</p>
 </div>
 <div class="paragraph">
 <p>Se você quiser ver a fotografia tirada do sistema
-você pode usar o comando <code>git show</code> e terá um resultado
-parecido com o da figura <a href="#fig:08">8</a>.
+pode usar o comando <code>git show</code> e terá um resultado
+parecido com o da lista de comandos <a href="#fig:08">8</a>.
 Vamos entender essa fotografia, mas sem seguir a ordem em que
-os dados aparecem.
-Vemos o comentário inserido pelo comando <code>git commit</code>.
-Também vemos a data e hora de quando o commit foi executado,
-que pode ser entendida como o momento da fotografia.
-A linha que começa com <code>Author</code> tem os dados inseridos
-pelos comandos <code>git config &lt;etc&gt;</code>.
-Em negrito, está indicado que essa é uma fotografia que
-contém um arquivo novo, e a linha verde que começa com<br>
-é o conteúdo do arquivo.</p>
+os dados aparecem.</p>
 </div>
 <div id="fig:08" class="listingblock">
 <div class="title">Lista de comandos 8. Vendo detalhes da fotografia mais recente do sistema</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">francisco@i7titanv:~/greetings$ git show
-commit 06cbe0b360ee871baf55d48aa1914d8b73708b4b (HEAD -&gt; master)
-Author: Francisco de Assis Boldt &lt;fboldt@gmail.com&gt;
-Date:   Tue Dec 22 08:21:39 2020 -0300
+<pre class="highlightjs highlight"><code class="language-none hljs">~/greetings$ git show // <b class="conum">(1)</b>
+commit 06cbe0b360ee871baf55d48aa1914d8b73708b4b (HEAD -&gt; master) //<b class="conum">(2)</b>
+Author: Francisco de Assis Boldt &lt;fboldt@gmail.com&gt; //<b class="conum">(3)</b>
+Date:   Tue Dec 22 08:21:39 2020 -0300 //<b class="conum">(4)</b>
 
-    primeira fotografia do sistema
+    primeira fotografia do sistema //<b class="conum">(5)</b>
 
 diff --git a/greet.py b/greet.py
 new file mode 100644
 index 0000000..11b15b1
---- /dev/null
-+++ b/greet.py
+--- /dev/null //<b class="conum">(6)</b>
++++ b/greet.py //<b class="conum">(7)</b>
 @@ -0,0 +1 @@
-+print("hello")</code></pre>
++print("hello") //<b class="conum">(8)</b></code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>Na primeira linha, em amarelo, logo depois da palavra commit,
-está o <em>hash</em> da fotografia.
+<div class="colist arabic">
+<ol>
+<li>
+<p>O comando <code>git show</code>.</p>
+</li>
+<li>
+<p>Logo depois da palavra commit, está o <em>hash</em> da fotografia.
 O <em>hash</em> é a assinatura, o identificador, da fotografia.
 Podemos usar esse identificador para acessar a fotografia
-posteriormente. Na mesma linha, em negrito e verde, temos a
-palavra <strong>master</strong>,
+posteriormente. Na mesma linha temos a palavra <strong>master</strong>,
 indicando que o ramo do projeto chamado <strong>master</strong> está
 apontando para esta fotografia no momento.
 Ainda na mesma linha, em azul, temos a palavra <strong>HEAD</strong>
-seguida
-dos sinais de $-$ e $&gt;$ representando uma seta (<code>&#8594;</code>).
+seguida uma seta (-&gt;).
 Esta seta indica que o estado do sistema que estamos vendo no
 momento está apontando para o ramos master.
 Isso ficará mais claro a seguir.</p>
+</li>
+<li>
+<p>Quem fez a fotografia
+(dados inseridos pelos comandos <code>git config &lt;etc&gt;</code>).</p>
+</li>
+<li>
+<p>Quando a fotografia foi feita.</p>
+</li>
+<li>
+<p>O comentário inserido pelo comando <code>git commit</code>.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_conclusão">2.4. Conclusão</h3>
+<div class="paragraph">
+<p>Com o que foi mostrado neste capítulo, já dá para usar o Git
+para desenvolver seus programas.
+Nossos programas e outros documentos raramente são criados
+de uma vez. Começamos com uma versão simples e vamos
+incrementando versão após versão até finalizarmos o que
+precisamos fazer.
+Então, ao invés de fazer uma cópia dos nossos arquivos,
+podemos simplesmente alterar o arquivo sem medo.
+Por exemplo, digamos que fizemos uma alteração no arquivo
+<code>greet.py</code> e esse arquivo parou de funcionar.
+Suponhamos que a alteração foi tão complicada que seria melhor
+descartar todas as alterações feitas e começar tudo de novo.
+Se ainda <strong>não</strong> executamos o comando <code>git add greet.py</code>, podemos
+descartar as alterações antes delas entrarem na área de
+<strong><em>stage</em></strong>. Basta executar o comando <code>git checkout&#8201;&#8212;&#8201;greet.py</code>.
+Tudo voltará como estava no início.</p>
+</div>
+<div class="paragraph">
+<p>Mas, se você tinha achado que a alteração seria uma boa idéia
+ou simplesmente executou o comando <code>git add .</code> sem querer,
+nenhum motivo para desespero.
+Basta usar o comando <code>git reset -- greet.py</code>.
+O Comando <code>git add .</code> adiciona na área de <strong><em>stage</em></strong> todas as alterações feitas no repositório.
+Se você usar o comando <code>git reset</code> todas as adições para
+a área de <strong><em>stage</em></strong> serão removidas para a lista de
+não monitorados. Daí você pode adicionar à <strong><em>stage</em></strong> somente
+os arquivos que você deseja na próxima fotografia.</p>
+</div>
+<div class="paragraph">
+<p>Em resumo, você já pode usar o Git de maneira eficiente
+para implementar seus programas ou escrever seus documentos.
+Nos próximos capítulos você vai conhecer mais alguns comandos
+do Git que vão lhe ajudar a desenvolver seus trabalhos
+de forma mais eficiente e segura.
+Recomendo que você aprenda a usar um repositório remoto,
+de preferência na nuvem, por uma plataforma como o GitHub.
+Entretanto, se você já sabe como fazer isso, ou não tem
+interesse em usar um repositório remoto, você pode pular
+o capítulo seguinte e ir direto para o capítulo 4.</p>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="remoto">3. Trabalhando com um repositório remoto</h2>
+<h2 id="remoto">3. Repositório remoto no GitHub</h2>
 <div class="sectionbody">
 <div id="gh01" class="imageblock">
 <div class="content">
@@ -1979,7 +2070,7 @@ sofre alterações em ramos diferentes.</p>
 <div id="footer">
 <div id="footer-text">
 Version 0.1 2020-09<br>
-Last updated 2020-12-22 12:14:56 UTC
+Last updated 2020-12-22 17:35:07 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">

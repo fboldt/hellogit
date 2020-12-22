@@ -4,22 +4,11 @@
 Fisicamente no computador, um repositório Git é apenas um
 diretório com algumas metainformações sobre as alterações 
 dos arquivos do projeto que está no diretório.
-// A figura <<fig:01>> 
 A lista de comandos <<fig:01>>
 mostra como criar um repositório Git do zero.
-O comando `mkdir greetings` cria o diretório
-onde colocaremos o código do nosso projeto de exemplo e o
-comando `cd greetings`  acessa o diretório criado.
-Pode-se ver pelo comando `ls -a` que ainda não existe
-nenhum  arquivo no diretório. Para transformar esse diretório
-vazio em um repositório Git basta executar o comando
-`git init`, que o repositório será iniciado, conforme
-mostra a repetição do comando `ls -a`.
-
-// .Criando um repositório
-// [[fig:01, {counter:refnum}]]
-// image::01-Criando um repositório.png[]
-
+Note que foi criado um diretório oculto, por que começa com
+um ponto (.), e por isso só é listado (`ls`) quando
+se usa o parâmetro `-a`.
 
 .Criando um repositório vazio.
 [[fig:01, {counter:refcode}]]
@@ -34,16 +23,14 @@ Initialized empty Git repository in home/fulano/greetings/.git/
 ~/greetings$ ls -a // <5>
 . .. .git
 ----
-<1> Cria diretório greetings
-<2> Acessa diretório greetings
-<3> Lista diretório incluindo arquivos ocultos
-<4> Cria um repositório a partir do diretório atual
-<5> Lista arquivos ocultos incluindo o diretório .git
+<1> Cria diretório greetings, onde colocaremos o código do nosso projeto.
+<2> Acessa diretório greetings.
+<3> Lista diretório incluindo arquivos ocultos.
+<4> Cria um repositório a partir do diretório atual.
+<5> Lista arquivos ocultos incluindo o diretório .git.
 
 
-Note que foi criado um diretório oculto (por que começa com
-um ponto (.)), e por isso só é listado (`ls`) quando
-se usa o parâmetro `-a`. A árvore com todos os arquivos
+A árvore com todos os arquivos
 e subdiretórios criado pelo comando `git init` pode ser
 vista na lista de comandos <<fig:02>>. O comando `tree .git` foi
 usado para exibir essa árvore. O diretório `.git` contém
@@ -57,15 +44,11 @@ Suas alterações devem ser feitas através do comando
 `git` acompanhado dos parâmetros correspondentes à ação
 desejada.
 
-// .Árvore de diretórios do repositório
-// [[fig:02, {counter:refnum}]]
-// image::02-Árvore de diretórios do repositório.png[]
-
 .Árvore de diretórios do repositório.
 [[fig:02, {counter:refcode}]]
 [source]
 ----
-francisco@i7titanv:~/greetings$ tree .git
+~/greetings$ tree .git
 .git
 ├── branches
 ├── config
@@ -98,45 +81,41 @@ francisco@i7titanv:~/greetings$ tree .git
 
 === O comando `git status`
 
-Um comando que é usado o tempo todo em um repositório Git é o comando
-`git status` apresentado na figura <<fig:03>>.
+Um comando que é usado o tempo todo em um repositório Git é o 
+comando `git status` apresentado na lista de comandos <<fig:03>>.
 Apesar desse comando estar em uma seção dedicada a ele, 
 devido a sua importância, ele não será abordado em profundidade,
 uma vez que nosso objetivo aqui é mostrar uma utilização do Git
 com poucos comandos, sem explorá-los por completo.
 
-// .Status de um repositório recém criado
-// [[fig:03, {counter:refnum}]]
-// image::03-Status de um repositório recém criado.png[]
-
 .Árvore de diretórios do repositório.
 [[fig:03, {counter:refcode}]]
 [source]
 ----
-francisco@i7titanv:~/greetings$ git status
-On branch master
+~/greetings$ git status
+On branch master // <1>
 
-No commits yet
+No commits yet // <2>
 
-nothing to commit (create/copy files and use "git add" to track)
+nothing to commit (create/copy files and use "git add" to track) // <3>
 ----
 
-A primeira linha de resposta é `On branch master`.
+<1> A resposta desta linha é `On branch master`.
 _Banches_ são ramificações de um projeto Git, 
 que podem tomar rumos diferentes durante seu desenvolvimento.
-Diferentes ramos podem ser mesclados ou se tornarem novos projetos.
-O nome `master` é o nome padrão para o ramo inicial do projeto Git.
-Particularmente, eu nunca vi um projeto Git sem o ramo master,
-mas não existe nenhuma exigência de que esse ramo exista.
-É que normalmente não se muda esse nome.
+Diferentes ramos podem ser mesclados ou se tornarem novos 
+projetos. O nome `master` é o nome padrão para o ramo inicial 
+do projeto Git.
+Não existe nenhuma exigência de que esse ramo exista.
+É que raramente se muda esse nome.
 
-A segunda linha é `No commits yet`.
+<2> Esta linha mostra `No commits yet`.
 Os _commits_ são fotografias do sistema que o Git mantém
 em seus metadados no diretório `.git`.
 Como não fizemos nenhum _commit_ ainda, não existe nenhuma
 "fotografia" no Git.
 
-A terceira linha é 
+<3> Aqui aparece
 `nothing to commit (creat/copy files and use "git add" to track)`.
 Não há nada para "fotografar" (_commit_) por que o diretório
 do projeto está vazio.
@@ -144,73 +123,78 @@ Nenhum arquivo está sendo monitorado.
 Para monitorar um arquivo temos que usar o comando `git add`,
 que é apresentado na pŕoxima seção.
 
-=== Criando e monitorando um arquivo
+=== Criando um arquivo novo
 
-Como pode ser traduzido da terceira linha de resposta da figura
+Como pode ser traduzido da terceira linha de resposta da lista de comandos
 <<fig:03>>, o Git monitora (_track_) arquivos criados
 ou copiados para dentro do diretório do repositório.
-A figura <<fig:04>> mostra o conteúdo que queremos no arquivo
-`greet.py`.
-Este arquivo em texto simples pode ser criado dentro do diretório
-ou copiado para dentro dele.
+A lista de comandos <<fig:04>> mostra o conteúdo que queremos no arquivo
+`greet.py`. Este arquivo em texto simples pode ser criado 
+dentro do diretório ou copiado para dentro dele.
 É um arquivo escrito em linguagem de programação Python 3.
-Porém, não é necessário saber Python para acompanhar este tutorial.
-Basta notar que o arquivo será alterado e cada alteração será monitorada
-pelo Git. A execução do arquivo com o comando `python greed.py` é 
-opcional. O comando `ls -a` é só para mostrar que o arquivo 
-`greed.py` foi criado.
+Porém, não é necessário saber Python para acompanhar este 
+tutorial. Basta notar que o arquivo será alterado e cada 
+alteração será monitorada pelo Git.
 
 .Criando o primeiro arquivo do projeto
 [[fig:04, {counter:refcode}]]
 [source]
 ----
-francisco@i7titanv:~/greetings$ cat greet.py 
+~/greetings$ cat greet.py / <1>
 print("hello")
-francisco@i7titanv:~/greetings$ python greet.py 
+~/greetings$ python greet.py // <2>
 hello
-francisco@i7titanv:~/greetings$ ls -a
+~/greetings$ ls -a // <3>
 .  ..  .git  greet.py
 ----
+<1> Mostra o conteúdo do arquivo `greet.py`.
+<2> (Opcional) Executa o arquivo criado com o comando `python 
+greed.py`. 
+<3> Só para mostrar que o arquivo `greed.py` foi criado.
 
 Depois de criado o arquivo `greet.py`, o comando
 `git status` mostrará uma resposta um pouco diferente,
-como mostra a figura figura <<fig:05>>.
-As duas primeiras linhas de resposta continuam iguais,
-mais agora, a terceira linha de resposta lista o arquivo
-`greet.py` em vermelho, e diz que ele não está
-sendo monitorado (_untracked_).
-Veja que a resposta do comando já diz como adicionar
-a modificação no monitoramento (`git add <file>`).
-Aqui é um ponto que merece uma atenção especial quando se usa o Git.
-O Git só "fotografa" (_commit_) as alterações que estão
-em uma área abstrata de sua organização chamada _stage_.
-Isso por que, muitas vezes fazemos alterações que não queremos 
-gravar. Testamos algo, não gostamos do resultado, e queremos descartar
-o que foi feito. Outras vezes, queremos gravar só algumas alterações,
-mas não todas. 
-Esse processo também nos permite fazer alterações variadas e 
-agrupá-las em fotografias separadas.
+como mostra a lista de comandos <<fig:05>>.
 
 .Status com arquivo fora da área de stage
 [[fig:05, {counter:refcode}]]
 [source]
 ----
-francisco@i7titanv:~/greetings$ git status
-On branch master
+~/greetings$ git status
+On branch master // <1>
 
-No commits yet
+No commits yet // <2>
 
-Untracked files:
+Untracked files: // <3>
   (use "git add <file>..." to include in what will be committed)
 	greet.py
 
-nothing added to commit but untracked files present (use "git add" to track)
+nothing added to commit but untracked files present (use "git add" to track) // <4>
 ----
 
-A figura <<fig:06>> mostra como adicionar um arquivo na área de 
+<1> A primeira 
+<2> e a segunda linha de resposta continuam iguais,
+<3> mas a terceira linha de resposta lista o arquivo
+`greet.py` em vermelho, e diz que ele não está
+sendo monitorado (_untracked_).
+<4> Veja que a resposta do comando já diz como adicionar
+a modificação no monitoramento (`git add <file>`).
+
+Aqui é um ponto que merece uma atenção especial quando se usa o Git.
+O Git só "fotografa" (_commit_) as alterações que estão
+em uma área abstrata de sua organização chamada *_stage_*.
+Isso por que, muitas vezes fazemos alterações que não queremos 
+gravar. Testamos algo, não gostamos do resultado, e queremos 
+descartar o que foi feito. Outras vezes, queremos gravar só 
+algumas alterações, mas não todas. 
+Esse processo também nos permite fazer alterações variadas e 
+agrupá-las em fotografias separadas.
+
+
+A lista de comandos <<fig:06>> mostra como adicionar um arquivo na área de 
 _stage` do Git, com o comando `git add greet.py`.
-Note que agora o arquivo está listado em verde, mas ainda não foi
-"fotografado" (_committed_).
+Note que agora o arquivo está sendo monitorado, mas ainda não 
+foi "fotografado" (_committed_).
 Se você colocar um arquivo na área de _stage_ por engano,
 pode removê-lo de lá, sem excluí-lo do diretório, com o 
 comando `git rm --cached <file>`, como mostra a resposta 
@@ -220,8 +204,8 @@ do comando `git status`.
 [[fig:06, {counter:refcode}]]
 [source]
 ----
-francisco@i7titanv:~/greetings$ git add greet.py 
-francisco@i7titanv:~/greetings$ git status
+~/greetings$ git add greet.py 
+~/greetings$ git status
 On branch master
 
 No commits yet
@@ -232,12 +216,14 @@ Changes to be committed:
 
 ----
 
+=== Monitorando o arquivo criado
+
 É importante resaltar que até o momento, nenhum arquivo está
 sendo monitorado pelo Git.
 O arquivo `greet.py` está pronto para ser "fotografado" e,
 a partir daí, ser monitorado.
-Para fotografar as mudanças que estão na área de _stage
-deve-se executar o comando da figura <<fig:07>>.
+Para fotografar as mudanças que estão na área de *_stage_*
+deve-se executar o comando da lista de comandos <<fig:07>>.
 Entretanto, o comando só será aceito se você estiver com 
 seu nome e email configurado.
 Para não entrar em detalhes de configuração agora, 
@@ -245,67 +231,100 @@ você pode digitar os comandos
 `git config user.name `SEU_PRIMEIRO_NOME SEU_ULTIMO_NOME'` e
 `git config user.email `SEU_EMAIL@example.com'`.
 Quando se executa o comando `git commit` sem o parâmetro
-`-m `comentário'`, o Git abre um editor de texto para que 
+`-m 'comentário'` o Git abre um editor de texto para que 
 um comentário sobre a fotografia seja escrito.
 O Git não permite commits sem comentários.
 Então, foi usado aqui o `-m` para ficar mais resumido e 
-visível através das figuras.
+visível através das listas de comandos.
 
 .Primeira fotografia do repositório
 [[fig:07, {counter:refcode}]]
 [source]
 ----
-francisco@i7titanv:~/greetings$ git commit -m 'primeira fotografia do sistema'
+~/greetings$ git commit -m 'primeira fotografia do sistema'
 [master (root-commit) 06cbe0b] primeira fotografia do sistema
  1 file changed, 1 insertion(+)
  create mode 100644 greet.py
 ----
 
 Se você quiser ver a fotografia tirada do sistema
-você pode usar o comando `git show` e terá um resultado
-parecido com o da figura <<fig:08>>.
+pode usar o comando `git show` e terá um resultado
+parecido com o da lista de comandos <<fig:08>>.
 Vamos entender essa fotografia, mas sem seguir a ordem em que 
 os dados aparecem.
-Vemos o comentário inserido pelo comando `git commit`.
-Também vemos a data e hora de quando o commit foi executado,
-que pode ser entendida como o momento da fotografia.
-A linha que começa com `Author` tem os dados inseridos
-pelos comandos `git config <etc>`.
-Em negrito, está indicado que essa é uma fotografia que
-contém um arquivo novo, e a linha verde que começa com +
-é o conteúdo do arquivo.
 
 .Vendo detalhes da fotografia mais recente do sistema
 [[fig:08, {counter:refcode}]]
 [source]
 ----
-francisco@i7titanv:~/greetings$ git show
-commit 06cbe0b360ee871baf55d48aa1914d8b73708b4b (HEAD -> master)
-Author: Francisco de Assis Boldt <fboldt@gmail.com>
-Date:   Tue Dec 22 08:21:39 2020 -0300
+~/greetings$ git show // <1>
+commit 06cbe0b360ee871baf55d48aa1914d8b73708b4b (HEAD -> master) //<2>
+Author: Francisco de Assis Boldt <fboldt@gmail.com> //<3>
+Date:   Tue Dec 22 08:21:39 2020 -0300 //<4>
 
-    primeira fotografia do sistema
+    primeira fotografia do sistema //<5>
 
 diff --git a/greet.py b/greet.py
 new file mode 100644
 index 0000000..11b15b1
---- /dev/null
-+++ b/greet.py
+--- /dev/null //<6>
++++ b/greet.py //<7>
 @@ -0,0 +1 @@
-+print("hello")
++print("hello") //<8>
 ----
-
-Na primeira linha, em amarelo, logo depois da palavra commit,
-está o _hash_ da fotografia.
+<1> O comando `git show`.
+<2> Logo depois da palavra commit, está o _hash_ da fotografia.
 O _hash_ é a assinatura, o identificador, da fotografia.
 Podemos usar esse identificador para acessar a fotografia
-posteriormente. Na mesma linha, em negrito e verde, temos a
-palavra *master*,
+posteriormente. Na mesma linha temos a palavra *master*,
 indicando que o ramo do projeto chamado *master* está
 apontando para esta fotografia no momento.
 Ainda na mesma linha, em azul, temos a palavra *HEAD* 
-seguida
-dos sinais de $-$ e $>$ representando uma seta (`->`).
+seguida uma seta (\->).
 Esta seta indica que o estado do sistema que estamos vendo no
 momento está apontando para o ramos master.
 Isso ficará mais claro a seguir.
+<3> Quem fez a fotografia
+(dados inseridos pelos comandos `git config <etc>`).
+<4> Quando a fotografia foi feita.
+<5> O comentário inserido pelo comando `git commit`.
+
+=== Conclusão
+
+Com o que foi mostrado neste capítulo, já dá para usar o Git
+para desenvolver seus programas.
+Nossos programas e outros documentos raramente são criados
+de uma vez. Começamos com uma versão simples e vamos 
+incrementando versão após versão até finalizarmos o que
+precisamos fazer.
+Então, ao invés de fazer uma cópia dos nossos arquivos,
+podemos simplesmente alterar o arquivo sem medo.
+Por exemplo, digamos que fizemos uma alteração no arquivo 
+`greet.py` e esse arquivo parou de funcionar.
+Suponhamos que a alteração foi tão complicada que seria melhor
+descartar todas as alterações feitas e começar tudo de novo.
+Se ainda *não* executamos o comando `git add greet.py`, podemos 
+descartar as alterações antes delas entrarem na área de 
+*_stage_*. Basta executar o comando `git checkout -- greet.py`.
+Tudo voltará como estava no início. 
+
+Mas, se você tinha achado que a alteração seria uma boa idéia
+ou simplesmente executou o comando `git add .` sem querer,
+nenhum motivo para desespero.
+Basta usar o comando `git reset \-- greet.py`.
+O Comando `git add .` adiciona na área de *_stage_* todas as alterações feitas no repositório.
+Se você usar o comando `git reset` todas as adições para 
+a área de *_stage_* serão removidas para a lista de 
+não monitorados. Daí você pode adicionar à *_stage_* somente
+os arquivos que você deseja na próxima fotografia.
+
+Em resumo, você já pode usar o Git de maneira eficiente
+para implementar seus programas ou escrever seus documentos.
+Nos próximos capítulos você vai conhecer mais alguns comandos
+do Git que vão lhe ajudar a desenvolver seus trabalhos
+de forma mais eficiente e segura.
+Recomendo que você aprenda a usar um repositório remoto,
+de preferência na nuvem, por uma plataforma como o GitHub.
+Entretanto, se você já sabe como fazer isso, ou não tem 
+interesse em usar um repositório remoto, você pode pular
+o capítulo seguinte e ir direto para o capítulo 4.
