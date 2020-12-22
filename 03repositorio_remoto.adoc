@@ -1,11 +1,217 @@
 [#remoto]
 == Trabalhando com um repositório remoto
 
+.Página inicial do GitHub.
+[[gh01, {counter:refnum}]]
+image::gh01-inicial.png[]
+
+.Criar conta no GitHub.
+[[gh02, {counter:refnum}]]
+image::gh02-criaconta.png[]
+
+.Logar GitHub.
+[[gh03, {counter:refnum}]]
+image::gh03-login.png[]
+
+.GitHub.
+[[gh04, {counter:refnum}]]
+image::gh04-logado.png[]
+
+.GitHub.
+[[gh05, {counter:refnum}]]
+image::gh05-menu.png[]
+
+.GitHub.
+[[gh06, {counter:refnum}]]
+image::gh06-repositorios.png[]
+
+.GitHub.
+[[gh07, {counter:refnum}]]
+image::gh07-novorepositorio.png[]
+
+.GitHub.
+[[gh08, {counter:refnum}]]
+image::gh08-addreadme.png[]
+
+.GitHub.
+[[gh09, {counter:refnum}]]
+image::gh09-clone.png[]
+
 Se não tiver, criar uma conta no GitHub.com.
 
 Criar um repositório.
 
-Clonar o repositório em seu computador local.
+.Clonar o repositório em seu computador local.
+[[gitclone, {counter:refcode}]]
+[source]
+----
+francisco@i7titanv:~$ git clone https://github.com/fboldt/greetings.git
+Cloning into 'greetings'...
+remote: Enumerating objects: 3, done.
+remote: Counting objects: 100% (3/3), done.
+remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (3/3), 619 bytes | 619.00 KiB/s, done.
+----
+
+.Status do repositório clonado.
+[[statusclone, {counter:refcode}]]
+[source]
+----
+francisco@i7titanv:~$ git clone https://github.com/fboldt/greetings.git
+Cloning into 'greetings'...
+remote: Enumerating objects: 3, done.
+remote: Counting objects: 100% (3/3), done.
+remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (3/3), 619 bytes | 619.00 KiB/s, done.
+----
+
+.Última fotografia do repositório clonado.
+[[showclone, {counter:refcode}]]
+[source]
+----
+francisco@i7titanv:~$ git clone https://github.com/fboldt/greetings.git
+Cloning into 'greetings'...
+remote: Enumerating objects: 3, done.
+remote: Counting objects: 100% (3/3), done.
+remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (3/3), 619 bytes | 619.00 KiB/s, done.
+----
+
+.Recriando o arquivo em python.
+[[recriagreet, {counter:refcode}]]
+[source]
+----
+francisco@i7titanv:~/greetings$ cat greet.py 
+print("Hello!")
+francisco@i7titanv:~/greetings$ python greet.py 
+Hello!
+francisco@i7titanv:~/greetings$ ls -a
+.  ..  .git  greet.py  README.md
+----
+
+.Status após a criação do arquivo greet.py.
+[[statusgreet, {counter:refcode}]]
+[source]
+----
+francisco@i7titanv:~/greetings$ git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	greet.py
+
+nothing added to commit but untracked files present (use "git add" to track)
+----
+
+.Adiciona alterações de greet.py na área Stage.
+[[stagegreet, {counter:refcode}]]
+[source]
+----
+francisco@i7titanv:~/greetings$ git add greet.py 
+francisco@i7titanv:~/greetings$ git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	new file:   greet.py
+----
+
+.Comita alterações.
+[[commitgreet, {counter:refcode}]]
+[source]
+----
+francisco@i7titanv:~/greetings$ git commit -m 'cria arquivo greet.py'
+[main 6c8951a] cria arquivo greet.py
+ 1 file changed, 1 insertion(+)
+ create mode 100644 greet.py
+----
 
 Usar `git push` para enviar atualizações e `git fetch` para 
 verificar se existem atulizações no repositório remoto.
+
+.Faz o upload das alterações.
+[[pushgreet, {counter:refcode}]]
+[source]
+----
+francisco@i7titanv:~/greetings$ git push
+Username for 'https://github.com': fboldt
+Password for 'https://fboldt@github.com': 
+Enumerating objects: 4, done.
+Counting objects: 100% (4/4), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 311 bytes | 311.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0)
+To https://github.com/fboldt/greetings.git
+   58da81b..6c8951a  main -> main
+----
+
+.Estado do GitHub de do comando push.
+[[gh10, {counter:refnum}]]
+image::gh10-push.png[]
+
+.Atualizando o arquivo README.md dentro do GitHub.
+[[gh11, {counter:refnum}]]
+image::gh11-atualiza.png[]
+
+.Registrando as alterações feitas no GitHub.
+[[gh12, {counter:refnum}]]
+image::gh12-commit.png[]
+
+
+.Faz download de alterações.
+[[fetch, {counter:refcode}]]
+[source]
+----
+francisco@i7titanv:~/greetings$ git fetch
+remote: Enumerating objects: 5, done.
+remote: Counting objects: 100% (5/5), done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (3/3), 683 bytes | 683.00 KiB/s, done.
+From https://github.com/fboldt/greetings
+   6c8951a..933fc74  main       -> origin/main
+----
+
+.Status depois do comando fetch.
+[[statusdopofetch, {counter:refcode}]]
+[source]
+----
+francisco@i7titanv:~/greetings$ git status
+On branch main
+Your branch is behind 'origin/main' by 1 commit, and can be fast-forwarded.
+  (use "git pull" to update your local branch)
+
+nothing to commit, working tree clean
+----
+
+.Estado do arquivo README.md depois do comando fetch.
+[[readmefetch, {counter:refcode}]]
+[source]
+----
+francisco@i7titanv:~/greetings$ cat README.md 
+# greetings
+O "Hello World" do Git.
+----
+
+.O comando git pull.
+[[gitpull, {counter:refcode}]]
+[source]
+----
+francisco@i7titanv:~/greetings$ git pull
+Updating 6c8951a..933fc74
+Fast-forward
+ README.md | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+----
+
+.Estado do arquivo README.md depois do comando pull.
+[[readmepull, {counter:refcode}]]
+[source]
+----
+francisco@i7titanv:~/greetings$ cat README.md 
+# Hello Git
+O "Hello World" do Git.
+----
