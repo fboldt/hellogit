@@ -313,3 +313,19 @@ ou simplesmente executou o comando `git add .` sem querer.
 O Comando `git add .` adiciona na área de *_stage_* todas
 as alterações feitas no repositório.
 Nenhum motivo para desespero.
+Basta usar o comando `git reset \-- greet.py`.
+Se você usar o comando `git reset` todas as adições para 
+a área de *_stage_* serão removidas para a lista de 
+não monitorados. Daí você pode adicionar à *_stage_* somente
+os arquivos que você deseja na próxima fotografia.
+
+Em resumo, você já pode usar o Git de maneira eficiente
+para implementar seus programas ou escrever seus documentos.
+Nos próximos capítulos você vai conhecer mais alguns comandos
+do Git que vão lhe ajudar a desenvolver seus trabalhos
+de forma mais eficiente e segura.
+Recomendo que você aprenda a usar um repositório remoto,
+de preferência na nuvem, por uma plataforma como o GitHub.
+Entretanto, se você já sabe como fazer isso, ou não tem 
+interesse em usar um repositório remoto, você pode pular
+o capítulo seguinte e ir direto para o capítulo 4.
