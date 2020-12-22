@@ -1,3 +1,4 @@
+[#fotografias]
 == Criando fotografias novas e acessando fotografias antigas
 
 O Git só vai tirar uma nova fotografia do sistema se algo for 

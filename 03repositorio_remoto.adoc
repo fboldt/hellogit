@@ -1,3 +1,4 @@
+[#remoto]
 == Trabalhando com um repositório remoto
 
 Se não tiver, criar uma conta no GitHub.com.
