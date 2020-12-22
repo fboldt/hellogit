@@ -61,7 +61,6 @@ Neste livro, os exemplos de repositórios remotos serão
 com o Github. Mas os conceitos são os mesmos para 
 qualquer plataforma de hospedagem que use o Git como
 interface de interação.
-
 O que muda entre as plataformas de hospedagem de código
 são alguns detalhes da interface web de cada serviço.
 Também muda o que cada plataforma oferece para seus usuários.
@@ -99,3 +98,14 @@ capítulo 6 (<<#bifurcacoes>>).
 O capítulo 7 (<<#conclusao>>) reforça o que foi mostrado nos 
 demais capítulos e sugere obras para você continuar seu 
 aprendizado.
+
+Neste livro, tudo será apresentado pela linha de comando.
+O mais importante é entender os conceitos e o motivo de se usar 
+cada comando. Sem estes conceitos uma interface gráfica é
+inútil. Por isso, acredito que pela linha de comando você 
+entenderá o necessário para usar uma interface gráfica 
+posteriormente.
+Além disso, os comandos de terminal são os mesmos para 
+Windows, Linux e Mac.
+Você encontra como instalar o Git em seu computador em
+https://git-scm.com/book/pt-br/v2/Come%C3%A7ando-Instalando-o-Git[Instalando o Git] (https://git-scm.com/book/pt-br/v2).
