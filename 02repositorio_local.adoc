@@ -297,5 +297,19 @@ Nossos programas e outros documentos raramente são criados
 de uma vez. Começamos com uma versão simples e vamos 
 incrementando versão após versão até finalizarmos o que
 precisamos fazer.
-Então, agora, ao invés de fazer uma cópia dos nossos arquivos,
+Então, ao invés de fazer uma cópia dos nossos arquivos,
 podemos simplesmente alterar o arquivo sem medo.
+Por exemplo, digamos que fizemos uma alteração no arquivo 
+`greet.py` e esse arquivo parou de funcionar.
+Suponhamos que a alteração foi tão complicada que seria melhor
+descartar todas as alterações feitas e começar tudo de novo.
+Se ainda *não* executamos o comando `git add greet.py`, podemos 
+descartar as alterações antes delas entrarem na área de 
+*_stage_*. Basta executar o comando `git checkout -- greet.py`.
+Tudo voltará como estava no início. 
+
+Mas, se você tinha achado que a alteração seria uma boa idéia
+ou simplesmente executou o comando `git add .` sem querer.
+O Comando `git add .` adiciona na área de *_stage_* todas
+as alterações feitas no repositório.
+Nenhum motivo para desespero.
