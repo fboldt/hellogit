@@ -1,3 +1,4 @@
+:listing-caption: Lista de comandos
 [#local]
 == Iniciando um repositório local
 
@@ -32,17 +33,18 @@ Initialized empty Git repository in home/fulano/greetings/.git/
 
 A árvore com todos os arquivos
 e subdiretórios criado pelo comando `git init` pode ser
-vista na lista de comandos <<fig:02>>. O comando `tree .git` foi
-usado para exibir essa árvore. O diretório `.git` contém
-metadados. Ou seja, é um diretório com dados para o Git
-controlar os dados do repositórios. É a forma do Git
-"lembrar" da história do projeto.
+vista na lista de comandos <<fig:02>> 
+(algumas linhas de resposta foram omitidas).
+O comando `tree .git` foi usado para exibir essa árvore. 
+O diretório `.git` contém metadados. 
+Ou seja, é um diretório com dados para o Git
+controlar os dados do repositórios.
+É a forma do Git "lembrar" da história do projeto.
 Um repositório Git nada mais é do que um diretório com um
 subdiretório `.git` adequadamente estruturado.
 O subdiretório `.git` não deve ser alterado diretamente.
-Suas alterações devem ser feitas através do comando
-`git` acompanhado dos parâmetros correspondentes à ação
-desejada.
+Suas alterações devem ser feitas através do comando `git` 
+acompanhado dos parâmetros correspondentes à ação desejada.
 
 .Árvore de diretórios do repositório.
 [[fig:02, {counter:refcde}]]
@@ -56,16 +58,7 @@ desejada.
 ├── HEAD
 ├── hooks
 │   ├── applypatch-msg.sample
-│   ├── commit-msg.sample
-│   ├── fsmonitor-watchman.sample
-│   ├── post-update.sample
-│   ├── pre-applypatch.sample
-│   ├── pre-commit.sample
-│   ├── pre-merge-commit.sample
-│   ├── prepare-commit-msg.sample
-│   ├── pre-push.sample
-│   ├── pre-rebase.sample
-│   ├── pre-receive.sample
+...
 │   └── update.sample
 ├── info
 │   └── exclude
@@ -107,7 +100,6 @@ Diferentes ramos podem ser mesclados ou se tornarem novos
 projetos. O nome `master` é o nome padrão para o ramo inicial 
 do projeto Git.
 Não existe nenhuma exigência de que esse ramo exista.
-É que raramente se muda esse nome.
 
 <2> Esta linha mostra `No commits yet`.
 Os _commits_ são fotografias do sistema que o Git mantém
