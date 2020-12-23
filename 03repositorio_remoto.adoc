@@ -1,51 +1,86 @@
+:listing-caption: Lista de comandos
+:imagesdir: ./images
 [#remoto]
 == Repositório remoto no GitHub
 
-.Página inicial do GitHub.
-[[gh01, {counter:reffg}]]
-image::gh01-inicial.png[]
+
+Para criar uma conta no GitHub basta acessar o site
+github.com e clicar em um botão escrito *Sign up*,
+ou colocar o endereço github.com/join direto na
+barra de endereços de um navegador web.
+É necessário preencher os campos com 
+
+. um nome de usuário (_Username_) que ainda não exista;
+. um endereço de email válido;
+. uma senha com pelo menos 15 caracteres alphanuméricos 
+ou uma senha com pelo menos 8 caracteres qu contenha pelo menos 
+um  (1) número e uma (1) letra minúscula.
 
 .Criar conta no GitHub.
 [[gh02, {counter:reffg}]]
 image::gh02-criaconta.png[]
 
-.Logar GitHub.
-[[gh03, {counter:reffg}]]
-image::gh03-login.png[]
+Após ter o cadastro efetuado e confirmado pelo email 
+cadastrado, é possível entrar no sistema 
+pelo endereço github.com/login.
+Se o login e a senha estiverem corretos, 
+a página aberta terá a divisão apresentada na figura <<gh05>>.
+Ao clicar na sua foto ou símblo que o GitHub cria,
+é possível acessar seu perfil (_Your profile_), 
+seus repositórios (_Your repositories_) etc.
 
-.GitHub.
-[[gh04, {counter:reffg}]]
-image::gh04-logado.png[]
-
-.GitHub.
+.Página inicial do GitHub após login.
 [[gh05, {counter:reffg}]]
 image::gh05-menu.png[]
 
-.GitHub.
-[[gh06, {counter:reffg}]]
-image::gh06-repositorios.png[]
+Para criar um repositório novo (figura <<gh07>>) é necessário
+inserir um nome de repositório que não exista na sua lista.
+A descrição do repositório é opcional, mas aqui nós colocaremos
+_O "Hello World" do Git_.
+Quando o repositório é público (_public_) qualquer pessoa
+pode visualizá-lo, mas quando é privado (_private_) só você 
+pode visualizá-lo.
 
-.GitHub.
+.Criando um reposistório novo no GitHub.
 [[gh07, {counter:reffg}]]
 image::gh07-novorepositorio.png[]
 
-.GitHub.
+Para este tutorial, antes de criar o repositório, 
+marque a opção "Add a README file" (adicionar arquivo README),
+como mostra a figura <<gh08>>.
+Agora é só clicar no botão "Create a repository" 
+(criar repositório).
+
+.Marcar a opção "Add a README file".
 [[gh08, {counter:reffg}]]
 image::gh08-addreadme.png[]
 
-.GitHub.
+=== Fazendo uma cópia do repositório no computador local
+
+Agora que o repositório está criado, é necessário
+fazer um cópia local dele para poder alterá-lo.
+O link para fazer essa cópia pode ser encontrado
+clicando-se no botão "Clone" do repositório.
+
+.Link para clonar um repositório.
 [[gh09, {counter:reffg}]]
 image::gh09-clone.png[]
 
-Se não tiver, criar uma conta no GitHub.com.
+====
+Se você fez os passos do capítulo anterior, 
+antes de continuar o tutorial deste capítulo você precisa
+excluir ou renomear o repositório anterior.
+====
 
-Criar um repositório.
+Depois de copiado o link, usasse o comando `git clone <link>`
+para fazer o download do repositório no compputador local,
+como mostra a lsta de comandos <<gitclone>>.
 
 .Clonar o repositório em seu computador local.
 [[gitclone, {counter:refcde}]]
 [source]
 ----
-francisco@i7titanv:~$ git clone https://github.com/fboldt/greetings.git
+~$ git clone https://github.com/fboldt/greetings.git
 Cloning into 'greetings'...
 remote: Enumerating objects: 3, done.
 remote: Counting objects: 100% (3/3), done.
@@ -53,47 +88,53 @@ remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
 Unpacking objects: 100% (3/3), 619 bytes | 619.00 KiB/s, done.
 ----
 
-.Status do repositório clonado.
-[[statusclone, {counter:refcde}]]
-[source]
-----
-francisco@i7titanv:~$ git clone https://github.com/fboldt/greetings.git
-Cloning into 'greetings'...
-remote: Enumerating objects: 3, done.
-remote: Counting objects: 100% (3/3), done.
-remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
-Unpacking objects: 100% (3/3), 619 bytes | 619.00 KiB/s, done.
-----
+Agora, já é possível acessar o diretório criado e
+verificar que já existe fotografia (_commit_) do repositório.
+Esta foto foi "tirada" quando inserimos o arquivo "README.md",
+marcando a opção "Add a READM file" ao criar o repositório
+no GitHub.
 
-.Última fotografia do repositório clonado.
+.Lista de fotografias do repositório clonado.
 [[showclone, {counter:refcde}]]
 [source]
 ----
-francisco@i7titanv:~$ git clone https://github.com/fboldt/greetings.git
-Cloning into 'greetings'...
-remote: Enumerating objects: 3, done.
-remote: Counting objects: 100% (3/3), done.
-remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
-Unpacking objects: 100% (3/3), 619 bytes | 619.00 KiB/s, done.
+~$ cd greetings/ //<1>
+~/greetings$ git log //<2>
+commit 58da81bbc897dcdf877530ae972fd2d4b3cc9c8d (HEAD -> main) //<3>
+Author: Francisco de Assis Boldt <fboldt@gmail.com>
+Date:   Tue Dec 22 08:29:25 2020 -0300
+
+    Initial commit
 ----
+<1> Acessa repositório clonado.
+<2> Lista fotografias do repositório.
+<3> Note que o ramo (_branch_) criado pelo GitHub se chama 
+`main` e não `master` como mostrado no capítulo anterior.
+
+Para continuar, crie (ou copie) o arquivo `greet.py`, 
+de forma que ele tenha o conteúdo mostrado na listagem
+<<recriagreet>>.
+
+=== Alterando a cópia local
 
 .Recriando o arquivo em python.
 [[recriagreet, {counter:refcde}]]
 [source]
 ----
-francisco@i7titanv:~/greetings$ cat greet.py 
+~/greetings$ cat greet.py 
 print("Hello!")
-francisco@i7titanv:~/greetings$ python greet.py 
-Hello!
-francisco@i7titanv:~/greetings$ ls -a
-.  ..  .git  greet.py  README.md
 ----
+
+O comando `git status` agora traz uma informação a mais,
+como mostra a listagem <<statusgreet>>.
+Agora aparece a linha `Your branch is up to date with 'origin/main'.` informando que a cópia local do repositório está
+atualizada com o repositório remoto hospedado no GitHub.
 
 .Status após a criação do arquivo greet.py.
 [[statusgreet, {counter:refcde}]]
 [source]
 ----
-francisco@i7titanv:~/greetings$ git status
+~/greetings$ git status
 On branch main
 Your branch is up to date with 'origin/main'.
 
@@ -104,12 +145,15 @@ Untracked files:
 nothing added to commit but untracked files present (use "git add" to track)
 ----
 
+Vamos adicionar o arquivo `greet.py` na área de *stage*,
+como na listagem <<stagegreet>>.
+
 .Adiciona alterações de greet.py na área Stage.
 [[stagegreet, {counter:refcde}]]
 [source]
 ----
-francisco@i7titanv:~/greetings$ git add greet.py 
-francisco@i7titanv:~/greetings$ git status
+~/greetings$ git add greet.py 
+~/greetings$ git status
 On branch main
 Your branch is up to date with 'origin/main'.
 
@@ -118,26 +162,31 @@ Changes to be committed:
 	new file:   greet.py
 ----
 
+O próximo passo é fotografar as alteração da área de
+*stage*, como na listagem <<commitgreet>>.
+
 .Comita alterações.
 [[commitgreet, {counter:refcde}]]
 [source]
 ----
-francisco@i7titanv:~/greetings$ git commit -m 'cria arquivo greet.py'
+~/greetings$ git commit -m 'cria arquivo greet.py'
 [main 6c8951a] cria arquivo greet.py
  1 file changed, 1 insertion(+)
  create mode 100644 greet.py
 ----
 
-Usar `git push` para enviar atualizações e `git fetch` para 
-verificar se existem atulizações no repositório remoto.
+=== Atualizando a cópia remota
+
+Para atuaiza o repositório remoto usa-se o comando
+`git push`, como mostra a listagem <<pushgreet>>.
 
 .Faz o upload das alterações.
 [[pushgreet, {counter:refcde}]]
 [source]
 ----
-francisco@i7titanv:~/greetings$ git push
-Username for 'https://github.com': fboldt
-Password for 'https://fboldt@github.com': 
+~/greetings$ git push
+Username for 'https://github.com': fboldt //<1>
+Password for 'https://fboldt@github.com': //<2>
 Enumerating objects: 4, done.
 Counting objects: 100% (4/4), done.
 Delta compression using up to 8 threads
@@ -147,25 +196,38 @@ Total 3 (delta 0), reused 0 (delta 0)
 To https://github.com/fboldt/greetings.git
    58da81b..6c8951a  main -> main
 ----
+<1> Insere nome de usuário com autorização para alterar o repositório.
+<2> Insere a senha do usuário.
+
+Ao acessar o repositório no GitHub, pode-se ver
+as alterações atualizadas, como mostra a figura <<gh10>>.
 
 .Estado do GitHub de do comando push.
 [[gh10, {counter:reffg}]]
 image::gh10-push.png[]
 
+Alterações também podem ser feitas diretamente no site do 
+GitHub.
+Por exemplo, para alterar o arquivo README.md, basta clicar no
+lápis da figura <<gh10>>.
+Vamos mudar o título de `# greetings` para `# Hello Git`, 
+como na figure <<gh11>>, e depois clicar em *Commit changes*, 
+para fotografar esta alteração.
+
 .Atualizando o arquivo README.md dentro do GitHub.
 [[gh11, {counter:reffg}]]
 image::gh11-atualiza.png[]
 
-.Registrando as alterações feitas no GitHub.
-[[gh12, {counter:reffg}]]
-image::gh12-commit.png[]
+=== Atualizando o repositório local
 
+Para verificar se o repositório remoto foi alterado,
+usa-se o comando `git fetch`, como na listagem <<fetch>>.
 
-.Faz download de alterações.
+.Verifica se existem alterações.
 [[fetch, {counter:refcde}]]
 [source]
 ----
-francisco@i7titanv:~/greetings$ git fetch
+~/greetings$ git fetch
 remote: Enumerating objects: 5, done.
 remote: Counting objects: 100% (5/5), done.
 remote: Compressing objects: 100% (2/2), done.
@@ -175,11 +237,16 @@ From https://github.com/fboldt/greetings
    6c8951a..933fc74  main       -> origin/main
 ----
 
+O comando `git status` da listagem <<statusdopofetch>>
+mostra que nossa cópia local está desatualizada por
+1 fotografia (*1 commit*), e pode ser atualizada pelo 
+comando `git pull`.
+
 .Status depois do comando fetch.
 [[statusdopofetch, {counter:refcde}]]
 [source]
 ----
-francisco@i7titanv:~/greetings$ git status
+~/greetings$ git status
 On branch main
 Your branch is behind 'origin/main' by 1 commit, and can be fast-forwarded.
   (use "git pull" to update your local branch)
@@ -187,31 +254,36 @@ Your branch is behind 'origin/main' by 1 commit, and can be fast-forwarded.
 nothing to commit, working tree clean
 ----
 
-.Estado do arquivo README.md depois do comando fetch.
-[[readmefetch, {counter:refcde}]]
-[source]
-----
-francisco@i7titanv:~/greetings$ cat README.md 
-# greetings
-O "Hello World" do Git.
-----
+Então, podemos executar o comando `git pull`, como na listagem
+<<gitpull>>.
 
 .O comando git pull.
 [[gitpull, {counter:refcde}]]
 [source]
 ----
-francisco@i7titanv:~/greetings$ git pull
+~/greetings$ git pull
 Updating 6c8951a..933fc74
 Fast-forward
  README.md | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 ----
 
+Agora o arquivo local está igual ao arquivo remoto,
+como pode ser visto na listagem <<readmepull>>.
+
 .Estado do arquivo README.md depois do comando pull.
 [[readmepull, {counter:refcde}]]
 [source]
 ----
-francisco@i7titanv:~/greetings$ cat README.md 
+~/greetings$ cat README.md 
 # Hello Git
 O "Hello World" do Git.
 ----
+
+=== Vantagens de ter um repositório remoto
+
+. Pode ser usado como backup.
+. Pode ser usado como repositório central para sincronizar 
+vários computadores.
+. Disponibilizar o código para outras pessoas.
+. Trabalhar em equipe.
