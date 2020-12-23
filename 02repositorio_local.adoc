@@ -17,12 +17,12 @@ vazio em um repositório Git basta executar o comando
 mostra a repetição do comando `ls -a`.
 
 // .Criando um repositório
-// [[fig:01, {counter:refnum}]]
+// [[fig:01, {counter:reffg}]]
 // image::01-Criando um repositório.png[]
 
 
 .Criando um repositório vazio.
-[[fig:01, {counter:refcode}]]
+[[fig:01, {counter:refcde}]]
 [source]
 ----
 ~$ mkdir greetings // <1>
@@ -58,11 +58,11 @@ Suas alterações devem ser feitas através do comando
 desejada.
 
 // .Árvore de diretórios do repositório
-// [[fig:02, {counter:refnum}]]
+// [[fig:02, {counter:reffg}]]
 // image::02-Árvore de diretórios do repositório.png[]
 
 .Árvore de diretórios do repositório.
-[[fig:02, {counter:refcode}]]
+[[fig:02, {counter:refcde}]]
 [source]
 ----
 francisco@i7titanv:~/greetings$ tree .git
@@ -106,11 +106,11 @@ uma vez que nosso objetivo aqui é mostrar uma utilização do Git
 com poucos comandos, sem explorá-los por completo.
 
 // .Status de um repositório recém criado
-// [[fig:03, {counter:refnum}]]
+// [[fig:03, {counter:reffg}]]
 // image::03-Status de um repositório recém criado.png[]
 
 .Árvore de diretórios do repositório.
-[[fig:03, {counter:refcode}]]
+[[fig:03, {counter:refcde}]]
 [source]
 ----
 francisco@i7titanv:~/greetings$ git status
@@ -161,7 +161,7 @@ opcional. O comando `ls -a` é só para mostrar que o arquivo
 `greed.py` foi criado.
 
 .Criando o primeiro arquivo do projeto
-[[fig:04, {counter:refcode}]]
+[[fig:04, {counter:refcde}]]
 [source]
 ----
 francisco@i7titanv:~/greetings$ cat greet.py 
@@ -192,7 +192,7 @@ Esse processo também nos permite fazer alterações variadas e
 agrupá-las em fotografias separadas.
 
 .Status com arquivo fora da área de stage
-[[fig:05, {counter:refcode}]]
+[[fig:05, {counter:refcde}]]
 [source]
 ----
 francisco@i7titanv:~/greetings$ git status
@@ -217,7 +217,7 @@ comando `git rm --cached <file>`, como mostra a resposta
 do comando `git status`.
 
 .Status com arquivo na da área de stage
-[[fig:06, {counter:refcode}]]
+[[fig:06, {counter:refcde}]]
 [source]
 ----
 francisco@i7titanv:~/greetings$ git add greet.py 
@@ -252,7 +252,7 @@ Então, foi usado aqui o `-m` para ficar mais resumido e
 visível através das figuras.
 
 .Primeira fotografia do repositório
-[[fig:07, {counter:refcode}]]
+[[fig:07, {counter:refcde}]]
 [source]
 ----
 francisco@i7titanv:~/greetings$ git commit -m 'primeira fotografia do sistema'
@@ -276,7 +276,7 @@ contém um arquivo novo, e a linha verde que começa com +
 é o conteúdo do arquivo.
 
 .Vendo detalhes da fotografia mais recente do sistema
-[[fig:08, {counter:refcode}]]
+[[fig:08, {counter:refcde}]]
 [source]
 ----
 francisco@i7titanv:~/greetings$ git show

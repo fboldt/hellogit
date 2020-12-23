@@ -9,8 +9,15 @@ a palavra "hello" foi colocada toda em maiúsculo
 para ficar mais clara que uma alteração foi feita.
 
 .Fazendo uma alteração
-[[fig:09, {counter:refnum}]]
-image::09-Fazendo uma alteração.png[]
+[[fig:09, {counter:refcde}]]
+[source]
+----
+~/greetings$ cat greet.py 
+def main():
+    print("Hello!")
+
+main()
+----
 
 Depois da alteração do arquivo, o comando `git status
 apresenta um retorno diferente, como mostra a figura 
@@ -27,13 +34,35 @@ Adicionaremos as alterações na área de stage, como mostra a
 figura <<fig:11>>.
 
 .Status com arquivo modificado fora da area de stage
-[[fig:10, {counter:refnum}]]
-image::10-Status com arquivo modificado fora da area de stage.png[]
+[[fig:10, {counter:refcde}]]
+[source]
+----
+~/greetings$ git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   greet.py
+
+no changes added to commit (use "git add" and/or "git commit -a")
+----
 
 
 .Status com arquivo modificado na da area de stage
-[[fig:11, {counter:refnum}]]
-image::11-Status com arquivo modificado na da area de stage.png[]
+[[fig:11, {counter:refcde}]]
+[source]
+----
+francisco@i7titanv:~/greetings$ git add greet.py 
+francisco@i7titanv:~/greetings$ git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	modified:   greet.py
+----
 
 O resultado do comando `git status` está muito parecido 
 com o da figura <<fig:06>>. Agora, em verde, não aparece
@@ -47,8 +76,35 @@ o que foi removido, e as linhas em verde que iniciam com
 o sinal $+$ mostram o que foi adicionado.
 
 .Atualizando o repositório e vendo os detalhes da atualização
-[[fig:12, {counter:refnum}]]
-image::12-Atualizando o repositório e vendo os detalhes da atualização.png[]
+[[fig:12, {counter:refcde}]]
+[source]
+----
+~/greetings$ git commit -m 'cria função main'
+[main e0fe2b3] cria função main
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+----
+
+[[fig:12a, {counter:refcde}]]
+[source]
+----
+~/greetings$ git show
+commit e0fe2b32abaa5b4bcb7a1889a820f155e9ec635e (HEAD -> main)
+Author: Francisco de Assis Boldt <fboldt@gmail.com>
+Date:   Wed Dec 23 08:24:50 2020 -0300
+
+    cria função main
+
+diff --git a/greet.py b/greet.py
+index 693eaec..55bb9ae 100644
+--- a/greet.py
++++ b/greet.py
+@@ -1 +1,4 @@
+-print("Hello!")
++def main():
++    print("Hello!")
++
++main()
+----
 
 Vamos fazer mais uma alteração no sistema, que pode ser
 vista na figura <<fig:13>>.
@@ -58,8 +114,16 @@ a palavra _Hello_ foi colocada agora apenas com
 a primeira letra em maiúsculo.
 
 .Fazendo mais uma alteração
-[[fig:13, {counter:refnum}]]
-image::13-Fazendo mais uma alteração.png[]
+[[fig:13, {counter:refcde}]]
+[source]
+----
+~/greetings$ cat greet.py 
+def main():
+    print("Hello!")
+
+if __name__ == "__main__":
+    main()
+----
 
 Depois dessa alteração, o comando `git status`
 apresentará o mesmo retorno visto na figura <<fig:10>>.
@@ -74,7 +138,7 @@ Novamente podem ser vistas as alterações feitas observando-se
 as linhas verdes e vermelhas.
 
 .Atualizando com a terceira alteração
-[[fig:14, {counter:refnum}]]
+[[fig:14, {counter:reffg}]]
 image::14-Atualizando com a terceira alteração.png[]
 
 Agora temos cópias seguras das versões anteriores
@@ -90,7 +154,7 @@ as fotografias sejam vistas de um forma mais compacta.
 Mas vocë deve testar sem essa opção também.
 
 .Listando as fotografias do repositório
-[[fig:15, {counter:refnum}]]
+[[fig:15, {counter:reffg}]]
 image::15-Listando as fotografias do repositório.png[]
 
 As fotografias do repositório são apresentadas em ordem cronológica
@@ -112,13 +176,13 @@ mostra a fotografia anterior usando apenas a parte de seu hash
 listada na figura <<fig:15>>.
 
 .Vendo detalhes da fotografia anterior
-[[fig:16, {counter:refnum}]]
+[[fig:16, {counter:reffg}]]
 image::16-Vendo detalhes da fotografia anterior.png[]
 
 A figura <<fig:17>> mostra a primeira fotografia do repositório.
 
 .Vendo detalhes da fotografia da primeira fotografia
-[[fig:17, {counter:refnum}]]
+[[fig:17, {counter:reffg}]]
 image::17-Vendo detalhes da fotografia da primeira fotografia.png[]
 
 
@@ -131,14 +195,14 @@ voltar para o estado em que a função `main
 foi criada.
 
 .Voltando o sistema para o estado da fotografia anterior
-[[fig:18, {counter:refnum}]]
+[[fig:18, {counter:reffg}]]
 image::18-Voltando o sistema para o estado da fotografia anterior.png[]
 
 Veja na figura <<fig:20>> que o programa `greet.py
 voltou ao seu estado anterior.
 
 .Estados dos arquivos do sistema depois de voltar uma fotografia
-[[fig:20, {counter:refnum}]]
+[[fig:20, {counter:reffg}]]
 image::20-Estados dos arquivos do sistema depois de voltar uma fotografia.png[]
 
 Ao listar as fotografias do repositório, como mostra a figura 
@@ -147,7 +211,7 @@ Além disso, *HEAD* agora está na fotografia da segunda
 alteração.
 
 .Listando fotografias tão ou mais antigas que a atual
-[[fig:19, {counter:refnum}]]
+[[fig:19, {counter:reffg}]]
 image::19-Listando tão ou mais antigas que a atual.png[]
 
 Você pode estar se perguntando "Git é então um complexo ctrl+z?". Claro que não!
@@ -157,7 +221,7 @@ no comando `git log`, como mostra a
 figura <<fig:21>>.
 
 .Listando todas fotografias do repositório
-[[fig:21, {counter:refnum}]]
+[[fig:21, {counter:reffg}]]
 image::21-Listando todas fotografias do repositório.png[]
 
 Na verdade, o Git sempre adiciona informação ao repositório.
@@ -168,7 +232,7 @@ A figura <<fig:22>> mostra como colocar o sistema no
 estado da fotografia mais recente.
 
 .Voltando para versão mais recente do sistema
-[[fig:22, {counter:refnum}]]
+[[fig:22, {counter:reffg}]]
 image::22-Voltando para versão mais recente do sistema.png[]
 
 Observe que *HEAD* não está mais apontando para 
@@ -185,7 +249,7 @@ opção `-a`. Esta opção permite usar a opção
 `-m` para inserir um comentário na etiqueta.
 
 .Criando etiquetas para a fotografia atual
-[[fig:23, {counter:refnum}]]
+[[fig:23, {counter:reffg}]]
 image::23-Criando etiquetas para a fotografia atual.png[]
 
 O comando `git tag` coloca a etiqueta na fotografia atual
@@ -193,21 +257,21 @@ do sistema, mas é possível etiquetar outras fotografias
 através de seu hash, como mostra a figura <<fig:25>>.
 
 .Etiquetando uma fotografia mais antiga
-[[fig:25, {counter:refnum}]]
+[[fig:25, {counter:reffg}]]
 image::25-Etiquetando uma fotografia mais antiga.png[]
 
 A figura <<fig:26>> mostra coma acessar uma fotografia antiga 
 através de sua etiqueta
 
 .Acessando uma fotografia antiga através da sua etiqueta
-[[fig:26, {counter:refnum}]]
+[[fig:26, {counter:reffg}]]
 image::26-Acessando uma fotografia antiga através da sua etiqueta.png[]
 
 O comando `git tag` pode ser usado para listar as
 etiqueta, como mostra a figura <<fig:28>>.
 
 .Listando todas as etiquetas do repositório
-[[fig:28, {counter:refnum}]]
+[[fig:28, {counter:reffg}]]
 image::28-Listando todas as etiquetas do repositório.png[]
 
 Listagens mais complexas, com caracteres coringa por exemplo, 
@@ -221,14 +285,14 @@ a etiqueta foi criada só é gravada se a opção `-a
 for usada na criação dela.
 
 .Mostrando fotografias usando etiquetas
-[[fig:24, {counter:refnum}]]
+[[fig:24, {counter:reffg}]]
 image::24-Mostrando fotografias usando etiquetas.png[]
 
 Para acessar a fotografia mais recente podemos usar o 
 comando mostrada na figura <<fig:27>>.
 
 .Acessando a fotografia mais recente através da sua etiqueta
-[[fig:27, {counter:refnum}]]
+[[fig:27, {counter:reffg}]]
 image::27-Acessando a fotografia mais recente através da sua etiqueta.png[]
 
 É importante notar que *HEAD* não aponta para nenhum
@@ -239,7 +303,7 @@ figura <<fig:29>>, para que *HEAD* aponte para
 *master*.
 
 .Acessando o branch master
-[[fig:29, {counter:refnum}]]
+[[fig:29, {counter:reffg}]]
 image::29-Acessando o branch master.png[]
 
 Visto que este é um tutorial superficial, não será explicado o motivo deste procedimento.

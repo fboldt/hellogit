@@ -2,39 +2,39 @@
 == Trabalhando com um repositório remoto
 
 .Página inicial do GitHub.
-[[gh01, {counter:refnum}]]
+[[gh01, {counter:reffg}]]
 image::gh01-inicial.png[]
 
 .Criar conta no GitHub.
-[[gh02, {counter:refnum}]]
+[[gh02, {counter:reffg}]]
 image::gh02-criaconta.png[]
 
 .Logar GitHub.
-[[gh03, {counter:refnum}]]
+[[gh03, {counter:reffg}]]
 image::gh03-login.png[]
 
 .GitHub.
-[[gh04, {counter:refnum}]]
+[[gh04, {counter:reffg}]]
 image::gh04-logado.png[]
 
 .GitHub.
-[[gh05, {counter:refnum}]]
+[[gh05, {counter:reffg}]]
 image::gh05-menu.png[]
 
 .GitHub.
-[[gh06, {counter:refnum}]]
+[[gh06, {counter:reffg}]]
 image::gh06-repositorios.png[]
 
 .GitHub.
-[[gh07, {counter:refnum}]]
+[[gh07, {counter:reffg}]]
 image::gh07-novorepositorio.png[]
 
 .GitHub.
-[[gh08, {counter:refnum}]]
+[[gh08, {counter:reffg}]]
 image::gh08-addreadme.png[]
 
 .GitHub.
-[[gh09, {counter:refnum}]]
+[[gh09, {counter:reffg}]]
 image::gh09-clone.png[]
 
 Se não tiver, criar uma conta no GitHub.com.
@@ -42,7 +42,7 @@ Se não tiver, criar uma conta no GitHub.com.
 Criar um repositório.
 
 .Clonar o repositório em seu computador local.
-[[gitclone, {counter:refcode}]]
+[[gitclone, {counter:refcde}]]
 [source]
 ----
 francisco@i7titanv:~$ git clone https://github.com/fboldt/greetings.git
@@ -54,7 +54,7 @@ Unpacking objects: 100% (3/3), 619 bytes | 619.00 KiB/s, done.
 ----
 
 .Status do repositório clonado.
-[[statusclone, {counter:refcode}]]
+[[statusclone, {counter:refcde}]]
 [source]
 ----
 francisco@i7titanv:~$ git clone https://github.com/fboldt/greetings.git
@@ -66,7 +66,7 @@ Unpacking objects: 100% (3/3), 619 bytes | 619.00 KiB/s, done.
 ----
 
 .Última fotografia do repositório clonado.
-[[showclone, {counter:refcode}]]
+[[showclone, {counter:refcde}]]
 [source]
 ----
 francisco@i7titanv:~$ git clone https://github.com/fboldt/greetings.git
@@ -78,7 +78,7 @@ Unpacking objects: 100% (3/3), 619 bytes | 619.00 KiB/s, done.
 ----
 
 .Recriando o arquivo em python.
-[[recriagreet, {counter:refcode}]]
+[[recriagreet, {counter:refcde}]]
 [source]
 ----
 francisco@i7titanv:~/greetings$ cat greet.py 
@@ -90,7 +90,7 @@ francisco@i7titanv:~/greetings$ ls -a
 ----
 
 .Status após a criação do arquivo greet.py.
-[[statusgreet, {counter:refcode}]]
+[[statusgreet, {counter:refcde}]]
 [source]
 ----
 francisco@i7titanv:~/greetings$ git status
@@ -105,7 +105,7 @@ nothing added to commit but untracked files present (use "git add" to track)
 ----
 
 .Adiciona alterações de greet.py na área Stage.
-[[stagegreet, {counter:refcode}]]
+[[stagegreet, {counter:refcde}]]
 [source]
 ----
 francisco@i7titanv:~/greetings$ git add greet.py 
@@ -119,7 +119,7 @@ Changes to be committed:
 ----
 
 .Comita alterações.
-[[commitgreet, {counter:refcode}]]
+[[commitgreet, {counter:refcde}]]
 [source]
 ----
 francisco@i7titanv:~/greetings$ git commit -m 'cria arquivo greet.py'
@@ -132,7 +132,7 @@ Usar `git push` para enviar atualizações e `git fetch` para
 verificar se existem atulizações no repositório remoto.
 
 .Faz o upload das alterações.
-[[pushgreet, {counter:refcode}]]
+[[pushgreet, {counter:refcde}]]
 [source]
 ----
 francisco@i7titanv:~/greetings$ git push
@@ -149,20 +149,20 @@ To https://github.com/fboldt/greetings.git
 ----
 
 .Estado do GitHub de do comando push.
-[[gh10, {counter:refnum}]]
+[[gh10, {counter:reffg}]]
 image::gh10-push.png[]
 
 .Atualizando o arquivo README.md dentro do GitHub.
-[[gh11, {counter:refnum}]]
+[[gh11, {counter:reffg}]]
 image::gh11-atualiza.png[]
 
 .Registrando as alterações feitas no GitHub.
-[[gh12, {counter:refnum}]]
+[[gh12, {counter:reffg}]]
 image::gh12-commit.png[]
 
 
 .Faz download de alterações.
-[[fetch, {counter:refcode}]]
+[[fetch, {counter:refcde}]]
 [source]
 ----
 francisco@i7titanv:~/greetings$ git fetch
@@ -176,7 +176,7 @@ From https://github.com/fboldt/greetings
 ----
 
 .Status depois do comando fetch.
-[[statusdopofetch, {counter:refcode}]]
+[[statusdopofetch, {counter:refcde}]]
 [source]
 ----
 francisco@i7titanv:~/greetings$ git status
@@ -188,7 +188,7 @@ nothing to commit, working tree clean
 ----
 
 .Estado do arquivo README.md depois do comando fetch.
-[[readmefetch, {counter:refcode}]]
+[[readmefetch, {counter:refcde}]]
 [source]
 ----
 francisco@i7titanv:~/greetings$ cat README.md 
@@ -197,7 +197,7 @@ O "Hello World" do Git.
 ----
 
 .O comando git pull.
-[[gitpull, {counter:refcode}]]
+[[gitpull, {counter:refcde}]]
 [source]
 ----
 francisco@i7titanv:~/greetings$ git pull
@@ -208,7 +208,7 @@ Fast-forward
 ----
 
 .Estado do arquivo README.md depois do comando pull.
-[[readmepull, {counter:refcode}]]
+[[readmepull, {counter:refcde}]]
 [source]
 ----
 francisco@i7titanv:~/greetings$ cat README.md 
