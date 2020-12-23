@@ -67,14 +67,14 @@ de conflitos que inevitavelmente acontecerão,
 vamos fazer uma versão em italiano do nosso 
 sistema para forçar um conflito.
 Para isso, vamos começar criando um novo ramo a
-partir de *master*.
+partir de *main*.
 Após fotografarmos a alteração do sistema
 com a versão italiana, teremos dois ramos que
-nasceram a partir de *master*.
+nasceram a partir de *main*.
 Um deles é facilmente mesclável. O outro, nem tanto.
 
-Uma forma de se criar um ramo a partir de *master*
-é estando com *HEAD* apontando para *master*.
+Uma forma de se criar um ramo a partir de *main*
+é estando com *HEAD* apontando para *main*.
 Em seguida, usa-se o comando `git branch` para 
 criar um novo branch, como na figura <<fig:46>>.
 
@@ -83,7 +83,7 @@ criar um novo branch, como na figura <<fig:46>>.
 image::46-Criando um branch para implementar uma versão italiana a partir da versão brasileira.png[]
 
 Note que *HEAD* continua apontando para
-*master*.
+*main*.
 Portanto é necessário mover *HEAD* para o novo
 ramo, como figura <<fig:47>>.
 
@@ -120,7 +120,7 @@ como na figura <<fig:50>>.
 [[fig:50, {counter:refnum}]]
 image::50-Listando todas as fotografias do repositório em forma de grafo.png[]
 
-Note que acima do ramo *master* as linhas estão
+Note que acima do ramo *main* as linhas estão
 vermelhas, indicando um possível conflito.
 Observe que o ramo *de* (alemão), que é mais
 antigo que o ramo *it* (italiano), se mostra como
@@ -142,7 +142,7 @@ sem nenhum problema.
 image::51-Mesclando a versão italiana com a principal.png[]
 
 Na figura <<fig:52>> podemos ver que o grafo não foi 
-alterado, mas agora *HEAD* e *master*
+alterado, mas agora *HEAD* e *main*
 estão na fotografia mais recente.
 
 .Listando todas as fotografias do repositório em forma de grafo após mesclar a versão italiana

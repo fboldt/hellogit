@@ -337,7 +337,7 @@ main()
 ----
 
 Ao listar as fotografias do repositório, como mostra a figura 
-<<fig:19>>, o comando `git log` não mostra mais o brach master, nem a fotografia da última alteração feita.
+<<fig:19>>, o comando `git log` não mostra mais o brach main, nem a fotografia da última alteração feita.
 Além disso, *HEAD* agora está na fotografia da segunda 
 alteração.
 
@@ -554,7 +554,7 @@ branch. No caso, não aponta para *main*, que é
 o único branch do repositório.
 Para continuar o tutorial execute o comando da
 figura <<fig:29>>, para que *HEAD* aponte para 
-*master*.
+*main*.
 
 
 .git checkout main
