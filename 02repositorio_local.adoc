@@ -289,7 +289,7 @@ Isso ficará mais claro a seguir.
 <4> Quando a fotografia foi feita.
 <5> O comentário inserido pelo comando `git commit`.
 
-=== Conclusão
+=== Como desfazer alterações?
 
 Com o que foi mostrado neste capítulo, já dá para usar o Git
 para desenvolver seus programas.
@@ -305,7 +305,7 @@ Suponhamos que a alteração foi tão complicada que seria melhor
 descartar todas as alterações feitas e começar tudo de novo.
 Se ainda *não* executamos o comando `git add greet.py`, podemos 
 descartar as alterações antes delas entrarem na área de 
-*_stage_*. Basta executar o comando `git checkout -- greet.py`.
+*_stage_*. Basta executar o comando `git checkout \-- greet.py`.
 Tudo voltará como estava no início. 
 
 Mas, se você tinha achado que a alteração seria uma boa idéia

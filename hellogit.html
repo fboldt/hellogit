@@ -459,7 +459,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_o_comando_git_status">2.1. O comando <code>git status</code></a></li>
 <li><a href="#_criando_um_arquivo_novo">2.2. Criando um arquivo novo</a></li>
 <li><a href="#_monitorando_o_arquivo_criado">2.3. Monitorando o arquivo criado</a></li>
-<li><a href="#_conclusão">2.4. Conclusão</a></li>
+<li><a href="#_como_desfazer_alterações">2.4. Como desfazer alterações?</a></li>
 </ul>
 </li>
 <li><a href="#remoto">3. Repositório remoto no GitHub</a></li>
@@ -970,7 +970,7 @@ Isso ficará mais claro a seguir.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_conclusão">2.4. Conclusão</h3>
+<h3 id="_como_desfazer_alterações">2.4. Como desfazer alterações?</h3>
 <div class="paragraph">
 <p>Com o que foi mostrado neste capítulo, já dá para usar o Git
 para desenvolver seus programas.
@@ -986,7 +986,7 @@ Suponhamos que a alteração foi tão complicada que seria melhor
 descartar todas as alterações feitas e começar tudo de novo.
 Se ainda <strong>não</strong> executamos o comando <code>git add greet.py</code>, podemos
 descartar as alterações antes delas entrarem na área de
-<strong><em>stage</em></strong>. Basta executar o comando <code>git checkout&#8201;&#8212;&#8201;greet.py</code>.
+<strong><em>stage</em></strong>. Basta executar o comando <code>git checkout -- greet.py</code>.
 Tudo voltará como estava no início.</p>
 </div>
 <div class="paragraph">
@@ -1383,15 +1383,70 @@ será igual ao apresentado na figura <a href="#fig:11">24</a>.</p>
 </div>
 <div class="paragraph">
 <p>Agora estamos prontos para executar o comando <code>commit</code>
-como mostra a figura <a href="#fig:14">14</a>.
+como mostra a figura <a href="#fig:14">29</a>.
 Novamente podem ser vistas as alterações feitas observando-se
 as linhas verdes e vermelhas.</p>
 </div>
-<div id="fig:14" class="imageblock">
+<div id="fig:14-a" class="listingblock">
+<div class="title">Lista de comandos 27. git status</div>
 <div class="content">
-<img src="./images/14-Atualizando%20com%20a%20terceira%20alteração.png" alt="14 Atualizando com a terceira alteração">
+<pre class="highlightjs highlight"><code class="language-none hljs">~/greetings$ git status
+On branch main
+Your branch is ahead of 'origin/main' by 1 commit.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add &lt;file&gt;..." to update what will be committed)
+  (use "git restore &lt;file&gt;..." to discard changes in working directory)
+	modified:   greet.py
+
+no changes added to commit (use "git add" and/or "git commit -a")</code></pre>
 </div>
-<div class="title">Figura 14. Atualizando com a terceira alteração</div>
+</div>
+<div id="fig:14-b" class="listingblock">
+<div class="title">Lista de comandos 28. git add</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">francisco@i7titanv:~/greetings$ git add greet.py
+francisco@i7titanv:~/greetings$ git status
+On branch main
+Your branch is ahead of 'origin/main' by 1 commit.
+  (use "git push" to publish your local commits)
+
+Changes to be committed:
+  (use "git restore --staged &lt;file&gt;..." to unstage)
+	modified:   greet.py</code></pre>
+</div>
+</div>
+<div id="fig:14" class="listingblock">
+<div class="title">Lista de comandos 29. Atualizando com a terceira alteração</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">~/greetings$ git commit -m 'verifica se é o programa principal'
+[main bd61894] verifica se é o programa principal
+ 1 file changed, 2 insertions(+), 1 deletion(-)</code></pre>
+</div>
+</div>
+<div id="fig:14a" class="listingblock">
+<div class="title">Lista de comandos 30. git show</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">~/greetings$ git show
+commit bd618942ddf84ad2ceb062b7ef53c22b12a94dae (HEAD -&gt; main)
+Author: Francisco de Assis Boldt &lt;fboldt@gmail.com&gt;
+Date:   Wed Dec 23 08:55:49 2020 -0300
+
+    verifica se é o programa principal
+
+diff --git a/greet.py b/greet.py
+index 55bb9ae..3062fd5 100644
+--- a/greet.py
++++ b/greet.py
+@@ -1,4 +1,5 @@
+ def main():
+     print("Hello!")
+
+-main()
++if __name__ == "__main__":
++    main()</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <p>Agora temos cópias seguras das versões anteriores
@@ -1400,17 +1455,22 @@ do nosso projeto.</p>
 <div class="sect2">
 <h3 id="_listando_as_fotografias_do_repositório">4.1. Listando as fotografias do repositório</h3>
 <div class="paragraph">
-<p>A figura <a href="#fig:15">15</a> mostra como listar as fotografias do
+<p>A figura <a href="#fig:15">31</a> mostra como listar as fotografias do
 sistema com o comando <code>git log</code>.
 A opção <code>--oneline</code> foi usada aqui para que
 as fotografias sejam vistas de um forma mais compacta.
 Mas vocë deve testar sem essa opção também.</p>
 </div>
-<div id="fig:15" class="imageblock">
+<div id="fig:15" class="listingblock">
+<div class="title">Lista de comandos 31. Listando as fotografias do repositório</div>
 <div class="content">
-<img src="./images/15-Listando%20as%20fotografias%20do%20repositório.png" alt="15 Listando as fotografias do repositório">
+<pre class="highlightjs highlight"><code class="language-none hljs">~/greetings$ git log --oneline
+bd61894 (HEAD -&gt; main) verifica se é o programa principal
+e0fe2b3 cria função main
+933fc74 (origin/main, origin/HEAD) Update README.md
+6c8951a cria arquivo greet.py
+58da81b Initial commit</code></pre>
 </div>
-<div class="title">Figura 15. Listando as fotografias do repositório</div>
 </div>
 <div class="paragraph">
 <p>As fotografias do repositório são apresentadas em ordem cronológica
@@ -1422,30 +1482,59 @@ fotografia.
 Por exemplo, é possível ver uma fotografia mais antiga
 (ou mais recente) com o comando <code>git show &lt;hash&gt;</code>,
 onde normalmente a parte do hash que aparece na figura
-<a href="#fig:15">15</a> é suficiente para identificá-la.</p>
+<a href="#fig:15">31</a> é suficiente para identificá-la.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_mostrando_o_conteúdo_de_fotografias">4.2. Mostrando o conteúdo de fotografias</h3>
 <div class="paragraph">
-<p>Na figura <a href="#fig:16">16</a> o comando `git show
+<p>Na figura <a href="#fig:16">32</a> o comando `git show
 mostra a fotografia anterior usando apenas a parte de seu hash
-listada na figura <a href="#fig:15">15</a>.</p>
+listada na figura <a href="#fig:15">31</a>.</p>
 </div>
-<div id="fig:16" class="imageblock">
+<div id="fig:16" class="listingblock">
+<div class="title">Lista de comandos 32. Vendo detalhes da fotografia anterior</div>
 <div class="content">
-<img src="./images/16-Vendo%20detalhes%20da%20fotografia%20anterior.png" alt="16 Vendo detalhes da fotografia anterior">
+<pre class="highlightjs highlight"><code class="language-none hljs">~/greetings$ git show e0fe2b3
+commit e0fe2b32abaa5b4bcb7a1889a820f155e9ec635e
+Author: Francisco de Assis Boldt &lt;fboldt@gmail.com&gt;
+Date:   Wed Dec 23 08:24:50 2020 -0300
+
+    cria função main
+
+diff --git a/greet.py b/greet.py
+index 693eaec..55bb9ae 100644
+--- a/greet.py
++++ b/greet.py
+@@ -1 +1,4 @@
+-print("Hello!")
++def main():
++    print("Hello!")
++
++main()</code></pre>
 </div>
-<div class="title">Figura 16. Vendo detalhes da fotografia anterior</div>
 </div>
 <div class="paragraph">
-<p>A figura <a href="#fig:17">17</a> mostra a primeira fotografia do repositório.</p>
+<p>A figura <a href="#fig:17">14</a> mostra a primeira fotografia do repositório.</p>
 </div>
-<div id="fig:17" class="imageblock">
+<div id="fig:17" class="listingblock">
+<div class="title">Lista de comandos 33. Vendo detalhes da fotografia da primeira fotografia</div>
 <div class="content">
-<img src="./images/17-Vendo%20detalhes%20da%20fotografia%20da%20primeira%20fotografia.png" alt="17 Vendo detalhes da fotografia da primeira fotografia">
+<pre class="highlightjs highlight"><code class="language-none hljs">~/greetings$ git show 6c8951a
+commit 6c8951a5c2979932ffaed078139616584afd8543
+Author: Francisco de Assis Boldt &lt;fboldt@gmail.com&gt;
+Date:   Tue Dec 22 08:41:06 2020 -0300
+
+    cria arquivo greet.py
+
+diff --git a/greet.py b/greet.py
+new file mode 100644
+index 0000000..693eaec
+--- /dev/null
++++ b/greet.py
+@@ -0,0 +1 @@
++print("Hello!")</code></pre>
 </div>
-<div class="title">Figura 17. Vendo detalhes da fotografia da primeira fotografia</div>
 </div>
 </div>
 <div class="sect2">
@@ -1453,50 +1542,81 @@ listada na figura <a href="#fig:15">15</a>.</p>
 <div class="paragraph">
 <p>O comando <code>git checkout</code> permite colocar o repositório
 em um estado gravado em alguma fotografia.
-A figura <a href="#fig:18">18</a> mostra como fazer o repositório
+A figura <a href="#fig:18">33</a> mostra como fazer o repositório
 voltar para o estado em que a função `main
 foi criada.</p>
 </div>
-<div id="fig:18" class="imageblock">
+<div id="fig:18" class="listingblock">
+<div class="title">Lista de comandos 34. Voltando o sistema para o estado da fotografia anterior</div>
 <div class="content">
-<img src="./images/18-Voltando%20o%20sistema%20para%20o%20estado%20da%20fotografia%20anterior.png" alt="18 Voltando o sistema para o estado da fotografia anterior">
+<pre class="highlightjs highlight"><code class="language-none hljs">~/greetings$ git checkout e0fe2b3
+Note: switching to 'e0fe2b3'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by switching back to a branch.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -c with the switch command. Example:
+
+  git switch -c &lt;new-branch-name&gt;
+
+Or undo this operation with:
+
+  git switch -
+
+Turn off this advice by setting config variable advice.detachedHead to false
+
+HEAD is now at e0fe2b3 cria função main</code></pre>
 </div>
-<div class="title">Figura 18. Voltando o sistema para o estado da fotografia anterior</div>
 </div>
 <div class="paragraph">
-<p>Veja na figura <a href="#fig:20">19</a> que o programa `greet.py
+<p>Veja na figura <a href="#fig:20">34</a> que o programa `greet.py
 voltou ao seu estado anterior.</p>
 </div>
-<div id="fig:20" class="imageblock">
+<div id="fig:20" class="listingblock">
+<div class="title">Lista de comandos 35. Estados dos arquivos do sistema depois de voltar uma fotografia</div>
 <div class="content">
-<img src="./images/20-Estados%20dos%20arquivos%20do%20sistema%20depois%20de%20voltar%20uma%20fotografia.png" alt="20 Estados dos arquivos do sistema depois de voltar uma fotografia">
+<pre class="highlightjs highlight"><code class="language-none hljs">~/greetings$ cat greet.py
+def main():
+    print("Hello!")
+
+main()</code></pre>
 </div>
-<div class="title">Figura 19. Estados dos arquivos do sistema depois de voltar uma fotografia</div>
 </div>
 <div class="paragraph">
 <p>Ao listar as fotografias do repositório, como mostra a figura
-<a href="#fig:19">20</a>, o comando <code>git log</code> não mostra mais o brach master, nem a fotografia da última alteração feita.
+<a href="#fig:19">35</a>, o comando <code>git log</code> não mostra mais o brach master, nem a fotografia da última alteração feita.
 Além disso, <strong>HEAD</strong> agora está na fotografia da segunda
 alteração.</p>
 </div>
-<div id="fig:19" class="imageblock">
+<div id="fig:19" class="listingblock">
+<div class="title">Lista de comandos 36. Listando fotografias tão ou mais antigas que a atual</div>
 <div class="content">
-<img src="./images/19-Listando%20tão%20ou%20mais%20antigas%20que%20a%20atual.png" alt="19 Listando tão ou mais antigas que a atual">
+<pre class="highlightjs highlight"><code class="language-none hljs">~/greetings$ git log --oneline
+e0fe2b3 (HEAD) cria função main
+933fc74 (origin/main, origin/HEAD) Update README.md
+6c8951a cria arquivo greet.py
+58da81b Initial commit</code></pre>
 </div>
-<div class="title">Figura 20. Listando fotografias tão ou mais antigas que a atual</div>
 </div>
 <div class="paragraph">
 <p>Você pode estar se perguntando "Git é então um complexo ctrl+z?". Claro que não!
 A fotografia mais recente continua sendo monitorada e
 pode ser visualizada com a opção <code>--all
 no comando `git log</code>, como mostra a
-figura <a href="#fig:21">21</a>.</p>
+figura <a href="#fig:21">36</a>.</p>
 </div>
-<div id="fig:21" class="imageblock">
+<div id="fig:21" class="listingblock">
+<div class="title">Lista de comandos 37. Listando todas fotografias do repositório</div>
 <div class="content">
-<img src="./images/21-Listando%20todas%20fotografias%20do%20repositório.png" alt="21 Listando todas fotografias do repositório">
+<pre class="highlightjs highlight"><code class="language-none hljs">~/greetings$ git log --oneline --all
+bd61894 (main) verifica se é o programa principal
+e0fe2b3 (HEAD) cria função main
+933fc74 (origin/main, origin/HEAD) Update README.md
+6c8951a cria arquivo greet.py
+58da81b Initial commit</code></pre>
 </div>
-<div class="title">Figura 21. Listando todas fotografias do repositório</div>
 </div>
 <div class="paragraph">
 <p>Na verdade, o Git sempre adiciona informação ao repositório.
@@ -1504,20 +1624,18 @@ Mesmo sendo possível remover informações de um repositório,
 isso é raramente recomendado.</p>
 </div>
 <div class="paragraph">
-<p>A figura <a href="#fig:22">22</a> mostra como colocar o sistema no
+<p>A figura <a href="#fig:22">37</a> mostra como colocar o sistema no
 estado da fotografia mais recente.</p>
 </div>
-<div id="fig:22" class="imageblock">
+<div id="fig:22" class="listingblock">
+<div class="title">Lista de comandos 38. Voltando para versão mais recente do sistema</div>
 <div class="content">
-<img src="./images/22-Voltando%20para%20versão%20mais%20recente%20do%20sistema.png" alt="22 Voltando para versão mais recente do sistema">
+<pre class="highlightjs highlight"><code class="language-none hljs">~/greetings$ git checkout main
+Previous HEAD position was e0fe2b3 cria função main
+Switched to branch 'main'
+Your branch is ahead of 'origin/main' by 2 commits.
+  (use "git push" to publish your local commits)</code></pre>
 </div>
-<div class="title">Figura 22. Voltando para versão mais recente do sistema</div>
-</div>
-<div class="paragraph">
-<p>Observe que <strong>HEAD</strong> não está mais apontando para
-<strong>master</strong>. <strong>HEAD</strong> sempre estará no estado
-atual do repositório. Mas isso não significa que o estado
-atual é o mais recente.</p>
 </div>
 </div>
 <div class="sect2">
@@ -1525,46 +1643,63 @@ atual é o mais recente.</p>
 <div class="paragraph">
 <p>Para facilitar o acesso das fotografias pode-se etiquetá-las.
 O tipo de etiqueta mais comum é mostrado na figura
-<a href="#fig:23">23</a>, que usa o comando <code>git tag</code> com a
+<a href="#fig:23">38</a>, que usa o comando <code>git tag</code> com a
 opção <code>-a</code>. Esta opção permite usar a opção
 <code>-m</code> para inserir um comentário na etiqueta.</p>
 </div>
-<div id="fig:23" class="imageblock">
+<div id="fig:23" class="listingblock">
+<div class="title">Lista de comandos 39. Criando etiquetas para a fotografia atual</div>
 <div class="content">
-<img src="./images/23-Criando%20etiquetas%20para%20a%20fotografia%20atual.png" alt="23 Criando etiquetas para a fotografia atual">
+<pre class="highlightjs highlight"><code class="language-none hljs">~/greetings$ git tag -a v0.3 -m 'Versão bem complexa para um programa Hello World'
+~/greetings$ git log --oneline --all
+bd61894 (HEAD -&gt; main, tag: v0.3) verifica se é o programa principal
+e0fe2b3 cria função main
+933fc74 (origin/main, origin/HEAD) Update README.md
+6c8951a cria arquivo greet.py
+58da81b Initial commit</code></pre>
 </div>
-<div class="title">Figura 23. Criando etiquetas para a fotografia atual</div>
 </div>
 <div class="paragraph">
 <p>O comando <code>git tag</code> coloca a etiqueta na fotografia atual
 do sistema, mas é possível etiquetar outras fotografias
-através de seu hash, como mostra a figura <a href="#fig:25">24</a>.</p>
+através de seu hash, como mostra a figura <a href="#fig:25">39</a>.</p>
 </div>
-<div id="fig:25" class="imageblock">
+<div id="fig:25" class="listingblock">
+<div class="title">Lista de comandos 40. Etiquetando uma fotografia mais antiga</div>
 <div class="content">
-<img src="./images/25-Etiquetando%20uma%20fotografia%20mais%20antiga.png" alt="25 Etiquetando uma fotografia mais antiga">
+<pre class="highlightjs highlight"><code class="language-none hljs">~/greetings$ git tag -a v0.3 -m 'Versão bem complexa para um programa Hello World'</code></pre>
 </div>
-<div class="title">Figura 24. Etiquetando uma fotografia mais antiga</div>
+</div>
+<div id="fig:25a" class="listingblock">
+<div class="title">Lista de comandos 41. log</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">~/greetings$ git log --oneline --all
+bd61894 (HEAD -&gt; main, tag: v0.3) verifica se é o programa principal
+e0fe2b3 cria função main
+933fc74 (origin/main, origin/HEAD) Update README.md
+6c8951a cria arquivo greet.py
+58da81b Initial commit</code></pre>
+</div>
 </div>
 <div class="paragraph">
-<p>A figura <a href="#fig:26">25</a> mostra coma acessar uma fotografia antiga
+<p>A figura <a href="#fig:26">15</a> mostra coma acessar uma fotografia antiga
 através de sua etiqueta</p>
 </div>
 <div id="fig:26" class="imageblock">
 <div class="content">
 <img src="./images/26-Acessando%20uma%20fotografia%20antiga%20através%20da%20sua%20etiqueta.png" alt="26 Acessando uma fotografia antiga através da sua etiqueta">
 </div>
-<div class="title">Figura 25. Acessando uma fotografia antiga através da sua etiqueta</div>
+<div class="title">Figura 14. Acessando uma fotografia antiga através da sua etiqueta</div>
 </div>
 <div class="paragraph">
 <p>O comando <code>git tag</code> pode ser usado para listar as
-etiqueta, como mostra a figura <a href="#fig:28">26</a>.</p>
+etiqueta, como mostra a figura <a href="#fig:28">16</a>.</p>
 </div>
 <div id="fig:28" class="imageblock">
 <div class="content">
 <img src="./images/28-Listando%20todas%20as%20etiquetas%20do%20repositório.png" alt="28 Listando todas as etiquetas do repositório">
 </div>
-<div class="title">Figura 26. Listando todas as etiquetas do repositório</div>
+<div class="title">Figura 15. Listando todas as etiquetas do repositório</div>
 </div>
 <div class="paragraph">
 <p>Listagens mais complexas, com caracteres coringa por exemplo,
@@ -1573,7 +1708,7 @@ podem ser feitas com esse comando, mas não serão exploradas aqui.</p>
 <div class="paragraph">
 <p>Quando se executa o comando <code>git show</code> com uma etiqueta,
 ele mostra também os dados da etiqueta, como pode ser visto na
-figura <a href="#fig:24">27</a>.
+figura <a href="#fig:24">17</a>.
 A informação de quem fez a etiqueta (tagger) e de quando
 a etiqueta foi criada só é gravada se a opção `-a
 for usada na criação dela.</p>
@@ -1582,31 +1717,31 @@ for usada na criação dela.</p>
 <div class="content">
 <img src="./images/24-Mostrando%20fotografias%20usando%20etiquetas.png" alt="24 Mostrando fotografias usando etiquetas">
 </div>
-<div class="title">Figura 27. Mostrando fotografias usando etiquetas</div>
+<div class="title">Figura 16. Mostrando fotografias usando etiquetas</div>
 </div>
 <div class="paragraph">
 <p>Para acessar a fotografia mais recente podemos usar o
-comando mostrada na figura <a href="#fig:27">28</a>.</p>
+comando mostrada na figura <a href="#fig:27">18</a>.</p>
 </div>
 <div id="fig:27" class="imageblock">
 <div class="content">
 <img src="./images/27-Acessando%20a%20fotografia%20mais%20recente%20através%20da%20sua%20etiqueta.png" alt="27 Acessando a fotografia mais recente através da sua etiqueta">
 </div>
-<div class="title">Figura 28. Acessando a fotografia mais recente através da sua etiqueta</div>
+<div class="title">Figura 17. Acessando a fotografia mais recente através da sua etiqueta</div>
 </div>
 <div class="paragraph">
 <p>É importante notar que <strong>HEAD</strong> não aponta para nenhum
 branch. No caso, não aponta para <strong>master</strong>, que é
 o único branch do repositório.
 Para continuar o tutorial execute o comando da
-figura <a href="#fig:29">29</a>, para que <strong>HEAD</strong> aponte para
+figura <a href="#fig:29">19</a>, para que <strong>HEAD</strong> aponte para
 <strong>master</strong>.</p>
 </div>
 <div id="fig:29" class="imageblock">
 <div class="content">
 <img src="./images/29-Acessando%20o%20branch%20master.png" alt="29 Acessando o branch master">
 </div>
-<div class="title">Figura 29. Acessando o branch master</div>
+<div class="title">Figura 18. Acessando o branch master</div>
 </div>
 <div class="paragraph">
 <p>Visto que este é um tutorial superficial, não será explicado o motivo deste procedimento.</p>
@@ -1650,7 +1785,7 @@ Agora a fotografia mais recente tem dois ramos (na cor verde),
 <div class="content">
 <img src="./images/30-Criando%20um%20novo%20branch.png" alt="30 Criando um novo branch">
 </div>
-<div class="title">Figura 30. Criando um novo branch</div>
+<div class="title">Figura 19. Criando um novo branch</div>
 </div>
 <div class="paragraph">
 <p>Para fazer um alteração no ramo <strong>pt-br</strong>, deve-se mudar
@@ -1661,7 +1796,7 @@ Agora a fotografia mais recente tem dois ramos (na cor verde),
 <div class="content">
 <img src="./images/31-Acessando%20um%20branch.png" alt="31 Acessando um branch">
 </div>
-<div class="title">Figura 31. Acessando um branch</div>
+<div class="title">Figura 20. Acessando um branch</div>
 </div>
 <div class="paragraph">
 <p>Quando só existia o ramo <strong>master</strong>, cada comando
@@ -1686,7 +1821,7 @@ figura <a href="#fig:32">3</a>.</p>
 <div class="content">
 <img src="./images/32-Alterando%20o%20sistema%20no%20branch%20atual.png" alt="32 Alterando o sistema no branch atual">
 </div>
-<div class="title">Figura 32. Alterando o sistema no branch atual</div>
+<div class="title">Figura 21. Alterando o sistema no branch atual</div>
 </div>
 <div class="paragraph">
 <p>A resposta do comando <code>git status</code> da figura
@@ -1699,7 +1834,7 @@ que mostra que ramo atual é o <strong>pt-br</strong>
 <div class="content">
 <img src="./images/33-Status%20do%20novo%20branch%20com%20arquivo%20modificado%20fora%20da%20área%20de%20stage.png" alt="33 Status do novo branch com arquivo modificado fora da área de stage">
 </div>
-<div class="title">Figura 33. Status do novo branch com arquivo modificado fora da área de stage</div>
+<div class="title">Figura 22. Status do novo branch com arquivo modificado fora da área de stage</div>
 </div>
 <div class="paragraph">
 <p>O status após adicionar a alteração na área de stage
@@ -1710,7 +1845,7 @@ diferente do que já foi visto.</p>
 <div class="content">
 <img src="./images/34-Status%20do%20novo%20branch%20com%20arquivo%20modificado%20na%20da%20área%20de%20stage.png" alt="34 Status do novo branch com arquivo modificado na da área de stage">
 </div>
-<div class="title">Figura 34. Status do novo branch com arquivo modificado na da área de stage</div>
+<div class="title">Figura 23. Status do novo branch com arquivo modificado na da área de stage</div>
 </div>
 <div class="paragraph">
 <p>O resultado dos comandos <code>git commit</code>
@@ -1721,7 +1856,7 @@ figura <a href="#fig:35">6</a> também não apresentam muita novidade.</p>
 <div class="content">
 <img src="./images/35-Fotografia%20da%20versão%20brasileira%20do%20sistema.png" alt="35 Fotografia da versão brasileira do sistema">
 </div>
-<div class="title">Figura 35. Fotografia da versão brasileira do sistema</div>
+<div class="title">Figura 24. Fotografia da versão brasileira do sistema</div>
 </div>
 <div class="paragraph">
 <p>Note que o ramo <strong>master</strong> não tem nada de especial.
@@ -1742,7 +1877,7 @@ o ramo <strong>master</strong>, mas poderia ser qualquer outro nome.</p>
 <div class="content">
 <img src="./images/36-Parametrizando%20o%20sistema.png" alt="36 Parametrizando o sistema">
 </div>
-<div class="title">Figura 36. Parametrizando o sistema</div>
+<div class="title">Figura 25. Parametrizando o sistema</div>
 </div>
 <div class="paragraph">
 <p>Depois de colocar a nova alteração na área de stage
@@ -1753,7 +1888,7 @@ fotografia listada na figura <a href="#fig:38">8</a>.</p>
 <div class="content">
 <img src="./images/38-Lista%20das%20fotografias%20após%20a%20versão%20brasileira%20parametrizada.png" alt="38 Lista das fotografias após a versão brasileira parametrizada">
 </div>
-<div class="title">Figura 37. Lista das fotografias após a versão brasileira parametrizada</div>
+<div class="title">Figura 26. Lista das fotografias após a versão brasileira parametrizada</div>
 </div>
 <div class="paragraph">
 <p>A figura <a href="#fig:37">9</a> mostra como ficou a fotografia
@@ -1765,7 +1900,7 @@ mais recente, caso ache interessante.</p>
 <div class="content">
 <img src="./images/37-Fotografia%20da%20versão%20brasileira%20atualizada.png" alt="37 Fotografia da versão brasileira atualizada">
 </div>
-<div class="title">Figura 38. Fotografia da versão brasileira atualizada</div>
+<div class="title">Figura 27. Fotografia da versão brasileira atualizada</div>
 </div>
 </div>
 <div class="sect2">
@@ -1785,7 +1920,7 @@ para mesclar o ramo <strong>pt-br</strong> com o ramo atual.</p>
 <div class="content">
 <img src="./images/39-Mesclando%20a%20versão%20brasileira%20com%20a%20versão%20original.png" alt="39 Mesclando a versão brasileira com a versão original">
 </div>
-<div class="title">Figura 39. Mesclando a versão brasileira com a versão original</div>
+<div class="title">Figura 28. Mesclando a versão brasileira com a versão original</div>
 </div>
 <div class="paragraph">
 <p>A figura <a href="#fig:40">11</a> mostra a lista de fotografias
@@ -1795,7 +1930,7 @@ depois da mesclagem de ramos.</p>
 <div class="content">
 <img src="./images/40-Listando%20as%20fotografias%20do%20repositório%20após%20mesclar%20versões%20do%20sistema.png" alt="40 Listando as fotografias do repositório após mesclar versões do sistema">
 </div>
-<div class="title">Figura 40. Listando as fotografias do repositório após mesclar versões do sistema</div>
+<div class="title">Figura 29. Listando as fotografias do repositório após mesclar versões do sistema</div>
 </div>
 <div class="paragraph">
 <p>Na segunda linha da reposta do comando
@@ -1832,7 +1967,7 @@ ramo, como mostra a figura <a href="#fig:41">12</a>.</p>
 <div class="content">
 <img src="./images/41-Criando%20um%20branch%20para%20uma%20versão%20em%20alemão.png" alt="41 Criando um branch para uma versão em alemão">
 </div>
-<div class="title">Figura 41. Criando um branch para uma versão em alemão</div>
+<div class="title">Figura 30. Criando um branch para uma versão em alemão</div>
 </div>
 <div class="paragraph">
 <p>Para trabalhar no novo ramo, deve-se usar o comando
@@ -1844,7 +1979,7 @@ O resoltado pode ser visto na figura <a href="#fig:42">13</a>.</p>
 <div class="content">
 <img src="./images/42-Acessando%20o%20branch%20onde%20será%20implementada%20a%20versão%20alemã%20do%20sistema.png" alt="42 Acessando o branch onde será implementada a versão alemã do sistema">
 </div>
-<div class="title">Figura 42. Acessando o branch onde será implementada a versão alemã do sistema</div>
+<div class="title">Figura 31. Acessando o branch onde será implementada a versão alemã do sistema</div>
 </div>
 <div class="paragraph">
 <p>Depois de fazer a alteração sugerida na figura <a href="#fig:43">14</a>,
@@ -1855,7 +1990,7 @@ gravada as alterações no repositório.</p>
 <div class="content">
 <img src="./images/43-Alteração%20feita%20para%20versão%20alemã%20do%20sistema.png" alt="43 Alteração feita para versão alemã do sistema">
 </div>
-<div class="title">Figura 43. Alteração feita para versão alemã do sistema</div>
+<div class="title">Figura 32. Alteração feita para versão alemã do sistema</div>
 </div>
 <div class="paragraph">
 <p>A fotografia do último <em>commit</em> está na figura
@@ -1865,7 +2000,7 @@ gravada as alterações no repositório.</p>
 <div class="content">
 <img src="./images/44-Fotografando%20a%20versão%20alemã%20do%20sistema.png" alt="44 Fotografando a versão alemã do sistema">
 </div>
-<div class="title">Figura 44. Fotografando a versão alemã do sistema</div>
+<div class="title">Figura 33. Fotografando a versão alemã do sistema</div>
 </div>
 <div class="paragraph">
 <p>A figura <a href="#fig:45">16</a> mostra que o sistema possui seis
@@ -1875,7 +2010,7 @@ fotografias até o momento.</p>
 <div class="content">
 <img src="./images/45-Listando%20as%20fotografias%20após%20a%20inclusão%20da%20versão%20alemã.png" alt="45 Listando as fotografias após a inclusão da versão alemã">
 </div>
-<div class="title">Figura 45. Listando as fotografias após a inclusão da versão alemã</div>
+<div class="title">Figura 34. Listando as fotografias após a inclusão da versão alemã</div>
 </div>
 <div class="paragraph">
 <p>Na condição atual, no exemplo co capítulo anterior,
@@ -1916,7 +2051,7 @@ criar um novo branch, como na figura <a href="#fig:46">17</a>.</p>
 <div class="content">
 <img src="./images/46-Criando%20um%20branch%20para%20implementar%20uma%20versão%20italiana%20a%20partir%20da%20versão%20brasileira.png" alt="46 Criando um branch para implementar uma versão italiana a partir da versão brasileira">
 </div>
-<div class="title">Figura 46. Criando um branch para implementar uma versão italiana a partir da versão brasileira</div>
+<div class="title">Figura 35. Criando um branch para implementar uma versão italiana a partir da versão brasileira</div>
 </div>
 <div class="paragraph">
 <p>Note que <strong>HEAD</strong> continua apontando para
@@ -1928,7 +2063,7 @@ ramo, como figura <a href="#fig:47">18</a>.</p>
 <div class="content">
 <img src="./images/47-Acessando%20o%20branch%20da%20versão%20italiana.png" alt="47 Acessando o branch da versão italiana">
 </div>
-<div class="title">Figura 47. Acessando o branch da versão italiana</div>
+<div class="title">Figura 36. Acessando o branch da versão italiana</div>
 </div>
 <div class="paragraph">
 <p>Implemente a alteração sugerida na figura <a href="#fig:48">19</a>.</p>
@@ -1937,7 +2072,7 @@ ramo, como figura <a href="#fig:47">18</a>.</p>
 <div class="content">
 <img src="./images/48-Implementando%20a%20versão%20italiana.png" alt="48 Implementando a versão italiana">
 </div>
-<div class="title">Figura 48. Implementando a versão italiana</div>
+<div class="title">Figura 37. Implementando a versão italiana</div>
 </div>
 <div class="paragraph">
 <p>Adicione as alterações na área de stage e execute
@@ -1952,7 +2087,7 @@ deverá estar parecida com a da figura <a href="#fig:49">20</a>.</p>
 <div class="content">
 <img src="./images/49-Visualizando%20a%20fotografia%20da%20versão%20italiana.png" alt="49 Visualizando a fotografia da versão italiana">
 </div>
-<div class="title">Figura 49. Visualizando a fotografia da versão italiana</div>
+<div class="title">Figura 38. Visualizando a fotografia da versão italiana</div>
 </div>
 </div>
 <div class="sect2">
@@ -1966,7 +2101,7 @@ como na figura <a href="#fig:50">21</a>.</p>
 <div class="content">
 <img src="./images/50-Listando%20todas%20as%20fotografias%20do%20repositório%20em%20forma%20de%20grafo.png" alt="50 Listando todas as fotografias do repositório em forma de grafo">
 </div>
-<div class="title">Figura 50. Listando todas as fotografias do repositório em forma de grafo</div>
+<div class="title">Figura 39. Listando todas as fotografias do repositório em forma de grafo</div>
 </div>
 <div class="paragraph">
 <p>Note que acima do ramo <strong>master</strong> as linhas estão
@@ -1991,7 +2126,7 @@ sem nenhum problema.</p>
 <div class="content">
 <img src="./images/51-Mesclando%20a%20versão%20italiana%20com%20a%20principal.png" alt="51 Mesclando a versão italiana com a principal">
 </div>
-<div class="title">Figura 51. Mesclando a versão italiana com a principal</div>
+<div class="title">Figura 40. Mesclando a versão italiana com a principal</div>
 </div>
 <div class="paragraph">
 <p>Na figura <a href="#fig:52">23</a> podemos ver que o grafo não foi
@@ -2002,7 +2137,7 @@ estão na fotografia mais recente.</p>
 <div class="content">
 <img src="./images/52-Listando%20todas%20as%20fotografias%20do%20repositório%20em%20forma%20de%20grafo%20após%20mesclar%20a%20versão%20italiana.png" alt="52 Listando todas as fotografias do repositório em forma de grafo após mesclar a versão italiana">
 </div>
-<div class="title">Figura 52. Listando todas as fotografias do repositório em forma de grafo após mesclar a versão italiana</div>
+<div class="title">Figura 41. Listando todas as fotografias do repositório em forma de grafo após mesclar a versão italiana</div>
 </div>
 </div>
 <div class="sect2">
@@ -2015,7 +2150,7 @@ mesclar o ramo alemão com o ramo princial.</p>
 <div class="content">
 <img src="./images/53-Mesclando%20a%20versão%20alemã%20com%20a%20principal.png" alt="53 Mesclando a versão alemã com a principal">
 </div>
-<div class="title">Figura 53. Mesclando a versão alemã com a principal</div>
+<div class="title">Figura 42. Mesclando a versão alemã com a principal</div>
 </div>
 <div class="paragraph">
 <p>O comando <code>git mergetool --tool-help</code>
@@ -2026,7 +2161,7 @@ lista as disponíveis no seu sistema operacional
 <div class="content">
 <img src="./images/54-Buscando%20ajuda%20com%20mergetool.png" alt="54 Buscando ajuda com mergetool">
 </div>
-<div class="title">Figura 54. Buscando ajuda com mergetool</div>
+<div class="title">Figura 43. Buscando ajuda com mergetool</div>
 </div>
 <div class="paragraph">
 <p>Conforme a figura <a href="#fig:54">25</a>, a ferramenta <code>vimdiff</code>
@@ -2036,7 +2171,7 @@ pode ser selecionada como na figura <a href="#fig:55">26</a>.</p>
 <div class="content">
 <img src="./images/55-Escolhendo%20programa%20para%20usar%20com%20mergetool.png" alt="55 Escolhendo programa para usar com mergetool">
 </div>
-<div class="title">Figura 55. Escolhendo programa para usar com mergetool</div>
+<div class="title">Figura 44. Escolhendo programa para usar com mergetool</div>
 </div>
 <div class="paragraph">
 <p>A figura <a href="#fig:56">27</a> mostra como deve estar o
@@ -2050,7 +2185,7 @@ também.</p>
 <div class="content">
 <img src="./images/56-Programa%20após%20a%20resolução%20de%20conflitos.png" alt="56 Programa após a resolução de conflitos">
 </div>
-<div class="title">Figura 56. Programa após a resolução de conflitos</div>
+<div class="title">Figura 45. Programa após a resolução de conflitos</div>
 </div>
 <div class="paragraph">
 <p>A utilização do <code>vimdiff</code> excede o escopo deste
@@ -2061,7 +2196,7 @@ ferramenta na figura <a href="#fig:57">28</a>.</p>
 <div class="content">
 <img src="./images/57-vimdiff.png" alt="57 vimdiff">
 </div>
-<div class="title">Figura 57. vimdiff</div>
+<div class="title">Figura 46. vimdiff</div>
 </div>
 <div class="paragraph">
 <p>Depois de usar uma ferremanta de solução de conflitos
@@ -2077,7 +2212,7 @@ se juntam depois da solução de conflitos.</p>
 <div class="content">
 <img src="./images/58-Listando%20todas%20as%20fotografias%20do%20repositório%20em%20forma%20de%20grafo%20após%20mesclar%20a%20versão%20alemã.png" alt="58 Listando todas as fotografias do repositório em forma de grafo após mesclar a versão alemã">
 </div>
-<div class="title">Figura 58. Listando todas as fotografias do repositório em forma de grafo após mesclar a versão alemã</div>
+<div class="title">Figura 47. Listando todas as fotografias do repositório em forma de grafo após mesclar a versão alemã</div>
 </div>
 </div>
 </div>
@@ -2118,7 +2253,7 @@ sofre alterações em ramos diferentes.</p>
 <div id="footer">
 <div id="footer-text">
 Version 0.1 2020-09<br>
-Last updated 2020-12-23 11:39:59 UTC
+Last updated 2020-12-23 12:19:37 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">
