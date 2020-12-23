@@ -26,29 +26,49 @@ programa. Como eu supostamente ainda não sei se isso será
 fácil ou difícil de terminar, farei um branch como mostra a
 figura <<fig:30>>.
 Agora a fotografia mais recente tem dois ramos (na cor verde),
-*master* e *pt-br*.
+*main* e *pt-br*.
 
 .Criando um novo branch
-[[fig:30, {counter:refnum}]]
-image::30-Criando um novo branch.png[]
+[[fig:30, {counter:refcde}]]
+[source]
+----
+francisco@i7titanv:~/greetings$ git branch pt-br
+francisco@i7titanv:~/greetings$ git log --oneline --all
+bd61894 (HEAD -> main, tag: v0.3, pt-br) verifica se é o programa principal
+e0fe2b3 (tag: v0.2) cria função main
+933fc74 (origin/main, origin/HEAD) Update README.md
+6c8951a cria arquivo greet.py
+58da81b Initial commit
+----
 
 Para fazer um alteração no ramo *pt-br*, deve-se mudar 
 *HEAD* para esse ramo, como apresentado na figura
 <<fig:31>>. Agora *HEAD* aponta para *pt-br*.
 
 .Acessando um branch
-[[fig:31, {counter:refnum}]]
-image::31-Acessando um branch.png[]
+[[fig:31, {counter:frecde}]]
+[source]
+----
+francisco@i7titanv:~/greetings$ git checkout pt-br 
+Switched to branch 'pt-br'
+francisco@i7titanv:~/greetings$ git log --oneline --all
+bd61894 (HEAD -> pt-br, tag: v0.3, main) verifica se é o programa principal
+e0fe2b3 (tag: v0.2) cria função main
+933fc74 (origin/main, origin/HEAD) Update README.md
+6c8951a cria arquivo greet.py
+58da81b Initial commit
+francisco@i7titanv:~/greet
+----
 
-Quando só existia o ramo *master*, cada comando
-`commit` movia o ramo *master* para a
+Quando só existia o ramo *main*, cada comando
+`commit` movia o ramo *main* para a
 fotografia mais recente.
 Agora que *HEAD* aponta para *pt-br*,
 o comando `commit` vai mover o ramo *pt-br*
 para as novas fotografias, deixando o ramo
-*master* na fotografia atual.
+*main* na fotografia atual.
 Assim, fica claro para todos os envolvidos no projeto
-que o ramo *master* contém uma versão estável
+que o ramo *main* contém uma versão estável
 do sistema.
 
 === Uma alteração incompleta para o ramos atual
@@ -57,8 +77,16 @@ Como ilustração será feita a alteração proposta na
 figura <<fig:32>>.
 
 .Alterando o sistema no branch atual
-[[fig:32, {counter:refnum}]]
-image::32-Alterando o sistema no branch atual.png[]
+[[fig:32, {counter:refcde}]]
+[source]
+----
+~/greetings$ cat greet.py 
+def main():
+    print("Olá!")
+
+if __name__ == "__main__":
+    main()
+----
 
 A resposta do comando `git status` da figura
 <<fig:33>> já é conhecida. 
@@ -67,29 +95,88 @@ que mostra que ramo atual é o *pt-br*
 (_On branch pt-br_).
 
 .Status do novo branch com arquivo modificado fora da área de stage
-[[fig:33, {counter:refnum}]]
-image::33-Status do novo branch com arquivo modificado fora da área de stage.png[]
+[[fig:33, {counter:refcde}]]
+[source]
+----
+~/greetings$ git status 
+On branch pt-br
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   greet.py
+
+no changes added to commit (use "git add" and/or "git commit -a")
+----
 
 O status após adicionar a alteração na área de stage
 mostrado na figura <<fig:34>> também não é muito 
 diferente do que já foi visto.
 
 .Status do novo branch com arquivo modificado na da área de stage
-[[fig:34, {counter:refnum}]]
-image::34-Status do novo branch com arquivo modificado na da área de stage.png[]
+[[fig:34, {counter:refcde}]]
+[source]
+----
+~/greetings$ git add greet.py 
+~/greetings$ git status 
+On branch pt-br
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	modified:   greet.py
+----
 
 O resultado dos comandos `git commit` 
 e `git show` apresentados na
 figura <<fig:35>> também não apresentam muita novidade.
 
-.Fotografia da versão brasileira do sistema
-[[fig:35, {counter:refnum}]]
-image::35-Fotografia da versão brasileira do sistema.png[]
+.Adiciona arquivo modificado na área de stage.
+[[fig:35-a, {counter:refcde}]]
+[source]
+----
+~/greetings$ git commit -m 'versão brasileira'
+[pt-br 8828ea9] versão brasileira
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+----
 
-Note que o ramo *master* não tem nada de especial.
+.Fotografia da versão brasileira do sistema
+[[fig:35, {counter:refcde}]]
+[source]
+----
+~/greetings$ git show
+commit 8828ea9256bc157d561bab306c01f304b3a54821 (HEAD -> pt-br)
+Author: Francisco de Assis Boldt <fboldt@gmail.com>
+Date:   Wed Dec 23 11:34:03 2020 -0300
+
+    versão brasileira
+
+diff --git a/greet.py b/greet.py
+index 3062fd5..66da5e9 100644
+--- a/greet.py
++++ b/greet.py
+@@ -1,5 +1,5 @@
+ def main():
+-    print("Hello!")
++    print("Olá!")
+ 
+ if __name__ == "__main__":
+     main()
+----
+
+Note que o ramo *main* não tem nada de especial.
 Usar outro nome para um ramo não muda nada no processo
 de fotografar as versões do sistema.
 
+.Lista de fotografias
+[[fig:35a, {counter:refcde}]]
+[source]
+----
+~/greetings$ git log --oneline --all
+8828ea9 (HEAD -> pt-br) versão brasileira
+bd61894 (tag: v0.3, main) verifica se é o programa principal
+e0fe2b3 (tag: v0.2) cria função main
+933fc74 (origin/main, origin/HEAD) Update README.md
+6c8951a cria arquivo greet.py
+58da81b Initial commit
+----
 
 === Terminado a alteração desejada
 
@@ -97,19 +184,56 @@ Para mostrar como colocar uma alteração no ramo estável do
 sistema, vamos fazer a alteração proposta na 
 figura <<fig:36>>.
 Estamos considerando o ramo estável deste repositório
-o ramo *master*, mas poderia ser qualquer outro nome.
+o ramo *main*, mas poderia ser qualquer outro nome.
 
 .Parametrizando o sistema
-[[fig:36, {counter:refnum}]]
-image::36-Parametrizando o sistema.png[]
+[[fig:36, {counter:refcde}]]
+[source]
+----
+~/greetings$ cat greet.py 
+import sys
+def main():
+    if len(sys.argv)>1 and sys.argv[1]=='pt-br':
+        print("Olá!")
+    else:
+        print("Hello!")
 
-Depois de colocar a nova alteração na área de stage
-e executar o comando `commit` podemos ver a nova 
+if __name__ == "__main__":
+    main()
+----
+
+.Como o programa está executando agora.
+[[fig:36a, {counter:refcde}]]
+[source]
+----
+~/greetings$ python greet.py
+Hello!
+~/greetings$ python greet.py pt-br
+Olá!
+----
+
+Depois de colocar a nova alteração na área de stage 
+(`git add greet.py`)
+e executar o comando `git commit` podemos ver a nova 
 fotografia listada na figura <<fig:38>>.
 
 .Lista das fotografias após a versão brasileira parametrizada
-[[fig:38, {counter:refnum}]]
-image::38-Lista das fotografias após a versão brasileira parametrizada.png[]
+[[fig:38, {counter:refcde}]]
+[source]
+----
+~/greetings$ git add greet.py 
+~/greetings$ git commit -m 'versão brasileira parametrizada'
+[pt-br 2aa634b] versão brasileira parametrizada
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+~/greetings$ git log --oneline --all
+2aa634b (HEAD -> pt-br) versão brasileira parametrizada
+8828ea9 versão brasileira
+bd61894 (tag: v0.3, main) verifica se é o programa principal
+e0fe2b3 (tag: v0.2) cria função main
+933fc74 (origin/main, origin/HEAD) Update README.md
+6c8951a cria arquivo greet.py
+58da81b Initial commit
+----
 
 A figura <<fig:37>> mostra como ficou a fotografia
 mais recente do repositório.
@@ -117,8 +241,32 @@ Também mostra como executar o programa na versão
 mais recente, caso ache interessante.
 
 .Fotografia da versão brasileira atualizada
-[[fig:37, {counter:refnum}]]
-image::37-Fotografia da versão brasileira atualizada.png[]
+[[fig:37, {counter:refcde}]]
+[source]
+----
+~/greetings$ git show
+commit 2aa634b3fe78d227bd07482dfb080154e02cc93f (HEAD -> pt-br)
+Author: Francisco de Assis Boldt <fboldt@gmail.com>
+Date:   Wed Dec 23 11:49:08 2020 -0300
+
+    versão brasileira parametrizada
+
+diff --git a/greet.py b/greet.py
+index 66da5e9..3e2fb6e 100644
+--- a/greet.py
++++ b/greet.py
+@@ -1,5 +1,9 @@
++import sys
+ def main():
+-    print("Olá!")
++    if len(sys.argv)>1 and sys.argv[1]=='pt-br':
++        print("Olá!")
++    else:
++        print("Hello!")
+ 
+ if __name__ == "__main__":
+     main()
+----
 
 === Mesclando o ramo atual com o ramo principal
 
@@ -128,30 +276,51 @@ A figura <<fig:39>> apresenta um procedimento que pode
 ser executado com essa finalidade.
 Primeiro, temos que fazer *HEAD* apontar
 para o ramo principal com o comando 
-`git checkout master`.
+`git checkout main`.
 Depois, usamos o comando `git merge pt-br`
 para mesclar o ramo *pt-br* com o ramo atual.
 
 .Mesclando a versão brasileira com a versão original
-[[fig:39, {counter:refnum}]]
-image::39-Mesclando a versão brasileira com a versão original.png[]
+[[fig:39, {counter:refcde}]]
+[source]
+----
+~/greetings$ git checkout main
+Switched to branch 'main'
+Your branch is ahead of 'origin/main' by 2 commits.
+  (use "git push" to publish your local commits)
+~/greetings$ git merge pt-br
+Updating bd61894..2aa634b
+Fast-forward
+ greet.py | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+----
 
 A figura <<fig:40>> mostra a lista de fotografias
 depois da mesclagem de ramos.
 
 .Listando as fotografias do repositório após mesclar versões do sistema
-[[fig:40, {counter:refnum}]]
-image::40-Listando as fotografias do repositório após mesclar versões do sistema.png[]
+[[fig:40, {counter:refcde}]]
+[source]
+----
+~/greetings$ git log --oneline --all
+2aa634b (HEAD -> main, pt-br) versão brasileira parametrizada
+8828ea9 versão brasileira
+bd61894 (tag: v0.3) verifica se é o programa principal
+e0fe2b3 (tag: v0.2) cria função main
+933fc74 (origin/main, origin/HEAD) Update README.md
+6c8951a cria arquivo greet.py
+58da81b Initial commit
+----
 
 Na segunda linha da reposta do comando
 `git merge pt-br` na figura <<fig:39>> 
 está escrito _Fast-forward_.
 Isso significa que nenhuma alteração foi feita no
-ramo *master* enquanto o ramo *pt-br*
+ramo *main* enquanto o ramo *pt-br*
 estava sendo alterado.
 Assim, não houve nenhum conflito para juntar as versões
 porque a versão mais recente de *pt-br*
-era como uma versão futura de *master*.
+era como uma versão futura de *main*.
 A seguir, veremos um situação que isso não é resolvido tão
 facilmente.
 

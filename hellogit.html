@@ -1586,7 +1586,7 @@ main()</code></pre>
 </div>
 <div class="paragraph">
 <p>Ao listar as fotografias do repositório, como mostra a figura
-<a href="#fig:19">35</a>, o comando <code>git log</code> não mostra mais o brach master, nem a fotografia da última alteração feita.
+<a href="#fig:19">35</a>, o comando <code>git log</code> não mostra mais o brach main, nem a fotografia da última alteração feita.
 Além disso, <strong>HEAD</strong> agora está na fotografia da segunda
 alteração.</p>
 </div>
@@ -1685,21 +1685,52 @@ e0fe2b3 cria função main
 <p>A figura <a href="#fig:26">15</a> mostra coma acessar uma fotografia antiga
 através de sua etiqueta</p>
 </div>
-<div id="fig:26" class="imageblock">
+<div id="fig:26" class="listingblock">
+<div class="title">Lista de comandos 42. Acessando uma fotografia antiga através da sua etiqueta</div>
 <div class="content">
-<img src="./images/26-Acessando%20uma%20fotografia%20antiga%20através%20da%20sua%20etiqueta.png" alt="26 Acessando uma fotografia antiga através da sua etiqueta">
+<pre class="highlightjs highlight"><code class="language-none hljs">~/greetings$ git checkout v0.2
+Note: switching to 'v0.2'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by switching back to a branch.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -c with the switch command. Example:
+
+  git switch -c &lt;new-branch-name&gt;
+
+Or undo this operation with:
+
+  git switch -
+
+Turn off this advice by setting config variable advice.detachedHead to false
+
+HEAD is now at e0fe2b3 cria função main</code></pre>
 </div>
-<div class="title">Figura 14. Acessando uma fotografia antiga através da sua etiqueta</div>
+</div>
+<div id="fig:26a" class="listingblock">
+<div class="title">Lista de comandos 43. git log</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">~/greetings$ git log --oneline --all
+bd61894 (tag: v0.3, main) verifica se é o programa principal
+e0fe2b3 (HEAD, tag: v0.2) cria função main
+933fc74 (origin/main, origin/HEAD) Update README.md
+6c8951a cria arquivo greet.py
+58da81b Initial commit</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <p>O comando <code>git tag</code> pode ser usado para listar as
-etiqueta, como mostra a figura <a href="#fig:28">16</a>.</p>
+etiqueta, como mostra a figura <a href="#fig:28">42</a>.</p>
 </div>
-<div id="fig:28" class="imageblock">
+<div id="fig:28" class="listingblock">
+<div class="title">Lista de comandos 44. Listando todas as etiquetas do repositório</div>
 <div class="content">
-<img src="./images/28-Listando%20todas%20as%20etiquetas%20do%20repositório.png" alt="28 Listando todas as etiquetas do repositório">
+<pre class="highlightjs highlight"><code class="language-none hljs">~/greetings$ git tag
+v0.2
+v0.3</code></pre>
 </div>
-<div class="title">Figura 15. Listando todas as etiquetas do repositório</div>
 </div>
 <div class="paragraph">
 <p>Listagens mais complexas, com caracteres coringa por exemplo,
@@ -1708,43 +1739,78 @@ podem ser feitas com esse comando, mas não serão exploradas aqui.</p>
 <div class="paragraph">
 <p>Quando se executa o comando <code>git show</code> com uma etiqueta,
 ele mostra também os dados da etiqueta, como pode ser visto na
-figura <a href="#fig:24">17</a>.
+figura <a href="#fig:24">43</a>.
 A informação de quem fez a etiqueta (tagger) e de quando
 a etiqueta foi criada só é gravada se a opção `-a
 for usada na criação dela.</p>
 </div>
-<div id="fig:24" class="imageblock">
+<div id="fig:24" class="listingblock">
+<div class="title">Lista de comandos 45. Mostrando fotografias usando etiquetas</div>
 <div class="content">
-<img src="./images/24-Mostrando%20fotografias%20usando%20etiquetas.png" alt="24 Mostrando fotografias usando etiquetas">
+<pre class="highlightjs highlight"><code class="language-none hljs">~/greetings$ git show v0.2
+commit e0fe2b32abaa5b4bcb7a1889a820f155e9ec635e (tag: v0.2)
+Author: Francisco de Assis Boldt &lt;fboldt@gmail.com&gt;
+Date:   Wed Dec 23 08:24:50 2020 -0300
+
+    cria função main
+
+diff --git a/greet.py b/greet.py
+index 693eaec..55bb9ae 100644
+--- a/greet.py
++++ b/greet.py
+@@ -1 +1,4 @@
+-print("Hello!")
++def main():
++    print("Hello!")
++
++main()</code></pre>
 </div>
-<div class="title">Figura 16. Mostrando fotografias usando etiquetas</div>
 </div>
-<div class="paragraph">
-<p>Para acessar a fotografia mais recente podemos usar o
-comando mostrada na figura <a href="#fig:27">18</a>.</p>
-</div>
-<div id="fig:27" class="imageblock">
+<div id="fig:24a" class="listingblock">
+<div class="title">Lista de comandos 46. Mostrando fotografias usando etiquetas</div>
 <div class="content">
-<img src="./images/27-Acessando%20a%20fotografia%20mais%20recente%20através%20da%20sua%20etiqueta.png" alt="27 Acessando a fotografia mais recente através da sua etiqueta">
+<pre class="highlightjs highlight"><code class="language-none hljs">~/greetings$ git show v0.3
+tag v0.3
+Tagger: Francisco de Assis Boldt &lt;fboldt@gmail.com&gt;
+Date:   Wed Dec 23 09:11:24 2020 -0300
+
+Versão bem complexa para um programa Hello World
+
+commit bd618942ddf84ad2ceb062b7ef53c22b12a94dae (HEAD -&gt; main, tag: v0.3)
+Author: Francisco de Assis Boldt &lt;fboldt@gmail.com&gt;
+Date:   Wed Dec 23 08:55:49 2020 -0300
+
+    verifica se é o programa principal
+
+diff --git a/greet.py b/greet.py
+index 55bb9ae..3062fd5 100644
+--- a/greet.py
++++ b/greet.py
+@@ -1,4 +1,5 @@
+ def main():
+     print("Hello!")
+
+-main()
++if __name__ == "__main__":
++    main()</code></pre>
 </div>
-<div class="title">Figura 17. Acessando a fotografia mais recente através da sua etiqueta</div>
 </div>
 <div class="paragraph">
 <p>É importante notar que <strong>HEAD</strong> não aponta para nenhum
-branch. No caso, não aponta para <strong>master</strong>, que é
+branch. No caso, não aponta para <strong>main</strong>, que é
 o único branch do repositório.
 Para continuar o tutorial execute o comando da
-figura <a href="#fig:29">19</a>, para que <strong>HEAD</strong> aponte para
-<strong>master</strong>.</p>
+figura <a href="#fig:29">[fig:29]</a>, para que <strong>HEAD</strong> aponte para
+<strong>main</strong>.</p>
 </div>
-<div id="fig:29" class="imageblock">
+<div id="fig:27" class="listingblock">
+<div class="title">Lista de comandos 47. git checkout main</div>
 <div class="content">
-<img src="./images/29-Acessando%20o%20branch%20master.png" alt="29 Acessando o branch master">
+<pre class="highlightjs highlight"><code class="language-none hljs">~/greetings$ git checkout main
+Switched to branch 'main'
+Your branch is ahead of 'origin/main' by 2 commits.
+  (use "git push" to publish your local commits)</code></pre>
 </div>
-<div class="title">Figura 18. Acessando o branch master</div>
-</div>
-<div class="paragraph">
-<p>Visto que este é um tutorial superficial, não será explicado o motivo deste procedimento.</p>
 </div>
 </div>
 </div>
@@ -1777,37 +1843,51 @@ que ela esteja terminada.</p>
 <p>Como ilustração, faremos uma versão brasileira para o nosso
 programa. Como eu supostamente ainda não sei se isso será
 fácil ou difícil de terminar, farei um branch como mostra a
-figura <a href="#fig:30">1</a>.
+figura <a href="#fig:30">46</a>.
 Agora a fotografia mais recente tem dois ramos (na cor verde),
-<strong>master</strong> e <strong>pt-br</strong>.</p>
+<strong>main</strong> e <strong>pt-br</strong>.</p>
 </div>
-<div id="fig:30" class="imageblock">
+<div id="fig:30" class="listingblock">
+<div class="title">Lista de comandos 48. Criando um novo branch</div>
 <div class="content">
-<img src="./images/30-Criando%20um%20novo%20branch.png" alt="30 Criando um novo branch">
+<pre class="highlightjs highlight"><code class="language-none hljs">francisco@i7titanv:~/greetings$ git branch pt-br
+francisco@i7titanv:~/greetings$ git log --oneline --all
+bd61894 (HEAD -&gt; main, tag: v0.3, pt-br) verifica se é o programa principal
+e0fe2b3 (tag: v0.2) cria função main
+933fc74 (origin/main, origin/HEAD) Update README.md
+6c8951a cria arquivo greet.py
+58da81b Initial commit</code></pre>
 </div>
-<div class="title">Figura 19. Criando um novo branch</div>
 </div>
 <div class="paragraph">
 <p>Para fazer um alteração no ramo <strong>pt-br</strong>, deve-se mudar
 <strong>HEAD</strong> para esse ramo, como apresentado na figura
-<a href="#fig:31">2</a>. Agora <strong>HEAD</strong> aponta para <strong>pt-br</strong>.</p>
+<a href="#fig:31">1</a>. Agora <strong>HEAD</strong> aponta para <strong>pt-br</strong>.</p>
 </div>
-<div id="fig:31" class="imageblock">
+<div id="fig:31" class="listingblock">
+<div class="title">Lista de comandos 49. Acessando um branch</div>
 <div class="content">
-<img src="./images/31-Acessando%20um%20branch.png" alt="31 Acessando um branch">
+<pre class="highlightjs highlight"><code class="language-none hljs">francisco@i7titanv:~/greetings$ git checkout pt-br
+Switched to branch 'pt-br'
+francisco@i7titanv:~/greetings$ git log --oneline --all
+bd61894 (HEAD -&gt; pt-br, tag: v0.3, main) verifica se é o programa principal
+e0fe2b3 (tag: v0.2) cria função main
+933fc74 (origin/main, origin/HEAD) Update README.md
+6c8951a cria arquivo greet.py
+58da81b Initial commit
+francisco@i7titanv:~/greet</code></pre>
 </div>
-<div class="title">Figura 20. Acessando um branch</div>
 </div>
 <div class="paragraph">
-<p>Quando só existia o ramo <strong>master</strong>, cada comando
-<code>commit</code> movia o ramo <strong>master</strong> para a
+<p>Quando só existia o ramo <strong>main</strong>, cada comando
+<code>commit</code> movia o ramo <strong>main</strong> para a
 fotografia mais recente.
 Agora que <strong>HEAD</strong> aponta para <strong>pt-br</strong>,
 o comando <code>commit</code> vai mover o ramo <strong>pt-br</strong>
 para as novas fotografias, deixando o ramo
-<strong>master</strong> na fotografia atual.
+<strong>main</strong> na fotografia atual.
 Assim, fica claro para todos os envolvidos no projeto
-que o ramo <strong>master</strong> contém uma versão estável
+que o ramo <strong>main</strong> contém uma versão estável
 do sistema.</p>
 </div>
 </div>
@@ -1815,53 +1895,107 @@ do sistema.</p>
 <h3 id="_uma_alteração_incompleta_para_o_ramos_atual">5.2. Uma alteração incompleta para o ramos atual</h3>
 <div class="paragraph">
 <p>Como ilustração será feita a alteração proposta na
-figura <a href="#fig:32">3</a>.</p>
+figura <a href="#fig:32">47</a>.</p>
 </div>
-<div id="fig:32" class="imageblock">
+<div id="fig:32" class="listingblock">
+<div class="title">Lista de comandos 50. Alterando o sistema no branch atual</div>
 <div class="content">
-<img src="./images/32-Alterando%20o%20sistema%20no%20branch%20atual.png" alt="32 Alterando o sistema no branch atual">
+<pre class="highlightjs highlight"><code class="language-none hljs">~/greetings$ cat greet.py
+def main():
+    print("Olá!")
+
+if __name__ == "__main__":
+    main()</code></pre>
 </div>
-<div class="title">Figura 21. Alterando o sistema no branch atual</div>
 </div>
 <div class="paragraph">
 <p>A resposta do comando <code>git status</code> da figura
-<a href="#fig:33">4</a> já é conhecida.
+<a href="#fig:33">48</a> já é conhecida.
 A única diferença do que já foi visto é a primeira linha
 que mostra que ramo atual é o <strong>pt-br</strong>
 (<em>On branch pt-br</em>).</p>
 </div>
-<div id="fig:33" class="imageblock">
+<div id="fig:33" class="listingblock">
+<div class="title">Lista de comandos 51. Status do novo branch com arquivo modificado fora da área de stage</div>
 <div class="content">
-<img src="./images/33-Status%20do%20novo%20branch%20com%20arquivo%20modificado%20fora%20da%20área%20de%20stage.png" alt="33 Status do novo branch com arquivo modificado fora da área de stage">
+<pre class="highlightjs highlight"><code class="language-none hljs">~/greetings$ git status
+On branch pt-br
+Changes not staged for commit:
+  (use "git add &lt;file&gt;..." to update what will be committed)
+  (use "git restore &lt;file&gt;..." to discard changes in working directory)
+	modified:   greet.py
+
+no changes added to commit (use "git add" and/or "git commit -a")</code></pre>
 </div>
-<div class="title">Figura 22. Status do novo branch com arquivo modificado fora da área de stage</div>
 </div>
 <div class="paragraph">
 <p>O status após adicionar a alteração na área de stage
-mostrado na figura <a href="#fig:34">5</a> também não é muito
+mostrado na figura <a href="#fig:34">49</a> também não é muito
 diferente do que já foi visto.</p>
 </div>
-<div id="fig:34" class="imageblock">
+<div id="fig:34" class="listingblock">
+<div class="title">Lista de comandos 52. Status do novo branch com arquivo modificado na da área de stage</div>
 <div class="content">
-<img src="./images/34-Status%20do%20novo%20branch%20com%20arquivo%20modificado%20na%20da%20área%20de%20stage.png" alt="34 Status do novo branch com arquivo modificado na da área de stage">
+<pre class="highlightjs highlight"><code class="language-none hljs">~/greetings$ git add greet.py
+~/greetings$ git status
+On branch pt-br
+Changes to be committed:
+  (use "git restore --staged &lt;file&gt;..." to unstage)
+	modified:   greet.py</code></pre>
 </div>
-<div class="title">Figura 23. Status do novo branch com arquivo modificado na da área de stage</div>
 </div>
 <div class="paragraph">
 <p>O resultado dos comandos <code>git commit</code>
 e <code>git show</code> apresentados na
-figura <a href="#fig:35">6</a> também não apresentam muita novidade.</p>
+figura <a href="#fig:35">51</a> também não apresentam muita novidade.</p>
 </div>
-<div id="fig:35" class="imageblock">
+<div id="fig:35-a" class="listingblock">
+<div class="title">Lista de comandos 53. Adiciona arquivo modificado na área de stage.</div>
 <div class="content">
-<img src="./images/35-Fotografia%20da%20versão%20brasileira%20do%20sistema.png" alt="35 Fotografia da versão brasileira do sistema">
+<pre class="highlightjs highlight"><code class="language-none hljs">~/greetings$ git commit -m 'versão brasileira'
+[pt-br 8828ea9] versão brasileira
+ 1 file changed, 1 insertion(+), 1 deletion(-)</code></pre>
 </div>
-<div class="title">Figura 24. Fotografia da versão brasileira do sistema</div>
+</div>
+<div id="fig:35" class="listingblock">
+<div class="title">Lista de comandos 54. Fotografia da versão brasileira do sistema</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">~/greetings$ git show
+commit 8828ea9256bc157d561bab306c01f304b3a54821 (HEAD -&gt; pt-br)
+Author: Francisco de Assis Boldt &lt;fboldt@gmail.com&gt;
+Date:   Wed Dec 23 11:34:03 2020 -0300
+
+    versão brasileira
+
+diff --git a/greet.py b/greet.py
+index 3062fd5..66da5e9 100644
+--- a/greet.py
++++ b/greet.py
+@@ -1,5 +1,5 @@
+ def main():
+-    print("Hello!")
++    print("Olá!")
+
+ if __name__ == "__main__":
+     main()</code></pre>
+</div>
 </div>
 <div class="paragraph">
-<p>Note que o ramo <strong>master</strong> não tem nada de especial.
+<p>Note que o ramo <strong>main</strong> não tem nada de especial.
 Usar outro nome para um ramo não muda nada no processo
 de fotografar as versões do sistema.</p>
+</div>
+<div id="fig:35a" class="listingblock">
+<div class="title">Lista de comandos 55. Lista de fotografias</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">~/greetings$ git log --oneline --all
+8828ea9 (HEAD -&gt; pt-br) versão brasileira
+bd61894 (tag: v0.3, main) verifica se é o programa principal
+e0fe2b3 (tag: v0.2) cria função main
+933fc74 (origin/main, origin/HEAD) Update README.md
+6c8951a cria arquivo greet.py
+58da81b Initial commit</code></pre>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -1869,38 +2003,89 @@ de fotografar as versões do sistema.</p>
 <div class="paragraph">
 <p>Para mostrar como colocar uma alteração no ramo estável do
 sistema, vamos fazer a alteração proposta na
-figura <a href="#fig:36">7</a>.
+figura <a href="#fig:36">53</a>.
 Estamos considerando o ramo estável deste repositório
-o ramo <strong>master</strong>, mas poderia ser qualquer outro nome.</p>
+o ramo <strong>main</strong>, mas poderia ser qualquer outro nome.</p>
 </div>
-<div id="fig:36" class="imageblock">
+<div id="fig:36" class="listingblock">
+<div class="title">Lista de comandos 56. Parametrizando o sistema</div>
 <div class="content">
-<img src="./images/36-Parametrizando%20o%20sistema.png" alt="36 Parametrizando o sistema">
+<pre class="highlightjs highlight"><code class="language-none hljs">~/greetings$ cat greet.py
+import sys
+def main():
+    if len(sys.argv)&gt;1 and sys.argv[1]=='pt-br':
+        print("Olá!")
+    else:
+        print("Hello!")
+
+if __name__ == "__main__":
+    main()</code></pre>
 </div>
-<div class="title">Figura 25. Parametrizando o sistema</div>
+</div>
+<div id="fig:36a" class="listingblock">
+<div class="title">Lista de comandos 57. Como o programa está executando agora.</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">~/greetings$ python greet.py
+Hello!
+~/greetings$ python greet.py pt-br
+Olá!</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <p>Depois de colocar a nova alteração na área de stage
-e executar o comando <code>commit</code> podemos ver a nova
-fotografia listada na figura <a href="#fig:38">8</a>.</p>
+(<code>git add greet.py</code>)
+e executar o comando <code>git commit</code> podemos ver a nova
+fotografia listada na figura <a href="#fig:38">55</a>.</p>
 </div>
-<div id="fig:38" class="imageblock">
+<div id="fig:38" class="listingblock">
+<div class="title">Lista de comandos 58. Lista das fotografias após a versão brasileira parametrizada</div>
 <div class="content">
-<img src="./images/38-Lista%20das%20fotografias%20após%20a%20versão%20brasileira%20parametrizada.png" alt="38 Lista das fotografias após a versão brasileira parametrizada">
+<pre class="highlightjs highlight"><code class="language-none hljs">~/greetings$ git add greet.py
+~/greetings$ git commit -m 'versão brasileira parametrizada'
+[pt-br 2aa634b] versão brasileira parametrizada
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+~/greetings$ git log --oneline --all
+2aa634b (HEAD -&gt; pt-br) versão brasileira parametrizada
+8828ea9 versão brasileira
+bd61894 (tag: v0.3, main) verifica se é o programa principal
+e0fe2b3 (tag: v0.2) cria função main
+933fc74 (origin/main, origin/HEAD) Update README.md
+6c8951a cria arquivo greet.py
+58da81b Initial commit</code></pre>
 </div>
-<div class="title">Figura 26. Lista das fotografias após a versão brasileira parametrizada</div>
 </div>
 <div class="paragraph">
-<p>A figura <a href="#fig:37">9</a> mostra como ficou a fotografia
+<p>A figura <a href="#fig:37">56</a> mostra como ficou a fotografia
 mais recente do repositório.
 Também mostra como executar o programa na versão
 mais recente, caso ache interessante.</p>
 </div>
-<div id="fig:37" class="imageblock">
+<div id="fig:37" class="listingblock">
+<div class="title">Lista de comandos 59. Fotografia da versão brasileira atualizada</div>
 <div class="content">
-<img src="./images/37-Fotografia%20da%20versão%20brasileira%20atualizada.png" alt="37 Fotografia da versão brasileira atualizada">
+<pre class="highlightjs highlight"><code class="language-none hljs">~/greetings$ git show
+commit 2aa634b3fe78d227bd07482dfb080154e02cc93f (HEAD -&gt; pt-br)
+Author: Francisco de Assis Boldt &lt;fboldt@gmail.com&gt;
+Date:   Wed Dec 23 11:49:08 2020 -0300
+
+    versão brasileira parametrizada
+
+diff --git a/greet.py b/greet.py
+index 66da5e9..3e2fb6e 100644
+--- a/greet.py
++++ b/greet.py
+@@ -1,5 +1,9 @@
++import sys
+ def main():
+-    print("Olá!")
++    if len(sys.argv)&gt;1 and sys.argv[1]=='pt-br':
++        print("Olá!")
++    else:
++        print("Hello!")
+
+ if __name__ == "__main__":
+     main()</code></pre>
 </div>
-<div class="title">Figura 27. Fotografia da versão brasileira atualizada</div>
 </div>
 </div>
 <div class="sect2">
@@ -1908,40 +2093,55 @@ mais recente, caso ache interessante.</p>
 <div class="paragraph">
 <p>Agora que a alteração já foi finalizada, é hora de
 mesclar a atualização no ramo principal.
-A figura <a href="#fig:39">10</a> apresenta um procedimento que pode
+A figura <a href="#fig:39">57</a> apresenta um procedimento que pode
 ser executado com essa finalidade.
 Primeiro, temos que fazer <strong>HEAD</strong> apontar
 para o ramo principal com o comando
-<code>git checkout master</code>.
+<code>git checkout main</code>.
 Depois, usamos o comando <code>git merge pt-br</code>
 para mesclar o ramo <strong>pt-br</strong> com o ramo atual.</p>
 </div>
-<div id="fig:39" class="imageblock">
+<div id="fig:39" class="listingblock">
+<div class="title">Lista de comandos 60. Mesclando a versão brasileira com a versão original</div>
 <div class="content">
-<img src="./images/39-Mesclando%20a%20versão%20brasileira%20com%20a%20versão%20original.png" alt="39 Mesclando a versão brasileira com a versão original">
+<pre class="highlightjs highlight"><code class="language-none hljs">~/greetings$ git checkout main
+Switched to branch 'main'
+Your branch is ahead of 'origin/main' by 2 commits.
+  (use "git push" to publish your local commits)
+~/greetings$ git merge pt-br
+Updating bd61894..2aa634b
+Fast-forward
+ greet.py | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)</code></pre>
 </div>
-<div class="title">Figura 28. Mesclando a versão brasileira com a versão original</div>
 </div>
 <div class="paragraph">
-<p>A figura <a href="#fig:40">11</a> mostra a lista de fotografias
+<p>A figura <a href="#fig:40">58</a> mostra a lista de fotografias
 depois da mesclagem de ramos.</p>
 </div>
-<div id="fig:40" class="imageblock">
+<div id="fig:40" class="listingblock">
+<div class="title">Lista de comandos 61. Listando as fotografias do repositório após mesclar versões do sistema</div>
 <div class="content">
-<img src="./images/40-Listando%20as%20fotografias%20do%20repositório%20após%20mesclar%20versões%20do%20sistema.png" alt="40 Listando as fotografias do repositório após mesclar versões do sistema">
+<pre class="highlightjs highlight"><code class="language-none hljs">~/greetings$ git log --oneline --all
+2aa634b (HEAD -&gt; main, pt-br) versão brasileira parametrizada
+8828ea9 versão brasileira
+bd61894 (tag: v0.3) verifica se é o programa principal
+e0fe2b3 (tag: v0.2) cria função main
+933fc74 (origin/main, origin/HEAD) Update README.md
+6c8951a cria arquivo greet.py
+58da81b Initial commit</code></pre>
 </div>
-<div class="title">Figura 29. Listando as fotografias do repositório após mesclar versões do sistema</div>
 </div>
 <div class="paragraph">
 <p>Na segunda linha da reposta do comando
-<code>git merge pt-br</code> na figura <a href="#fig:39">10</a>
+<code>git merge pt-br</code> na figura <a href="#fig:39">57</a>
 está escrito <em>Fast-forward</em>.
 Isso significa que nenhuma alteração foi feita no
-ramo <strong>master</strong> enquanto o ramo <strong>pt-br</strong>
+ramo <strong>main</strong> enquanto o ramo <strong>pt-br</strong>
 estava sendo alterado.
 Assim, não houve nenhum conflito para juntar as versões
 porque a versão mais recente de <strong>pt-br</strong>
-era como uma versão futura de <strong>master</strong>.
+era como uma versão futura de <strong>main</strong>.
 A seguir, veremos um situação que isso não é resolvido tão
 facilmente.</p>
 </div>
@@ -1961,56 +2161,92 @@ Aqui, veremos como resolver conflitos quando ele acontecem.</p>
 <div class="paragraph">
 <p>Agora faremos uma versão do sistema em alemão.
 Para manter uma boa prática de Git vamos criar um novo
-ramo, como mostra a figura <a href="#fig:41">12</a>.</p>
+ramo, como mostra a figura <a href="#fig:41">59</a>.</p>
 </div>
-<div id="fig:41" class="imageblock">
+<div id="fig:41" class="listingblock">
+<div class="title">Lista de comandos 62. Criando um branch para uma versão em alemão</div>
 <div class="content">
-<img src="./images/41-Criando%20um%20branch%20para%20uma%20versão%20em%20alemão.png" alt="41 Criando um branch para uma versão em alemão">
+<pre class="highlightjs highlight"><code class="language-none hljs">~/greetings$ git branch de
+~/greetings$ git log --oneline --all
+2aa634b (HEAD -&gt; main, pt-br, de) versão brasileira parametrizada
+8828ea9 versão brasileira
+bd61894 (tag: v0.3) verifica se é o programa principal
+e0fe2b3 (tag: v0.2) cria função main
+933fc74 (origin/main, origin/HEAD) Update README.md
+6c8951a cria arquivo greet.py
+58da81b Initial commit
+~/greetings$ git checkout de
+Switched to branch 'de'</code></pre>
 </div>
-<div class="title">Figura 30. Criando um branch para uma versão em alemão</div>
 </div>
 <div class="paragraph">
 <p>Para trabalhar no novo ramo, deve-se usar o comando
 <code>git checkout</code>. O comando <code>git log</code>
-mostra o ramo para o qual <strong>HEAD</strong> aponta.
-O resoltado pode ser visto na figura <a href="#fig:42">13</a>.</p>
-</div>
-<div id="fig:42" class="imageblock">
-<div class="content">
-<img src="./images/42-Acessando%20o%20branch%20onde%20será%20implementada%20a%20versão%20alemã%20do%20sistema.png" alt="42 Acessando o branch onde será implementada a versão alemã do sistema">
-</div>
-<div class="title">Figura 31. Acessando o branch onde será implementada a versão alemã do sistema</div>
+mostra o ramo para o qual <strong>HEAD</strong> aponta.</p>
 </div>
 <div class="paragraph">
-<p>Depois de fazer a alteração sugerida na figura <a href="#fig:43">14</a>,
+<p>Depois de fazer a alteração sugerida na figura <a href="#fig:43">60</a>,
 execute o comando <code>git commit</code> para deixar
 gravada as alterações no repositório.</p>
 </div>
-<div id="fig:43" class="imageblock">
+<div id="fig:43" class="listingblock">
+<div class="title">Lista de comandos 63. Alteração feita para versão alemã do sistema</div>
 <div class="content">
-<img src="./images/43-Alteração%20feita%20para%20versão%20alemã%20do%20sistema.png" alt="43 Alteração feita para versão alemã do sistema">
+<pre class="highlightjs highlight"><code class="language-none hljs">~/greetings$ cat greet.py
+import sys
+def main():
+    if len(sys.argv)&gt;1 and sys.argv[1]=='pt-br':
+        print("Olá!")
+    elif len(sys.argv)&gt;1 and sys.argv[1]=='de':
+        print("Hallo!")
+    else:
+        print("Hello!")
+
+if __name__ == "__main__":
+    main()</code></pre>
 </div>
-<div class="title">Figura 32. Alteração feita para versão alemã do sistema</div>
+</div>
+<div id="fig:43a" class="listingblock">
+<div class="title">Lista de comandos 64. Funcionamento depois da versão alemã</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">~/greetings$ python greet.py
+Hello!
+~/greetings$ python greet.py pt-br
+Olá!
+~/greetings$ python greet.py de
+Hallo!</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <p>A fotografia do último <em>commit</em> está na figura
-<a href="#fig:44">15</a>.</p>
+<a href="#fig:44">62</a>.</p>
 </div>
-<div id="fig:44" class="imageblock">
+<div id="fig:44" class="listingblock">
+<div class="title">Lista de comandos 65. Fotografando a versão alemã do sistema</div>
 <div class="content">
-<img src="./images/44-Fotografando%20a%20versão%20alemã%20do%20sistema.png" alt="44 Fotografando a versão alemã do sistema">
+<pre class="highlightjs highlight"><code class="language-none hljs">~/greetings$ git add greet.py
+~/greetings$ git commit -m 'versão alemã parametrizada'
+[de 54a47d0] versão alemã parametrizada
+ 1 file changed, 2 insertions(+)</code></pre>
 </div>
-<div class="title">Figura 33. Fotografando a versão alemã do sistema</div>
 </div>
 <div class="paragraph">
-<p>A figura <a href="#fig:45">16</a> mostra que o sistema possui seis
+<p>A figura <a href="#fig:45">63</a> mostra que o sistema possui seis
 fotografias até o momento.</p>
 </div>
-<div id="fig:45" class="imageblock">
+<div id="fig:45" class="listingblock">
+<div class="title">Lista de comandos 66. Listando as fotografias após a inclusão da versão alemã</div>
 <div class="content">
-<img src="./images/45-Listando%20as%20fotografias%20após%20a%20inclusão%20da%20versão%20alemã.png" alt="45 Listando as fotografias após a inclusão da versão alemã">
+<pre class="highlightjs highlight"><code class="language-none hljs">~/greetings$ git log --oneline --all
+54a47d0 (HEAD -&gt; de) versão alemã parametrizada
+2aa634b (pt-br, main) versão brasileira parametrizada
+8828ea9 versão brasileira
+bd61894 (tag: v0.3) verifica se é o programa principal
+e0fe2b3 (tag: v0.2) cria função main
+933fc74 (origin/main, origin/HEAD) Update README.md
+6c8951a cria arquivo greet.py
+58da81b Initial commit</code></pre>
 </div>
-<div class="title">Figura 34. Listando as fotografias após a inclusão da versão alemã</div>
 </div>
 <div class="paragraph">
 <p>Na condição atual, no exemplo co capítulo anterior,
@@ -2035,44 +2271,49 @@ de conflitos que inevitavelmente acontecerão,
 vamos fazer uma versão em italiano do nosso
 sistema para forçar um conflito.
 Para isso, vamos começar criando um novo ramo a
-partir de <strong>master</strong>.
+partir de <strong>main</strong>.
 Após fotografarmos a alteração do sistema
 com a versão italiana, teremos dois ramos que
-nasceram a partir de <strong>master</strong>.
+nasceram a partir de <strong>main</strong>.
 Um deles é facilmente mesclável. O outro, nem tanto.</p>
 </div>
 <div class="paragraph">
-<p>Uma forma de se criar um ramo a partir de <strong>master</strong>
-é estando com <strong>HEAD</strong> apontando para <strong>master</strong>.
+<p>Uma forma de se criar um ramo a partir de <strong>main</strong>
+é estando com <strong>HEAD</strong> apontando para <strong>main</strong>.
 Em seguida, usa-se o comando <code>git branch</code> para
-criar um novo branch, como na figura <a href="#fig:46">17</a>.</p>
+criar um novo branch, como na figura <a href="#fig:46">64</a>.</p>
 </div>
-<div id="fig:46" class="imageblock">
+<div id="fig:46" class="listingblock">
+<div class="title">Lista de comandos 67. Criando um branch para implementar uma versão italiana a partir da versão brasileira</div>
 <div class="content">
-<img src="./images/46-Criando%20um%20branch%20para%20implementar%20uma%20versão%20italiana%20a%20partir%20da%20versão%20brasileira.png" alt="46 Criando um branch para implementar uma versão italiana a partir da versão brasileira">
+<pre class="highlightjs highlight"><code class="language-none hljs">francisco@i7titanv:~/greetings$ git checkout main
+Switched to branch 'main'
+Your branch is ahead of 'origin/main' by 4 commits.
+  (use "git push" to publish your local commits)
+francisco@i7titanv:~/greetings$ git branch it
+francisco@i7titanv:~/greetings$ git checkout it
+Switched to branch 'it'</code></pre>
 </div>
-<div class="title">Figura 35. Criando um branch para implementar uma versão italiana a partir da versão brasileira</div>
 </div>
 <div class="paragraph">
-<p>Note que <strong>HEAD</strong> continua apontando para
-<strong>master</strong>.
-Portanto é necessário mover <strong>HEAD</strong> para o novo
-ramo, como figura <a href="#fig:47">18</a>.</p>
+<p>Implemente a alteração sugerida na figura <a href="#fig:48">65</a>.</p>
 </div>
-<div id="fig:47" class="imageblock">
+<div id="fig:48" class="listingblock">
+<div class="title">Lista de comandos 68. Implementando a versão italiana</div>
 <div class="content">
-<img src="./images/47-Acessando%20o%20branch%20da%20versão%20italiana.png" alt="47 Acessando o branch da versão italiana">
+<pre class="highlightjs highlight"><code class="language-none hljs">~/greetings$ cat greet.py
+import sys
+def main():
+    if len(sys.argv)&gt;1 and sys.argv[1]=='pt-br':
+        print("Olá!")
+    elif len(sys.argv)&gt;1 and sys.argv[1]=='it':
+        print("Ciao!")
+    else:
+        print("Hello!")
+
+if __name__ == "__main__":
+    main()</code></pre>
 </div>
-<div class="title">Figura 36. Acessando o branch da versão italiana</div>
-</div>
-<div class="paragraph">
-<p>Implemente a alteração sugerida na figura <a href="#fig:48">19</a>.</p>
-</div>
-<div id="fig:48" class="imageblock">
-<div class="content">
-<img src="./images/48-Implementando%20a%20versão%20italiana.png" alt="48 Implementando a versão italiana">
-</div>
-<div class="title">Figura 37. Implementando a versão italiana</div>
 </div>
 <div class="paragraph">
 <p>Adicione as alterações na área de stage e execute
@@ -2081,13 +2322,26 @@ o comando <code>git commit</code> para fazer a nova fotografia.</p>
 <div class="paragraph">
 <p>Após adicionar as alterações na área de stage e executar
 o comando <code>git commit</code> a fotografia mais atual
-deverá estar parecida com a da figura <a href="#fig:49">20</a>.</p>
+deverá estar parecida com a da figura <a href="#fig:49">66</a>.</p>
 </div>
-<div id="fig:49" class="imageblock">
+<div id="fig:49" class="listingblock">
+<div class="title">Lista de comandos 69. Visualizando a fotografia da versão italiana</div>
 <div class="content">
-<img src="./images/49-Visualizando%20a%20fotografia%20da%20versão%20italiana.png" alt="49 Visualizando a fotografia da versão italiana">
+<pre class="highlightjs highlight"><code class="language-none hljs">francisco@i7titanv:~/greetings$ git add greet.py
+francisco@i7titanv:~/greetings$ git commit -m 'versão italiana parametrizada'
+[it 46244be] versão italiana parametrizada
+ 1 file changed, 2 insertions(+)
+francisco@i7titanv:~/greetings$ git log --oneline --all
+46244be (HEAD -&gt; it) versão italiana parametrizada
+54a47d0 (de) versão alemã parametrizada
+2aa634b (pt-br, main) versão brasileira parametrizada
+8828ea9 versão brasileira
+bd61894 (tag: v0.3) verifica se é o programa principal
+e0fe2b3 (tag: v0.2) cria função main
+933fc74 (origin/main, origin/HEAD) Update README.md
+6c8951a cria arquivo greet.py
+58da81b Initial commit</code></pre>
 </div>
-<div class="title">Figura 38. Visualizando a fotografia da versão italiana</div>
 </div>
 </div>
 <div class="sect2">
@@ -2095,16 +2349,26 @@ deverá estar parecida com a da figura <a href="#fig:49">20</a>.</p>
 <div class="paragraph">
 <p>A opção <code>--graph</code> do comando <code>git log</code>
 lista as fotografias do repositório em forma de grafo,
-como na figura <a href="#fig:50">21</a>.</p>
+como na figura <a href="#fig:50">67</a>.</p>
 </div>
-<div id="fig:50" class="imageblock">
+<div id="fig:50" class="listingblock">
+<div class="title">Lista de comandos 70. Listando todas as fotografias do repositório em forma de grafo</div>
 <div class="content">
-<img src="./images/50-Listando%20todas%20as%20fotografias%20do%20repositório%20em%20forma%20de%20grafo.png" alt="50 Listando todas as fotografias do repositório em forma de grafo">
+<pre class="highlightjs highlight"><code class="language-none hljs">~/greetings$ git log --oneline --all --graph
+* 46244be (HEAD -&gt; it) versão italiana parametrizada
+| * 54a47d0 (de) versão alemã parametrizada
+|/
+* 2aa634b (pt-br, main) versão brasileira parametrizada
+* 8828ea9 versão brasileira
+* bd61894 (tag: v0.3) verifica se é o programa principal
+* e0fe2b3 (tag: v0.2) cria função main
+* 933fc74 (origin/main, origin/HEAD) Update README.md
+* 6c8951a cria arquivo greet.py
+* 58da81b Initial commit</code></pre>
 </div>
-<div class="title">Figura 39. Listando todas as fotografias do repositório em forma de grafo</div>
 </div>
 <div class="paragraph">
-<p>Note que acima do ramo <strong>master</strong> as linhas estão
+<p>Note que acima do ramo <strong>main</strong> as linhas estão
 vermelhas, indicando um possível conflito.
 Observe que o ramo <strong>de</strong> (alemão), que é mais
 antigo que o ramo <strong>it</strong> (italiano), se mostra como
@@ -2117,102 +2381,194 @@ um ramo que está saindo de um galho.</p>
 <p>O último ramo criado foi o ramo <strong>it</strong>,
 mas aqui vasmos mesclá-lo ao ramo principal
 antes do ramo mais antigo, que é o ramo <strong>de</strong>.
-A figura <a href="#fig:51">22</a> mostra uma forma de como isso
+A figura <a href="#fig:51">68</a> mostra uma forma de como isso
 pode ser feito.
 Ocorreu uma mesclagem do tipo <em>fast-forward</em>
 sem nenhum problema.</p>
 </div>
-<div id="fig:51" class="imageblock">
+<div id="fig:51" class="listingblock">
+<div class="title">Lista de comandos 71. Mesclando a versão italiana com a principal</div>
 <div class="content">
-<img src="./images/51-Mesclando%20a%20versão%20italiana%20com%20a%20principal.png" alt="51 Mesclando a versão italiana com a principal">
+<pre class="highlightjs highlight"><code class="language-none hljs">francisco@i7titanv:~/greetings$ git checkout main
+Switched to branch 'main'
+Your branch is ahead of 'origin/main' by 4 commits.
+  (use "git push" to publish your local commits)
+francisco@i7titanv:~/greetings$ git merge it
+Updating 2aa634b..46244be
+Fast-forward
+ greet.py | 2 ++
+ 1 file changed, 2 insertions(+)</code></pre>
 </div>
-<div class="title">Figura 40. Mesclando a versão italiana com a principal</div>
 </div>
 <div class="paragraph">
-<p>Na figura <a href="#fig:52">23</a> podemos ver que o grafo não foi
-alterado, mas agora <strong>HEAD</strong> e <strong>master</strong>
+<p>Na figura <a href="#fig:52">69</a> podemos ver que o grafo não foi
+alterado, mas agora <strong>HEAD</strong> e <strong>main</strong>
 estão na fotografia mais recente.</p>
 </div>
-<div id="fig:52" class="imageblock">
+<div id="fig:52" class="listingblock">
+<div class="title">Lista de comandos 72. Listando todas as fotografias do repositório em forma de grafo após mesclar a versão italiana</div>
 <div class="content">
-<img src="./images/52-Listando%20todas%20as%20fotografias%20do%20repositório%20em%20forma%20de%20grafo%20após%20mesclar%20a%20versão%20italiana.png" alt="52 Listando todas as fotografias do repositório em forma de grafo após mesclar a versão italiana">
+<pre class="highlightjs highlight"><code class="language-none hljs">~/greetings$ git log --oneline --all --graph
+* 46244be (HEAD -&gt; main, it) versão italiana parametrizada
+| * 54a47d0 (de) versão alemã parametrizada
+|/
+* 2aa634b (pt-br) versão brasileira parametrizada
+* 8828ea9 versão brasileira
+* bd61894 (tag: v0.3) verifica se é o programa principal
+* e0fe2b3 (tag: v0.2) cria função main
+* 933fc74 (origin/main, origin/HEAD) Update README.md
+* 6c8951a cria arquivo greet.py
+* 58da81b Initial commit</code></pre>
 </div>
-<div class="title">Figura 41. Listando todas as fotografias do repositório em forma de grafo após mesclar a versão italiana</div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_quando_não_corre_tudo_bem_na_mesclagem">6.5. Quando não corre tudo bem na mesclagem</h3>
 <div class="paragraph">
-<p>Agora, veja figura <a href="#fig:53">24</a> o que ocorre quando tentamos
+<p>Agora, veja figura <a href="#fig:53">70</a> o que ocorre quando tentamos
 mesclar o ramo alemão com o ramo princial.</p>
 </div>
-<div id="fig:53" class="imageblock">
+<div id="fig:53" class="listingblock">
+<div class="title">Lista de comandos 73. Mesclando a versão alemã com a principal</div>
 <div class="content">
-<img src="./images/53-Mesclando%20a%20versão%20alemã%20com%20a%20principal.png" alt="53 Mesclando a versão alemã com a principal">
+<pre class="highlightjs highlight"><code class="language-none hljs">~/greetings$ git merge de
+Auto-merging greet.py
+CONFLICT (content): Merge conflict in greet.py
+Automatic merge failed; fix conflicts and then commit the result.</code></pre>
 </div>
-<div class="title">Figura 42. Mesclando a versão alemã com a principal</div>
+</div>
+<div id="fig:54" class="listingblock">
+<div class="title">Lista de comandos 74. Como ficou o arquivo</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">~/greetings$ cat greet.py
+import sys
+def main():
+    if len(sys.argv)&gt;1 and sys.argv[1]=='pt-br':
+        print("Olá!")
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+    elif len(sys.argv)&gt;1 and sys.argv[1]=='it':
+        print("Ciao!")
+=======
+    elif len(sys.argv)&gt;1 and sys.argv[1]=='de':
+        print("Hallo!")
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; de
+    else:
+        print("Hello!")
+
+if __name__ == "__main__":
+    main()</code></pre>
+</div>
 </div>
 <div class="paragraph">
-<p>O comando <code>git mergetool --tool-help</code>
-lista as disponíveis no seu sistema operacional
-(figura <a href="#fig:54">25</a>).</p>
+<p>Conforme a figura <a href="#fig:54">71</a>, a ferramenta <code>vimdiff</code>
+pode ser selecionada como na figura <a href="#fig:55">72</a>.</p>
 </div>
-<div id="fig:54" class="imageblock">
+<div id="fig:55" class="listingblock">
+<div class="title">Lista de comandos 75. status</div>
 <div class="content">
-<img src="./images/54-Buscando%20ajuda%20com%20mergetool.png" alt="54 Buscando ajuda com mergetool">
+<pre class="highlightjs highlight"><code class="language-none hljs">~/greetings$ git status
+On branch main
+Your branch is ahead of 'origin/main' by 5 commits.
+  (use "git push" to publish your local commits)
+
+You have unmerged paths.
+  (fix conflicts and run "git commit")
+  (use "git merge --abort" to abort the merge)
+
+Unmerged paths:
+  (use "git add &lt;file&gt;..." to mark resolution)
+	both modified:   greet.py
+
+no changes added to commit (use "git add" and/or "git commit -a")</code></pre>
 </div>
-<div class="title">Figura 43. Buscando ajuda com mergetool</div>
 </div>
-<div class="paragraph">
-<p>Conforme a figura <a href="#fig:54">25</a>, a ferramenta <code>vimdiff</code>
-pode ser selecionada como na figura <a href="#fig:55">26</a>.</p>
-</div>
-<div id="fig:55" class="imageblock">
+<div id="fig:56" class="listingblock">
+<div class="title">Lista de comandos 76. Como ficou o arquivo</div>
 <div class="content">
-<img src="./images/55-Escolhendo%20programa%20para%20usar%20com%20mergetool.png" alt="55 Escolhendo programa para usar com mergetool">
+<pre class="highlightjs highlight"><code class="language-none hljs">~/greetings$ cat greet.py
+import sys
+def main():
+    if len(sys.argv)&gt;1 and sys.argv[1]=='pt-br':
+        print("Olá!")
+    elif len(sys.argv)&gt;1 and sys.argv[1]=='it':
+        print("Ciao!")
+    elif len(sys.argv)&gt;1 and sys.argv[1]=='de':
+        print("Hallo!")
+    else:
+        print("Hello!")
+
+if __name__ == "__main__":
+    main()</code></pre>
 </div>
-<div class="title">Figura 44. Escolhendo programa para usar com mergetool</div>
 </div>
-<div class="paragraph">
-<p>A figura <a href="#fig:56">27</a> mostra como deve estar o
-arquivo <code>greet.py</code> depois de resolvidos os conflitos.
-A solução apresentada é apenas uma sugestão da
-resolução do conflito que ocorreu.
-Outras soluções poderiam ter resolvido o conflito
-também.</p>
-</div>
-<div id="fig:56" class="imageblock">
+<div id="fig:57" class="listingblock">
+<div class="title">Lista de comandos 77. Resultado</div>
 <div class="content">
-<img src="./images/56-Programa%20após%20a%20resolução%20de%20conflitos.png" alt="56 Programa após a resolução de conflitos">
+<pre class="highlightjs highlight"><code class="language-none hljs">francisco@i7titanv:~/greetings$ git add greet.py
+francisco@i7titanv:~/greetings$ git commit -m 'merge com versão alemã'
+[main 4377f73] merge com versão alemã
+francisco@i7titanv:~/greetings$ git log --oneline --all --graph
+*   4377f73 (HEAD -&gt; main) merge com versão alemã
+|\
+| * 54a47d0 (de) versão alemã parametrizada
+* | 46244be (it) versão italiana parametrizada
+|/
+* 2aa634b (pt-br) versão brasileira parametrizada
+* 8828ea9 versão brasileira
+* bd61894 (tag: v0.3) verifica se é o programa principal
+* e0fe2b3 (tag: v0.2) cria função main
+* 933fc74 (origin/main, origin/HEAD) Update README.md
+* 6c8951a cria arquivo greet.py
+* 58da81b Initial commit</code></pre>
 </div>
-<div class="title">Figura 45. Programa após a resolução de conflitos</div>
 </div>
-<div class="paragraph">
-<p>A utilização do <code>vimdiff</code> excede o escopo deste
-tutorial, mas você pode ver como é a apresentação dessa
-ferramenta na figura <a href="#fig:57">28</a>.</p>
-</div>
-<div id="fig:57" class="imageblock">
+<div id="fig:58" class="listingblock">
+<div class="title">Lista de comandos 78. Programa</div>
 <div class="content">
-<img src="./images/57-vimdiff.png" alt="57 vimdiff">
+<pre class="highlightjs highlight"><code class="language-none hljs">~/greetings$ python greet.py
+Hello!
+~/greetings$ python greet.py pt-br
+Olá!
+~/greetings$ python greet.py it
+Ciao!
+~/greetings$ python greet.py de
+Hallo!</code></pre>
 </div>
-<div class="title">Figura 46. vimdiff</div>
 </div>
-<div class="paragraph">
-<p>Depois de usar uma ferremanta de solução de conflitos
-para solucioná-los, o comando `git commit
-deve ser executado para fotografar a forma como
-os conflitos foram solucionados.</p>
-</div>
-<div class="paragraph">
-<p>A figura <a href="#fig:58">29</a> mostra como os ramos separados
-se juntam depois da solução de conflitos.</p>
-</div>
-<div id="fig:58" class="imageblock">
+<div id="fig:59" class="listingblock">
+<div class="title">Lista de comandos 79. Push</div>
 <div class="content">
-<img src="./images/58-Listando%20todas%20as%20fotografias%20do%20repositório%20em%20forma%20de%20grafo%20após%20mesclar%20a%20versão%20alemã.png" alt="58 Listando todas as fotografias do repositório em forma de grafo após mesclar a versão alemã">
+<pre class="highlightjs highlight"><code class="language-none hljs">~/greetings$ git push
+Username for 'https://github.com': fboldt
+Password for 'https://fboldt@github.com':
+Enumerating objects: 23, done.
+Counting objects: 100% (23/23), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (20/20), done.
+Writing objects: 100% (21/21), 2.14 KiB | 2.14 MiB/s, done.
+Total 21 (delta 4), reused 0 (delta 0)
+remote: Resolving deltas: 100% (4/4), done.
+To https://github.com/fboldt/greetings.git
+   933fc74..4377f73  main -&gt; main</code></pre>
 </div>
-<div class="title">Figura 47. Listando todas as fotografias do repositório em forma de grafo após mesclar a versão alemã</div>
+</div>
+<div id="fig60" class="listingblock">
+<div class="title">Lista de comandos 80. Lista final</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">~/greetings$ git log --oneline --all --graph
+*   4377f73 (HEAD -&gt; main, origin/main, origin/HEAD) merge com versão alemã
+|\
+| * 54a47d0 (de) versão alemã parametrizada
+* | 46244be (it) versão italiana parametrizada
+|/
+* 2aa634b (pt-br) versão brasileira parametrizada
+* 8828ea9 versão brasileira
+* bd61894 (tag: v0.3) verifica se é o programa principal
+* e0fe2b3 (tag: v0.2) cria função main
+* 933fc74 Update README.md
+* 6c8951a cria arquivo greet.py
+* 58da81b Initial commit</code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -2253,7 +2609,7 @@ sofre alterações em ramos diferentes.</p>
 <div id="footer">
 <div id="footer-text">
 Version 0.1 2020-09<br>
-Last updated 2020-12-23 12:19:37 UTC
+Last updated 2020-12-23 15:42:14 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">
