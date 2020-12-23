@@ -82,8 +82,8 @@ Mas se você já tem uma noção, ou já usou o Git de alguma
 forma, a figura <<fig:ler>> mostra uma sugestão de como ler este livro.
 
 .Como ler este livro?
-[[fig:ler, {counter:refnum}]]
-image::lerestelivro.png[Fluxograma,185,80,align=center, float=right]
+[[fig:ler, {counter:reffg}]]
+image::lerestelivro.png[Fluxograma,185,80,align=center]
 
 O capítulo 2 (<<#local>>) mostra como criar um repositório no 
 seu computador a partir de um diretório.

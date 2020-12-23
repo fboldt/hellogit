@@ -11,7 +11,7 @@ um ponto (.), e por isso só é listado (`ls`) quando
 se usa o parâmetro `-a`.
 
 .Criando um repositório vazio.
-[[fig:01, {counter:refcode}]]
+[[fig:01, {counter:refcde}]]
 [source]
 ----
 ~$ mkdir greetings // <1>
@@ -45,7 +45,7 @@ Suas alterações devem ser feitas através do comando
 desejada.
 
 .Árvore de diretórios do repositório.
-[[fig:02, {counter:refcode}]]
+[[fig:02, {counter:refcde}]]
 [source]
 ----
 ~/greetings$ tree .git
@@ -89,7 +89,7 @@ uma vez que nosso objetivo aqui é mostrar uma utilização do Git
 com poucos comandos, sem explorá-los por completo.
 
 .Árvore de diretórios do repositório.
-[[fig:03, {counter:refcode}]]
+[[fig:03, {counter:refcde}]]
 [source]
 ----
 ~/greetings$ git status
@@ -137,7 +137,7 @@ tutorial. Basta notar que o arquivo será alterado e cada
 alteração será monitorada pelo Git.
 
 .Criando o primeiro arquivo do projeto
-[[fig:04, {counter:refcode}]]
+[[fig:04, {counter:refcde}]]
 [source]
 ----
 ~/greetings$ cat greet.py / <1>
@@ -157,7 +157,7 @@ Depois de criado o arquivo `greet.py`, o comando
 como mostra a lista de comandos <<fig:05>>.
 
 .Status com arquivo fora da área de stage
-[[fig:05, {counter:refcode}]]
+[[fig:05, {counter:refcde}]]
 [source]
 ----
 ~/greetings$ git status
@@ -201,7 +201,7 @@ comando `git rm --cached <file>`, como mostra a resposta
 do comando `git status`.
 
 .Status com arquivo na da área de stage
-[[fig:06, {counter:refcode}]]
+[[fig:06, {counter:refcde}]]
 [source]
 ----
 ~/greetings$ git add greet.py 
@@ -238,7 +238,7 @@ Então, foi usado aqui o `-m` para ficar mais resumido e
 visível através das listas de comandos.
 
 .Primeira fotografia do repositório
-[[fig:07, {counter:refcode}]]
+[[fig:07, {counter:refcde}]]
 [source]
 ----
 ~/greetings$ git commit -m 'primeira fotografia do sistema'
@@ -254,7 +254,7 @@ Vamos entender essa fotografia, mas sem seguir a ordem em que
 os dados aparecem.
 
 .Vendo detalhes da fotografia mais recente do sistema
-[[fig:08, {counter:refcode}]]
+[[fig:08, {counter:refcde}]]
 [source]
 ----
 ~/greetings$ git show // <1>
