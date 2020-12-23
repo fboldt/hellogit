@@ -437,14 +437,53 @@ através de sua etiqueta
 
 .Acessando uma fotografia antiga através da sua etiqueta
 [[fig:26, {counter:reffg}]]
-image::26-Acessando uma fotografia antiga através da sua etiqueta.png[]
+[source]
+----
+~/greetings$ git checkout v0.2
+Note: switching to 'v0.2'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by switching back to a branch.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -c with the switch command. Example:
+
+  git switch -c <new-branch-name>
+
+Or undo this operation with:
+
+  git switch -
+
+Turn off this advice by setting config variable advice.detachedHead to false
+
+HEAD is now at e0fe2b3 cria função main
+----
+
+.git log
+[[fig:26a, {counter:refcde}]]
+[source]
+----
+~/greetings$ git log --oneline --all
+bd61894 (tag: v0.3, main) verifica se é o programa principal
+e0fe2b3 (HEAD, tag: v0.2) cria função main
+933fc74 (origin/main, origin/HEAD) Update README.md
+6c8951a cria arquivo greet.py
+58da81b Initial commit
+----
 
 O comando `git tag` pode ser usado para listar as
 etiqueta, como mostra a figura <<fig:28>>.
 
+
 .Listando todas as etiquetas do repositório
-[[fig:28, {counter:reffg}]]
-image::28-Listando todas as etiquetas do repositório.png[]
+[[fig:28, {counter:refcde}]]
+[source]
+----
+~/greetings$ git tag
+v0.2
+v0.3
+----
 
 Listagens mais complexas, com caracteres coringa por exemplo, 
 podem ser feitas com esse comando, mas não serão exploradas aqui.
@@ -457,25 +496,73 @@ a etiqueta foi criada só é gravada se a opção `-a
 for usada na criação dela.
 
 .Mostrando fotografias usando etiquetas
-[[fig:24, {counter:reffg}]]
-image::24-Mostrando fotografias usando etiquetas.png[]
+[[fig:24, {counter:refcde}]]
+[source]
+----
+~/greetings$ git show v0.2
+commit e0fe2b32abaa5b4bcb7a1889a820f155e9ec635e (tag: v0.2)
+Author: Francisco de Assis Boldt <fboldt@gmail.com>
+Date:   Wed Dec 23 08:24:50 2020 -0300
 
-Para acessar a fotografia mais recente podemos usar o 
-comando mostrada na figura <<fig:27>>.
+    cria função main
 
-.Acessando a fotografia mais recente através da sua etiqueta
-[[fig:27, {counter:reffg}]]
-image::27-Acessando a fotografia mais recente através da sua etiqueta.png[]
+diff --git a/greet.py b/greet.py
+index 693eaec..55bb9ae 100644
+--- a/greet.py
++++ b/greet.py
+@@ -1 +1,4 @@
+-print("Hello!")
++def main():
++    print("Hello!")
++
++main()
+----
+
+.Mostrando fotografias usando etiquetas
+[[fig:24a, {counter:refcde}]]
+[source]
+----
+~/greetings$ git show v0.3
+tag v0.3
+Tagger: Francisco de Assis Boldt <fboldt@gmail.com>
+Date:   Wed Dec 23 09:11:24 2020 -0300
+
+Versão bem complexa para um programa Hello World
+
+commit bd618942ddf84ad2ceb062b7ef53c22b12a94dae (HEAD -> main, tag: v0.3)
+Author: Francisco de Assis Boldt <fboldt@gmail.com>
+Date:   Wed Dec 23 08:55:49 2020 -0300
+
+    verifica se é o programa principal
+
+diff --git a/greet.py b/greet.py
+index 55bb9ae..3062fd5 100644
+--- a/greet.py
++++ b/greet.py
+@@ -1,4 +1,5 @@
+ def main():
+     print("Hello!")
+ 
+-main()
++if __name__ == "__main__":
++    main()
+----
+
 
 É importante notar que *HEAD* não aponta para nenhum
-branch. No caso, não aponta para *master*, que é 
+branch. No caso, não aponta para *main*, que é 
 o único branch do repositório.
 Para continuar o tutorial execute o comando da
 figura <<fig:29>>, para que *HEAD* aponte para 
 *master*.
 
-.Acessando o branch master
-[[fig:29, {counter:reffg}]]
-image::29-Acessando o branch master.png[]
 
-Visto que este é um tutorial superficial, não será explicado o motivo deste procedimento.
+.git checkout main
+[[fig:27, {counter:refcde}]]
+[source]
+----
+~/greetings$ git checkout main
+Switched to branch 'main'
+Your branch is ahead of 'origin/main' by 2 commits.
+  (use "git push" to publish your local commits)
+----
