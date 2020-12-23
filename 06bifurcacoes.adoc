@@ -12,39 +12,90 @@ Para manter uma boa prática de Git vamos criar um novo
 ramo, como mostra a figura <<fig:41>>.
 
 .Criando um branch para uma versão em alemão
-[[fig:41, {counter:refnum}]]
-image::41-Criando um branch para uma versão em alemão.png[]
+[[fig:41, {counter:refcde}]]
+[source]
+----
+~/greetings$ git branch de
+~/greetings$ git log --oneline --all
+2aa634b (HEAD -> main, pt-br, de) versão brasileira parametrizada
+8828ea9 versão brasileira
+bd61894 (tag: v0.3) verifica se é o programa principal
+e0fe2b3 (tag: v0.2) cria função main
+933fc74 (origin/main, origin/HEAD) Update README.md
+6c8951a cria arquivo greet.py
+58da81b Initial commit
+~/greetings$ git checkout de
+Switched to branch 'de'
+----
 
 Para trabalhar no novo ramo, deve-se usar o comando
 `git checkout`. O comando `git log`
 mostra o ramo para o qual *HEAD* aponta.
-O resoltado pode ser visto na figura <<fig:42>>.
-
-.Acessando o branch onde será implementada a versão alemã do sistema
-[[fig:42, {counter:refnum}]]
-image::42-Acessando o branch onde será implementada a versão alemã do sistema.png[]
 
 Depois de fazer a alteração sugerida na figura <<fig:43>>,
 execute o comando `git commit` para deixar 
 gravada as alterações no repositório.
 
 .Alteração feita para versão alemã do sistema
-[[fig:43, {counter:refnum}]]
-image::43-Alteração feita para versão alemã do sistema.png[]
+[[fig:43, {counter:refcde}]]
+[source]
+----
+~/greetings$ cat greet.py 
+import sys
+def main():
+    if len(sys.argv)>1 and sys.argv[1]=='pt-br':
+        print("Olá!")
+    elif len(sys.argv)>1 and sys.argv[1]=='de':
+        print("Hallo!")
+    else:
+        print("Hello!")
+
+if __name__ == "__main__":
+    main()
+----
+
+.Funcionamento depois da versão alemã
+[[fig:43a, {counter:refcde}]]
+[source]
+----
+~/greetings$ python greet.py 
+Hello!
+~/greetings$ python greet.py pt-br
+Olá!
+~/greetings$ python greet.py de
+Hallo!
+----
 
 A fotografia do último _commit_ está na figura
 <<fig:44>>.
 
 .Fotografando a versão alemã do sistema
-[[fig:44, {counter:refnum}]]
-image::44-Fotografando a versão alemã do sistema.png[]
+[[fig:44, {counter:refcde}]]
+[source]
+----
+~/greetings$ git add greet.py 
+~/greetings$ git commit -m 'versão alemã parametrizada'
+[de 54a47d0] versão alemã parametrizada
+ 1 file changed, 2 insertions(+)
+----
 
 A figura <<fig:45>> mostra que o sistema possui seis 
 fotografias até o momento.
 
 .Listando as fotografias após a inclusão da versão alemã
-[[fig:45, {counter:refnum}]]
-image::45-Listando as fotografias após a inclusão da versão alemã.png[]
+[[fig:45, {counter:refcde}]]
+[source]
+----
+~/greetings$ git log --oneline --all
+54a47d0 (HEAD -> de) versão alemã parametrizada
+2aa634b (pt-br, main) versão brasileira parametrizada
+8828ea9 versão brasileira
+bd61894 (tag: v0.3) verifica se é o programa principal
+e0fe2b3 (tag: v0.2) cria função main
+933fc74 (origin/main, origin/HEAD) Update README.md
+6c8951a cria arquivo greet.py
+58da81b Initial commit
+----
 
 Na condição atual, no exemplo co capítulo anterior,
 o ramo foi mesclado com o ramo estável.
@@ -79,23 +130,37 @@ Em seguida, usa-se o comando `git branch` para
 criar um novo branch, como na figura <<fig:46>>.
 
 .Criando um branch para implementar uma versão italiana a partir da versão brasileira
-[[fig:46, {counter:refnum}]]
-image::46-Criando um branch para implementar uma versão italiana a partir da versão brasileira.png[]
-
-Note que *HEAD* continua apontando para
-*main*.
-Portanto é necessário mover *HEAD* para o novo
-ramo, como figura <<fig:47>>.
-
-.Acessando o branch da versão italiana
-[[fig:47, {counter:refnum}]]
-image::47-Acessando o branch da versão italiana.png[]
+[[fig:46, {counter:refcde}]]
+[source]
+----
+francisco@i7titanv:~/greetings$ git checkout main
+Switched to branch 'main'
+Your branch is ahead of 'origin/main' by 4 commits.
+  (use "git push" to publish your local commits)
+francisco@i7titanv:~/greetings$ git branch it
+francisco@i7titanv:~/greetings$ git checkout it
+Switched to branch 'it'
+----
 
 Implemente a alteração sugerida na figura <<fig:48>>.
 
 .Implementando a versão italiana
-[[fig:48, {counter:refnum}]]
-image::48-Implementando a versão italiana.png[]
+[[fig:48, {counter:refcde}]]
+[source]
+----
+~/greetings$ cat greet.py 
+import sys
+def main():
+    if len(sys.argv)>1 and sys.argv[1]=='pt-br':
+        print("Olá!")
+    elif len(sys.argv)>1 and sys.argv[1]=='it':
+        print("Ciao!")
+    else:
+        print("Hello!")
+
+if __name__ == "__main__":
+    main()
+----
 
 Adicione as alterações na área de stage e execute
 o comando `git commit` para fazer a nova fotografia.
@@ -105,9 +170,24 @@ o comando `git commit` a fotografia mais atual
 deverá estar parecida com a da figura <<fig:49>>.
 
 .Visualizando a fotografia da versão italiana
-[[fig:49, {counter:refnum}]]
-image::49-Visualizando a fotografia da versão italiana.png[]
-
+[[fig:49, {counter:refcde}]]
+[source]
+----
+francisco@i7titanv:~/greetings$ git add greet.py 
+francisco@i7titanv:~/greetings$ git commit -m 'versão italiana parametrizada'
+[it 46244be] versão italiana parametrizada
+ 1 file changed, 2 insertions(+)
+francisco@i7titanv:~/greetings$ git log --oneline --all
+46244be (HEAD -> it) versão italiana parametrizada
+54a47d0 (de) versão alemã parametrizada
+2aa634b (pt-br, main) versão brasileira parametrizada
+8828ea9 versão brasileira
+bd61894 (tag: v0.3) verifica se é o programa principal
+e0fe2b3 (tag: v0.2) cria função main
+933fc74 (origin/main, origin/HEAD) Update README.md
+6c8951a cria arquivo greet.py
+58da81b Initial commit
+----
 
 === Listando as fotografias em forma de grafo
 
@@ -117,8 +197,21 @@ como na figura <<fig:50>>.
 
 
 .Listando todas as fotografias do repositório em forma de grafo
-[[fig:50, {counter:refnum}]]
-image::50-Listando todas as fotografias do repositório em forma de grafo.png[]
+[[fig:50, {counter:refcde}]]
+[source]
+----
+~/greetings$ git log --oneline --all --graph
+* 46244be (HEAD -> it) versão italiana parametrizada
+| * 54a47d0 (de) versão alemã parametrizada
+|/  
+* 2aa634b (pt-br, main) versão brasileira parametrizada
+* 8828ea9 versão brasileira
+* bd61894 (tag: v0.3) verifica se é o programa principal
+* e0fe2b3 (tag: v0.2) cria função main
+* 933fc74 (origin/main, origin/HEAD) Update README.md
+* 6c8951a cria arquivo greet.py
+* 58da81b Initial commit
+----
 
 Note que acima do ramo *main* as linhas estão
 vermelhas, indicando um possível conflito.
@@ -138,17 +231,40 @@ Ocorreu uma mesclagem do tipo _fast-forward_
 sem nenhum problema.
 
 .Mesclando a versão italiana com a principal
-[[fig:51, {counter:refnum}]]
-image::51-Mesclando a versão italiana com a principal.png[]
+[[fig:51, {counter:refcde}]]
+[source]
+----
+francisco@i7titanv:~/greetings$ git checkout main
+Switched to branch 'main'
+Your branch is ahead of 'origin/main' by 4 commits.
+  (use "git push" to publish your local commits)
+francisco@i7titanv:~/greetings$ git merge it
+Updating 2aa634b..46244be
+Fast-forward
+ greet.py | 2 ++
+ 1 file changed, 2 insertions(+)
+----
 
 Na figura <<fig:52>> podemos ver que o grafo não foi 
 alterado, mas agora *HEAD* e *main*
 estão na fotografia mais recente.
 
 .Listando todas as fotografias do repositório em forma de grafo após mesclar a versão italiana
-[[fig:52, {counter:refnum}]]
-image::52-Listando todas as fotografias do repositório em forma de grafo após mesclar a versão italiana.png[]
-
+[[fig:52, {counter:refcde}]]
+[source]
+----
+~/greetings$ git log --oneline --all --graph
+* 46244be (HEAD -> main, it) versão italiana parametrizada
+| * 54a47d0 (de) versão alemã parametrizada
+|/  
+* 2aa634b (pt-br) versão brasileira parametrizada
+* 8828ea9 versão brasileira
+* bd61894 (tag: v0.3) verifica se é o programa principal
+* e0fe2b3 (tag: v0.2) cria função main
+* 933fc74 (origin/main, origin/HEAD) Update README.md
+* 6c8951a cria arquivo greet.py
+* 58da81b Initial commit
+----
 
 === Quando não corre tudo bem na mesclagem
 
@@ -156,52 +272,150 @@ Agora, veja figura <<fig:53>> o que ocorre quando tentamos
 mesclar o ramo alemão com o ramo princial.
 
 .Mesclando a versão alemã com a principal
-[[fig:53, {counter:refnum}]]
-image::53-Mesclando a versão alemã com a principal.png[]
+[[fig:53, {counter:refcde}]]
+[source]
+----
+~/greetings$ git merge de
+Auto-merging greet.py
+CONFLICT (content): Merge conflict in greet.py
+Automatic merge failed; fix conflicts and then commit the result.
+----
 
-O comando `git mergetool --tool-help`
-lista as disponíveis no seu sistema operacional
-(figura <<fig:54>>).
 
-.Buscando ajuda com mergetool
-[[fig:54, {counter:refnum}]]
-image::54-Buscando ajuda com mergetool.png[]
+.Como ficou o arquivo
+[[fig:54, {counter:refcde}]]
+[source]
+----
+~/greetings$ cat greet.py 
+import sys
+def main():
+    if len(sys.argv)>1 and sys.argv[1]=='pt-br':
+        print("Olá!")
+<<<<<<< HEAD
+    elif len(sys.argv)>1 and sys.argv[1]=='it':
+        print("Ciao!")
+=======
+    elif len(sys.argv)>1 and sys.argv[1]=='de':
+        print("Hallo!")
+>>>>>>> de
+    else:
+        print("Hello!")
 
+if __name__ == "__main__":
+    main()
+----
 Conforme a figura <<fig:54>>, a ferramenta `vimdiff`
 pode ser selecionada como na figura <<fig:55>>.
 
-.Escolhendo programa para usar com mergetool
-[[fig:55, {counter:refnum}]]
-image::55-Escolhendo programa para usar com mergetool.png[]
+.status
+[[fig:55, {counter:refcde}]]
+[source]
+----
+~/greetings$ git status
+On branch main
+Your branch is ahead of 'origin/main' by 5 commits.
+  (use "git push" to publish your local commits)
 
-A figura <<fig:56>> mostra como deve estar o
-arquivo `greet.py` depois de resolvidos os conflitos.
-A solução apresentada é apenas uma sugestão da
-resolução do conflito que ocorreu.
-Outras soluções poderiam ter resolvido o conflito 
-também.
+You have unmerged paths.
+  (fix conflicts and run "git commit")
+  (use "git merge --abort" to abort the merge)
 
+Unmerged paths:
+  (use "git add <file>..." to mark resolution)
+	both modified:   greet.py
 
-.Programa após a resolução de conflitos
-[[fig:56, {counter:refnum}]]
-image::56-Programa após a resolução de conflitos.png[]
+no changes added to commit (use "git add" and/or "git commit -a")
+----
 
-A utilização do `vimdiff` excede o escopo deste 
-tutorial, mas você pode ver como é a apresentação dessa 
-ferramenta na figura <<fig:57>>.
+.Como ficou o arquivo
+[[fig:56, {counter:refcde}]]
+[source]
+----
+~/greetings$ cat greet.py 
+import sys
+def main():
+    if len(sys.argv)>1 and sys.argv[1]=='pt-br':
+        print("Olá!")
+    elif len(sys.argv)>1 and sys.argv[1]=='it':
+        print("Ciao!")
+    elif len(sys.argv)>1 and sys.argv[1]=='de':
+        print("Hallo!")
+    else:
+        print("Hello!")
 
-.vimdiff
-[[fig:57, {counter:refnum}]]
-image::57-vimdiff.png[]
+if __name__ == "__main__":
+    main()
+----
 
-Depois de usar uma ferremanta de solução de conflitos
-para solucioná-los, o comando `git commit
-deve ser executado para fotografar a forma como
-os conflitos foram solucionados.
+.Resultado
+[[fig:57, {counter:refcde}]]
+[source]
+----
+francisco@i7titanv:~/greetings$ git add greet.py 
+francisco@i7titanv:~/greetings$ git commit -m 'merge com versão alemã'
+[main 4377f73] merge com versão alemã
+francisco@i7titanv:~/greetings$ git log --oneline --all --graph
+*   4377f73 (HEAD -> main) merge com versão alemã
+|\  
+| * 54a47d0 (de) versão alemã parametrizada
+* | 46244be (it) versão italiana parametrizada
+|/  
+* 2aa634b (pt-br) versão brasileira parametrizada
+* 8828ea9 versão brasileira
+* bd61894 (tag: v0.3) verifica se é o programa principal
+* e0fe2b3 (tag: v0.2) cria função main
+* 933fc74 (origin/main, origin/HEAD) Update README.md
+* 6c8951a cria arquivo greet.py
+* 58da81b Initial commit
+----
 
-A figura <<fig:58>> mostra como os ramos separados 
-se juntam depois da solução de conflitos.
+.Programa
+[[fig:58, {counter:refcde}]]
+[source]
+----
+~/greetings$ python greet.py 
+Hello!
+~/greetings$ python greet.py pt-br
+Olá!
+~/greetings$ python greet.py it
+Ciao!
+~/greetings$ python greet.py de
+Hallo!
+----
 
-.Listando todas as fotografias do repositório em forma de grafo após mesclar a versão alemã
-[[fig:58, {counter:refnum}]]
-image::58-Listando todas as fotografias do repositório em forma de grafo após mesclar a versão alemã.png[]
+.Push
+[[fig:59, {counter:refcde}]]
+[source]
+----
+~/greetings$ git push
+Username for 'https://github.com': fboldt
+Password for 'https://fboldt@github.com': 
+Enumerating objects: 23, done.
+Counting objects: 100% (23/23), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (20/20), done.
+Writing objects: 100% (21/21), 2.14 KiB | 2.14 MiB/s, done.
+Total 21 (delta 4), reused 0 (delta 0)
+remote: Resolving deltas: 100% (4/4), done.
+To https://github.com/fboldt/greetings.git
+   933fc74..4377f73  main -> main
+----
+
+.Lista final
+[[fig60, {counter:refcde}]]
+[source]
+----
+~/greetings$ git log --oneline --all --graph
+*   4377f73 (HEAD -> main, origin/main, origin/HEAD) merge com versão alemã
+|\  
+| * 54a47d0 (de) versão alemã parametrizada
+* | 46244be (it) versão italiana parametrizada
+|/  
+* 2aa634b (pt-br) versão brasileira parametrizada
+* 8828ea9 versão brasileira
+* bd61894 (tag: v0.3) verifica se é o programa principal
+* e0fe2b3 (tag: v0.2) cria função main
+* 933fc74 Update README.md
+* 6c8951a cria arquivo greet.py
+* 58da81b Initial commit
+----
