@@ -464,7 +464,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="#remoto">3. Repositório remoto no GitHub</a>
 <ul class="sectlevel2">
-<li><a href="#_fazendo_uma_cópia_do_repositório_no_computador_local">3.1. Fazendo uma cópia do repositório no computador local</a></li>
+<li><a href="#_fazendo_uma_cópia_local_do_repositório">3.1. Fazendo uma cópia local do repositório</a></li>
 <li><a href="#_alterando_a_cópia_local">3.2. Alterando a cópia local</a></li>
 <li><a href="#_atualizando_a_cópia_remota">3.3. Atualizando a cópia remota</a></li>
 <li><a href="#_atualizando_o_repositório_local">3.4. Atualizando o repositório local</a></li>
@@ -675,11 +675,11 @@ Initialized empty Git repository in home/fulano/greetings/.git/
 </ol>
 </div>
 <div class="paragraph">
-<p>A árvore com todos os arquivos
+<p>A lista com todos os arquivos
 e subdiretórios criado pelo comando <code>git init</code> pode ser
 vista na lista de comandos <a href="#fig:02">2</a>
 (algumas linhas de resposta foram omitidas).
-O comando <code>tree .git</code> foi usado para exibir essa árvore.
+O comando <code>ls .git</code> foi usado para exibir essas informações.
 O diretório <code>.git</code> contém metadados.
 Ou seja, é um diretório com dados para o Git
 controlar os dados do repositórios.
@@ -691,28 +691,10 @@ Suas alterações devem ser feitas através do comando <code>git</code>
 acompanhado dos parâmetros correspondentes à ação desejada.</p>
 </div>
 <div id="fig:02" class="listingblock">
-<div class="title">Lista de comandos 2. Árvore de diretórios do repositório.</div>
+<div class="title">Lista de comandos 2. Listagem de arquivos e diretórios do repositório.</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">~/greetings$ tree .git
-.git
-├── branches
-├── config
-├── description
-├── HEAD
-├── hooks
-│   ├── applypatch-msg.sample
-...
-│   └── update.sample
-├── info
-│   └── exclude
-├── objects
-│   ├── info
-│   └── pack
-└── refs
-    ├── heads
-    └── tags
-
-9 directories, 16 files</code></pre>
+<pre class="highlightjs highlight"><code class="language-none hljs">~/greetings$ ls .git/
+HEAD  branches  config  description  hooks  index  info  logs  objects  packed-refs  refs</code></pre>
 </div>
 </div>
 <div class="sect2">
@@ -943,13 +925,13 @@ index 0000000..11b15b1
 <p>O comando <code>git show</code>.</p>
 </li>
 <li>
-<p>Logo depois da palavra commit, está o <em>hash</em> da fotografia.
+<p>Logo depois da palavra commit está o <em>hash</em> da fotografia.
 O <em>hash</em> é a assinatura, o identificador, da fotografia.
 Podemos usar esse identificador para acessar a fotografia
 posteriormente. Na mesma linha temos a palavra <strong>master</strong>,
 indicando que o ramo do projeto chamado <strong>master</strong> está
-apontando para esta fotografia no momento.
-Ainda na mesma linha, em azul, temos a palavra <strong>HEAD</strong>
+atualizado de acordo com esta fotografia.
+Ainda na mesma linha temos a palavra <strong>HEAD</strong>
 seguida uma seta (-&gt;).
 Esta seta indica que o estado do sistema que estamos vendo no
 momento está apontando para o ramos master.
@@ -964,6 +946,20 @@ Isso ficará mais claro a seguir.</p>
 </li>
 <li>
 <p>O comentário inserido pelo comando <code>git commit</code>.</p>
+</li>
+<li>
+<p>O arquivo <code>/dev/null</code> indica que o arquivo ainda não
+existia em outra fotografia anterior. A primeira fotografia que
+registra sua criação é esta. Os três sinais de menos (-)
+indicam que as linhas seguintes iniciadas por <code>-</code> foram
+removidas do arquivo. Como o arquivo ainda não existia, nada
+foi removido.</p>
+</li>
+<li>
+<p>O nome do arquivo que foi alterado. As linhas que começam com o sinal <code>+</code> são as que foram inseridas no arquivo.</p>
+</li>
+<li>
+<p>Apenas uma linha foi inserida nesse arquivo recém criado.</p>
 </li>
 </ol>
 </div>
@@ -1090,7 +1086,7 @@ Agora é só clicar no botão "Create a repository"
 <div class="title">Figura 5. Marcar a opção "Add a README file".</div>
 </div>
 <div class="sect2">
-<h3 id="_fazendo_uma_cópia_do_repositório_no_computador_local">3.1. Fazendo uma cópia do repositório no computador local</h3>
+<h3 id="_fazendo_uma_cópia_local_do_repositório">3.1. Fazendo uma cópia local do repositório</h3>
 <div class="paragraph">
 <p>Agora que o repositório está criado, é necessário
 fazer um cópia local dele para poder alterá-lo.
@@ -2731,7 +2727,7 @@ sofre alterações em ramos diferentes.</p>
 <div id="footer">
 <div id="footer-text">
 Version 0.1 2020-09<br>
-Last updated 2020-12-23 19:40:39 UTC
+Last updated 2020-12-24 09:40:36 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">
