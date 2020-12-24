@@ -55,7 +55,7 @@ Agora é só clicar no botão "Create a repository"
 [[gh08, {counter:reffg}]]
 image::gh08-addreadme.png[]
 
-=== Fazendo uma cópia do repositório no computador local
+=== Fazendo uma cópia local do repositório
 
 Agora que o repositório está criado, é necessário
 fazer um cópia local dele para poder alterá-lo.

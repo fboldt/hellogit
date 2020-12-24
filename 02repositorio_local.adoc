@@ -31,11 +31,11 @@ Initialized empty Git repository in home/fulano/greetings/.git/
 <5> Lista arquivos ocultos incluindo o diretório .git.
 
 
-A árvore com todos os arquivos
+A lista com todos os arquivos
 e subdiretórios criado pelo comando `git init` pode ser
 vista na lista de comandos <<fig:02>> 
 (algumas linhas de resposta foram omitidas).
-O comando `tree .git` foi usado para exibir essa árvore. 
+O comando `ls .git` foi usado para exibir essas informações. 
 O diretório `.git` contém metadados. 
 Ou seja, é um diretório com dados para o Git
 controlar os dados do repositórios.
@@ -46,30 +46,12 @@ O subdiretório `.git` não deve ser alterado diretamente.
 Suas alterações devem ser feitas através do comando `git` 
 acompanhado dos parâmetros correspondentes à ação desejada.
 
-.Árvore de diretórios do repositório.
+.Listagem de arquivos e diretórios do repositório.
 [[fig:02, {counter:refcde}]]
 [source]
 ----
-~/greetings$ tree .git
-.git
-├── branches
-├── config
-├── description
-├── HEAD
-├── hooks
-│   ├── applypatch-msg.sample
-...
-│   └── update.sample
-├── info
-│   └── exclude
-├── objects
-│   ├── info
-│   └── pack
-└── refs
-    ├── heads
-    └── tags
-
-9 directories, 16 files
+~/greetings$ ls .git/
+HEAD  branches  config  description  hooks  index  info  logs  objects  packed-refs  refs
 ----
 
 === O comando `git status`
@@ -265,13 +247,13 @@ index 0000000..11b15b1
 +print("hello") //<8>
 ----
 <1> O comando `git show`.
-<2> Logo depois da palavra commit, está o _hash_ da fotografia.
+<2> Logo depois da palavra commit está o _hash_ da fotografia.
 O _hash_ é a assinatura, o identificador, da fotografia.
 Podemos usar esse identificador para acessar a fotografia
 posteriormente. Na mesma linha temos a palavra *master*,
 indicando que o ramo do projeto chamado *master* está
-apontando para esta fotografia no momento.
-Ainda na mesma linha, em azul, temos a palavra *HEAD* 
+atualizado de acordo com esta fotografia.
+Ainda na mesma linha temos a palavra *HEAD* 
 seguida uma seta (\->).
 Esta seta indica que o estado do sistema que estamos vendo no
 momento está apontando para o ramos master.
@@ -280,6 +262,14 @@ Isso ficará mais claro a seguir.
 (dados inseridos pelos comandos `git config <etc>`).
 <4> Quando a fotografia foi feita.
 <5> O comentário inserido pelo comando `git commit`.
+<6> O arquivo `/dev/null` indica que o arquivo ainda não 
+existia em outra fotografia anterior. A primeira fotografia que 
+registra sua criação é esta. Os três sinais de menos (-) 
+indicam que as linhas seguintes iniciadas por `-` foram 
+removidas do arquivo. Como o arquivo ainda não existia, nada 
+foi removido.
+<7> O nome do arquivo que foi alterado. As linhas que começam com o sinal `+` são as que foram inseridas no arquivo. 
+<8> Apenas uma linha foi inserida nesse arquivo recém criado.
 
 === Como desfazer alterações?
 
