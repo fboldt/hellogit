@@ -54,8 +54,8 @@ no changes added to commit (use "git add" and/or "git commit -a")
 [[fig:11, {counter:refcde}]]
 [source]
 ----
-francisco@i7titanv:~/greetings$ git add greet.py 
-francisco@i7titanv:~/greetings$ git status
+~/greetings$ git add greet.py 
+~/greetings$ git status
 On branch main
 Your branch is up to date with 'origin/main'.
 
@@ -158,8 +158,8 @@ no changes added to commit (use "git add" and/or "git commit -a")
 [[fig:14-b, {counter:refcde}]]
 [source]
 ----
-francisco@i7titanv:~/greetings$ git add greet.py 
-francisco@i7titanv:~/greetings$ git status 
+~/greetings$ git add greet.py 
+~/greetings$ git status 
 On branch main
 Your branch is ahead of 'origin/main' by 1 commit.
   (use "git push" to publish your local commits)
@@ -294,8 +294,13 @@ index 0000000..693eaec
 O comando `git checkout` permite colocar o repositório
 em um estado gravado em alguma fotografia. 
 A figura <<fig:18>> mostra como fazer o repositório
-voltar para o estado em que a função `main
-foi criada.
+voltar para o estado em que a função main do programa
+greet foi criada. Algumas linhas do resultado foram
+substituídas por "...". Então, mais informações 
+aparecerão quando você digitar esse comando.
+Ao seguir esses passos, lembre-se de substituir 
+o hash 'e0fe2b3' pelo has que aparece na sua
+lista de logs. Certamente terá um valor diferente.
 
 .Voltando o sistema para o estado da fotografia anterior
 [[fig:18, {counter:refcde}]]
@@ -307,18 +312,7 @@ Note: switching to 'e0fe2b3'.
 You are in 'detached HEAD' state. You can look around, make experimental
 changes and commit them, and you can discard any commits you make in this
 state without impacting any branches by switching back to a branch.
-
-If you want to create a new branch to retain commits you create, you may
-do so (now or later) by using -c with the switch command. Example:
-
-  git switch -c <new-branch-name>
-
-Or undo this operation with:
-
-  git switch -
-
-Turn off this advice by setting config variable advice.detachedHead to false
-
+...
 HEAD is now at e0fe2b3 cria função main
 ----
 
@@ -445,18 +439,7 @@ Note: switching to 'v0.2'.
 You are in 'detached HEAD' state. You can look around, make experimental
 changes and commit them, and you can discard any commits you make in this
 state without impacting any branches by switching back to a branch.
-
-If you want to create a new branch to retain commits you create, you may
-do so (now or later) by using -c with the switch command. Example:
-
-  git switch -c <new-branch-name>
-
-Or undo this operation with:
-
-  git switch -
-
-Turn off this advice by setting config variable advice.detachedHead to false
-
+...
 HEAD is now at e0fe2b3 cria função main
 ----
 
@@ -518,7 +501,7 @@ index 693eaec..55bb9ae 100644
 +main()
 ----
 
-.Mostrando fotografias usando etiquetas
+.Mostrando fotografias usando etiquetas (algumas linhas foram omitidas)
 [[fig:24a, {counter:refcde}]]
 [source]
 ----
@@ -530,22 +513,7 @@ Date:   Wed Dec 23 09:11:24 2020 -0300
 Versão bem complexa para um programa Hello World
 
 commit bd618942ddf84ad2ceb062b7ef53c22b12a94dae (HEAD -> main, tag: v0.3)
-Author: Francisco de Assis Boldt <fboldt@gmail.com>
-Date:   Wed Dec 23 08:55:49 2020 -0300
-
-    verifica se é o programa principal
-
-diff --git a/greet.py b/greet.py
-index 55bb9ae..3062fd5 100644
---- a/greet.py
-+++ b/greet.py
-@@ -1,4 +1,5 @@
- def main():
-     print("Hello!")
- 
--main()
-+if __name__ == "__main__":
-+    main()
+...
 ----
 
 

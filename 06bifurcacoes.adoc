@@ -133,12 +133,12 @@ criar um novo branch, como na figura <<fig:46>>.
 [[fig:46, {counter:refcde}]]
 [source]
 ----
-francisco@i7titanv:~/greetings$ git checkout main
+~/greetings$ git checkout main
 Switched to branch 'main'
 Your branch is ahead of 'origin/main' by 4 commits.
   (use "git push" to publish your local commits)
-francisco@i7titanv:~/greetings$ git branch it
-francisco@i7titanv:~/greetings$ git checkout it
+~/greetings$ git branch it
+~/greetings$ git checkout it
 Switched to branch 'it'
 ----
 
@@ -173,11 +173,11 @@ deverá estar parecida com a da figura <<fig:49>>.
 [[fig:49, {counter:refcde}]]
 [source]
 ----
-francisco@i7titanv:~/greetings$ git add greet.py 
-francisco@i7titanv:~/greetings$ git commit -m 'versão italiana parametrizada'
+~/greetings$ git add greet.py 
+~/greetings$ git commit -m 'versão italiana parametrizada'
 [it 46244be] versão italiana parametrizada
  1 file changed, 2 insertions(+)
-francisco@i7titanv:~/greetings$ git log --oneline --all
+~/greetings$ git log --oneline --all
 46244be (HEAD -> it) versão italiana parametrizada
 54a47d0 (de) versão alemã parametrizada
 2aa634b (pt-br, main) versão brasileira parametrizada
@@ -234,11 +234,11 @@ sem nenhum problema.
 [[fig:51, {counter:refcde}]]
 [source]
 ----
-francisco@i7titanv:~/greetings$ git checkout main
+~/greetings$ git checkout main
 Switched to branch 'main'
 Your branch is ahead of 'origin/main' by 4 commits.
   (use "git push" to publish your local commits)
-francisco@i7titanv:~/greetings$ git merge it
+~/greetings$ git merge it
 Updating 2aa634b..46244be
 Fast-forward
  greet.py | 2 ++
@@ -351,10 +351,10 @@ if __name__ == "__main__":
 [[fig:57, {counter:refcde}]]
 [source]
 ----
-francisco@i7titanv:~/greetings$ git add greet.py 
-francisco@i7titanv:~/greetings$ git commit -m 'merge com versão alemã'
+~/greetings$ git add greet.py 
+~/greetings$ git commit -m 'merge com versão alemã'
 [main 4377f73] merge com versão alemã
-francisco@i7titanv:~/greetings$ git log --oneline --all --graph
+~/greetings$ git log --oneline --all --graph
 *   4377f73 (HEAD -> main) merge com versão alemã
 |\  
 | * 54a47d0 (de) versão alemã parametrizada
