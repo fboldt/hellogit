@@ -32,8 +32,8 @@ Agora a fotografia mais recente tem dois ramos (na cor verde),
 [[fig:30, {counter:refcde}]]
 [source]
 ----
-francisco@i7titanv:~/greetings$ git branch pt-br
-francisco@i7titanv:~/greetings$ git log --oneline --all
+~/greetings$ git branch pt-br
+~/greetings$ git log --oneline --all
 bd61894 (HEAD -> main, tag: v0.3, pt-br) verifica se é o programa principal
 e0fe2b3 (tag: v0.2) cria função main
 933fc74 (origin/main, origin/HEAD) Update README.md
@@ -49,15 +49,15 @@ Para fazer um alteração no ramo *pt-br*, deve-se mudar
 [[fig:31, {counter:frecde}]]
 [source]
 ----
-francisco@i7titanv:~/greetings$ git checkout pt-br 
+~/greetings$ git checkout pt-br 
 Switched to branch 'pt-br'
-francisco@i7titanv:~/greetings$ git log --oneline --all
+~/greetings$ git log --oneline --all
 bd61894 (HEAD -> pt-br, tag: v0.3, main) verifica se é o programa principal
 e0fe2b3 (tag: v0.2) cria função main
 933fc74 (origin/main, origin/HEAD) Update README.md
 6c8951a cria arquivo greet.py
 58da81b Initial commit
-francisco@i7titanv:~/greet
+~/greet
 ----
 
 Quando só existia o ramo *main*, cada comando

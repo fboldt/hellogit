@@ -1420,8 +1420,8 @@ no changes added to commit (use "git add" and/or "git commit -a")</code></pre>
 <div id="fig:11" class="listingblock">
 <div class="title">Lista de comandos 22. Status com arquivo modificado na da area de stage</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">francisco@i7titanv:~/greetings$ git add greet.py
-francisco@i7titanv:~/greetings$ git status
+<pre class="highlightjs highlight"><code class="language-none hljs">~/greetings$ git add greet.py
+~/greetings$ git status
 On branch main
 Your branch is up to date with 'origin/main'.
 
@@ -1524,8 +1524,8 @@ no changes added to commit (use "git add" and/or "git commit -a")</code></pre>
 <div id="fig:14-b" class="listingblock">
 <div class="title">Lista de comandos 26. git add</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">francisco@i7titanv:~/greetings$ git add greet.py
-francisco@i7titanv:~/greetings$ git status
+<pre class="highlightjs highlight"><code class="language-none hljs">~/greetings$ git add greet.py
+~/greetings$ git status
 On branch main
 Your branch is ahead of 'origin/main' by 1 commit.
   (use "git push" to publish your local commits)
@@ -1661,8 +1661,13 @@ index 0000000..693eaec
 <p>O comando <code>git checkout</code> permite colocar o repositório
 em um estado gravado em alguma fotografia.
 A figura <a href="#fig:18">31</a> mostra como fazer o repositório
-voltar para o estado em que a função `main
-foi criada.</p>
+voltar para o estado em que a função main do programa
+greet foi criada. Algumas linhas do resultado foram
+substituídas por "&#8230;&#8203;". Então, mais informações
+aparecerão quando você digitar esse comando.
+Ao seguir esses passos, lembre-se de substituir
+o hash 'e0fe2b3' pelo has que aparece na sua
+lista de logs. Certamente terá um valor diferente.</p>
 </div>
 <div id="fig:18" class="listingblock">
 <div class="title">Lista de comandos 32. Voltando o sistema para o estado da fotografia anterior</div>
@@ -1673,18 +1678,7 @@ Note: switching to 'e0fe2b3'.
 You are in 'detached HEAD' state. You can look around, make experimental
 changes and commit them, and you can discard any commits you make in this
 state without impacting any branches by switching back to a branch.
-
-If you want to create a new branch to retain commits you create, you may
-do so (now or later) by using -c with the switch command. Example:
-
-  git switch -c &lt;new-branch-name&gt;
-
-Or undo this operation with:
-
-  git switch -
-
-Turn off this advice by setting config variable advice.detachedHead to false
-
+...
 HEAD is now at e0fe2b3 cria função main</code></pre>
 </div>
 </div>
@@ -1812,18 +1806,7 @@ Note: switching to 'v0.2'.
 You are in 'detached HEAD' state. You can look around, make experimental
 changes and commit them, and you can discard any commits you make in this
 state without impacting any branches by switching back to a branch.
-
-If you want to create a new branch to retain commits you create, you may
-do so (now or later) by using -c with the switch command. Example:
-
-  git switch -c &lt;new-branch-name&gt;
-
-Or undo this operation with:
-
-  git switch -
-
-Turn off this advice by setting config variable advice.detachedHead to false
-
+...
 HEAD is now at e0fe2b3 cria função main</code></pre>
 </div>
 </div>
@@ -1885,7 +1868,7 @@ index 693eaec..55bb9ae 100644
 </div>
 </div>
 <div id="fig:24a" class="listingblock">
-<div class="title">Lista de comandos 44. Mostrando fotografias usando etiquetas</div>
+<div class="title">Lista de comandos 44. Mostrando fotografias usando etiquetas (algumas linhas foram omitidas)</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-none hljs">~/greetings$ git show v0.3
 tag v0.3
@@ -1895,22 +1878,7 @@ Date:   Wed Dec 23 09:11:24 2020 -0300
 Versão bem complexa para um programa Hello World
 
 commit bd618942ddf84ad2ceb062b7ef53c22b12a94dae (HEAD -&gt; main, tag: v0.3)
-Author: Francisco de Assis Boldt &lt;fboldt@gmail.com&gt;
-Date:   Wed Dec 23 08:55:49 2020 -0300
-
-    verifica se é o programa principal
-
-diff --git a/greet.py b/greet.py
-index 55bb9ae..3062fd5 100644
---- a/greet.py
-+++ b/greet.py
-@@ -1,4 +1,5 @@
- def main():
-     print("Hello!")
-
--main()
-+if __name__ == "__main__":
-+    main()</code></pre>
+...</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1968,8 +1936,8 @@ Agora a fotografia mais recente tem dois ramos (na cor verde),
 <div id="fig:30" class="listingblock">
 <div class="title">Lista de comandos 46. Criando um novo branch</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">francisco@i7titanv:~/greetings$ git branch pt-br
-francisco@i7titanv:~/greetings$ git log --oneline --all
+<pre class="highlightjs highlight"><code class="language-none hljs">~/greetings$ git branch pt-br
+~/greetings$ git log --oneline --all
 bd61894 (HEAD -&gt; main, tag: v0.3, pt-br) verifica se é o programa principal
 e0fe2b3 (tag: v0.2) cria função main
 933fc74 (origin/main, origin/HEAD) Update README.md
@@ -1985,15 +1953,15 @@ e0fe2b3 (tag: v0.2) cria função main
 <div id="fig:31" class="listingblock">
 <div class="title">Lista de comandos 47. Acessando um branch</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">francisco@i7titanv:~/greetings$ git checkout pt-br
+<pre class="highlightjs highlight"><code class="language-none hljs">~/greetings$ git checkout pt-br
 Switched to branch 'pt-br'
-francisco@i7titanv:~/greetings$ git log --oneline --all
+~/greetings$ git log --oneline --all
 bd61894 (HEAD -&gt; pt-br, tag: v0.3, main) verifica se é o programa principal
 e0fe2b3 (tag: v0.2) cria função main
 933fc74 (origin/main, origin/HEAD) Update README.md
 6c8951a cria arquivo greet.py
 58da81b Initial commit
-francisco@i7titanv:~/greet</code></pre>
+~/greet</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2404,12 +2372,12 @@ criar um novo branch, como na figura <a href="#fig:46">62</a>.</p>
 <div id="fig:46" class="listingblock">
 <div class="title">Lista de comandos 65. Criando um branch para implementar uma versão italiana a partir da versão brasileira</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">francisco@i7titanv:~/greetings$ git checkout main
+<pre class="highlightjs highlight"><code class="language-none hljs">~/greetings$ git checkout main
 Switched to branch 'main'
 Your branch is ahead of 'origin/main' by 4 commits.
   (use "git push" to publish your local commits)
-francisco@i7titanv:~/greetings$ git branch it
-francisco@i7titanv:~/greetings$ git checkout it
+~/greetings$ git branch it
+~/greetings$ git checkout it
 Switched to branch 'it'</code></pre>
 </div>
 </div>
@@ -2445,11 +2413,11 @@ deverá estar parecida com a da figura <a href="#fig:49">64</a>.</p>
 <div id="fig:49" class="listingblock">
 <div class="title">Lista de comandos 67. Visualizando a fotografia da versão italiana</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">francisco@i7titanv:~/greetings$ git add greet.py
-francisco@i7titanv:~/greetings$ git commit -m 'versão italiana parametrizada'
+<pre class="highlightjs highlight"><code class="language-none hljs">~/greetings$ git add greet.py
+~/greetings$ git commit -m 'versão italiana parametrizada'
 [it 46244be] versão italiana parametrizada
  1 file changed, 2 insertions(+)
-francisco@i7titanv:~/greetings$ git log --oneline --all
+~/greetings$ git log --oneline --all
 46244be (HEAD -&gt; it) versão italiana parametrizada
 54a47d0 (de) versão alemã parametrizada
 2aa634b (pt-br, main) versão brasileira parametrizada
@@ -2507,11 +2475,11 @@ sem nenhum problema.</p>
 <div id="fig:51" class="listingblock">
 <div class="title">Lista de comandos 69. Mesclando a versão italiana com a principal</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">francisco@i7titanv:~/greetings$ git checkout main
+<pre class="highlightjs highlight"><code class="language-none hljs">~/greetings$ git checkout main
 Switched to branch 'main'
 Your branch is ahead of 'origin/main' by 4 commits.
   (use "git push" to publish your local commits)
-francisco@i7titanv:~/greetings$ git merge it
+~/greetings$ git merge it
 Updating 2aa634b..46244be
 Fast-forward
  greet.py | 2 ++
@@ -2622,10 +2590,10 @@ if __name__ == "__main__":
 <div id="fig:57" class="listingblock">
 <div class="title">Lista de comandos 75. Resultado</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">francisco@i7titanv:~/greetings$ git add greet.py
-francisco@i7titanv:~/greetings$ git commit -m 'merge com versão alemã'
+<pre class="highlightjs highlight"><code class="language-none hljs">~/greetings$ git add greet.py
+~/greetings$ git commit -m 'merge com versão alemã'
 [main 4377f73] merge com versão alemã
-francisco@i7titanv:~/greetings$ git log --oneline --all --graph
+~/greetings$ git log --oneline --all --graph
 *   4377f73 (HEAD -&gt; main) merge com versão alemã
 |\
 | * 54a47d0 (de) versão alemã parametrizada
@@ -2727,7 +2695,7 @@ sofre alterações em ramos diferentes.</p>
 <div id="footer">
 <div id="footer-text">
 Version 0.1 2020-09<br>
-Last updated 2020-12-24 09:40:36 UTC
+Last updated 2020-12-24 10:03:45 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">
