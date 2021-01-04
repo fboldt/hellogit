@@ -19,11 +19,10 @@ def main():
 main()
 ----
 
-Depois da alteração do arquivo, o comando `git status
+Depois da alteração do arquivo, o comando `git status`
 apresenta um retorno diferente, como mostra a figura 
 <<fig:10>>.
-Novamente o arquivo `greet.py` está em vermelho
-por não estar na área de stage,
+Novamente o arquivo `greet.py` não esta na área de stage,
 mas agora esse arquivo está sendo monitorado. 
 Então temos duas opções.
 Podemos descartar as alterações com o comando 
@@ -316,7 +315,7 @@ state without impacting any branches by switching back to a branch.
 HEAD is now at e0fe2b3 cria função main
 ----
 
-Veja na figura <<fig:20>> que o programa `greet.py
+Veja na figura <<fig:20>> que o programa `greet.py`
 voltou ao seu estado anterior.
 
 .Estados dos arquivos do sistema depois de voltar uma fotografia
@@ -348,7 +347,7 @@ e0fe2b3 (HEAD) cria função main
 
 Você pode estar se perguntando "Git é então um complexo ctrl+z?". Claro que não!
 A fotografia mais recente continua sendo monitorada e 
-pode ser visualizada com a opção `--all
+pode ser visualizada com a opção `--all`
 no comando `git log`, como mostra a 
 figura <<fig:21>>.
 
