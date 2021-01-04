@@ -1,6 +1,6 @@
 = Hello Git: Um tutorial para usar o Git imediatamente
 Francisco de Assis Boldt <boldt.pro.br>
-v0.1 2020-09
+v0.1.1 2021-01
 :doctype: book
 :toc:
 :toc-title: Sumário
