@@ -4,7 +4,7 @@
 
 Este livro é um tutorial que
 apresenta uma forma muito simples de se usar o Git.
-Como exemplo, serão feitas algumas versões do clássico programa "hello world". 
+Como exemplo, são feitas algumas versões do clássico programa "hello world". 
 Essas versões serão gerenciadas pelo sistema 
 controlador de versões Git.
 A intenção é mostrar uma forma de se começar a usar o Git  
@@ -17,7 +17,8 @@ Mesmo assim, é bom deixar claro que Git é um sistema de
 gerenciamento de versões de software.
 Porém, apesar de ter sido idealizado para o desenvolvimento
 de programas, também pode ser usado para outras finalidades
-como escrita compartilhada de textos ou edição de imagens.
+como escrita compartilhada de textos ou qualquer outro tipo de arquivo,
+até mesmo arquivos de imagens.
 O Git mantém um histórico das alterações de um repositório 
 permitindo recuperar informações, dividir as tarefas em ramos
 e mesclar alterações que podem ser feitas independentemente.
