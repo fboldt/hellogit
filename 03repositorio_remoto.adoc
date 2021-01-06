@@ -3,18 +3,17 @@
 [#remoto]
 == Repositório remoto no GitHub
 
-
 Para criar uma conta no GitHub basta acessar o site
 github.com e clicar em um botão escrito *Sign up*,
-ou colocar o endereço github.com/join direto na
+ou colocar o endereço `github.com/join` direto na
 barra de endereços de um navegador web.
 É necessário preencher os campos com 
 
 . um nome de usuário (_Username_) que ainda não exista;
 . um endereço de email válido;
 . uma senha com pelo menos 15 caracteres alphanuméricos 
-ou uma senha com pelo menos 8 caracteres qu contenha pelo menos 
-um  (1) número e uma (1) letra minúscula.
+ou uma senha com pelo menos 8 caracteres que contenha 
+pelo menos um (1) número e uma (1) letra minúscula.
 
 .Criar conta no GitHub.
 [[gh02, {counter:reffg}]]
@@ -73,8 +72,8 @@ excluir ou renomear o repositório anterior.
 ====
 
 Depois de copiado o link, usasse o comando `git clone <link>`
-para fazer o download do repositório no compputador local,
-como mostra a lsta de comandos <<gitclone>>.
+para fazer o download do repositório no computador local,
+como mostra a lista de comandos <<gitclone>>.
 
 .Clonar o repositório em seu computador local.
 [[gitclone, {counter:refcde}]]
@@ -88,10 +87,12 @@ remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
 Unpacking objects: 100% (3/3), 619 bytes | 619.00 KiB/s, done.
 ----
 
+=== O comando `git log`
+
 Agora, já é possível acessar o diretório criado e
 verificar que já existe fotografia (_commit_) do repositório.
 Esta foto foi "tirada" quando inserimos o arquivo "README.md",
-marcando a opção "Add a READM file" ao criar o repositório
+marcando a opção "Add a README file" ao criar o repositório
 no GitHub.
 
 .Lista de fotografias do repositório clonado.
@@ -110,12 +111,14 @@ Date:   Tue Dec 22 08:29:25 2020 -0300
 <2> Lista fotografias do repositório.
 <3> Note que o ramo (_branch_) criado pelo GitHub se chama 
 `main` e não `master` como mostrado no capítulo anterior.
-
-Para continuar, crie (ou copie) o arquivo `greet.py`, 
-de forma que ele tenha o conteúdo mostrado na listagem
-<<recriagreet>>.
+É apenas uma preferência do GitHub. 
+Mas esse nome pode ser alterado se você quiser.
 
 === Alterando a cópia local
+
+Para continuar, crie (ou copie) o arquivo `greet.py` 
+de forma que ele tenha o conteúdo mostrado na listagem
+<<recriagreet>>.
 
 .Recriando o arquivo em python.
 [[recriagreet, {counter:refcde}]]
@@ -165,7 +168,7 @@ Changes to be committed:
 O próximo passo é fotografar as alteração da área de
 *stage*, como na listagem <<commitgreet>>.
 
-.Comita alterações.
+.Fotografa as alterações.
 [[commitgreet, {counter:refcde}]]
 [source]
 ----
@@ -175,9 +178,14 @@ O próximo passo é fotografar as alteração da área de
  create mode 100644 greet.py
 ----
 
+Note que os comandos e suas respectivas respostas neste
+capítulo estão muito parecidos com os do capítulo anterior.
+Por isso, algumas informações contidas lá não estão sendo 
+repetidas aqui.
+
 === Atualizando a cópia remota
 
-Para atuaiza o repositório remoto usa-se o comando
+Para atualizar o repositório remoto usa-se o comando
 `git push`, como mostra a listagem <<pushgreet>>.
 
 .Faz o upload das alterações.
@@ -211,7 +219,7 @@ GitHub.
 Por exemplo, para alterar o arquivo README.md, basta clicar no
 lápis da figura <<gh10>>.
 Vamos mudar o título de `# greetings` para `# Hello Git`, 
-como na figure <<gh11>>, e depois clicar em *Commit changes*, 
+como na figure <<gh11>>, e depois clicar em *Commit changes* 
 para fotografar esta alteração.
 
 .Atualizando o arquivo README.md dentro do GitHub.
@@ -271,7 +279,7 @@ Fast-forward
 Agora o arquivo local está igual ao arquivo remoto,
 como pode ser visto na listagem <<readmepull>>.
 
-.Estado do arquivo README.md depois do comando pull.
+.Estado do arquivo README.md depois do comando `git pull`.
 [[readmepull, {counter:refcde}]]
 [source]
 ----
@@ -282,8 +290,16 @@ O "Hello World" do Git.
 
 === Vantagens de ter um repositório remoto
 
+Dentre algumas vantagens de se ter um repositório
+na nuvem, podemos citar algumas.
+
 . Pode ser usado como backup.
 . Pode ser usado como repositório central para sincronizar 
 vários computadores.
 . Disponibilizar o código para outras pessoas.
 . Trabalhar em equipe.
+
+Você não precisa necessariamente usar a plataforma GitHub.
+Existem outras plataformas que também possuem tipos de contas 
+sem custo para o usuário, como por exemplo, Bitbucket e 
+GitLab, para citar algumas.
