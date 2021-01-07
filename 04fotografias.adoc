@@ -1,12 +1,18 @@
+:source-highlighter: highlightjs
+:listing-caption: Lista de comandos
 [#fotografias]
 == Criando fotografias novas e acessando fotografias antigas
 
 O Git só vai tirar uma nova fotografia do sistema se algo for 
 alterado e colocado na área de stage.
-A figura <<fig:09>> mostra a alteração sugerida.
-O resultado do programa continuou quase igual, por isso
-a palavra "hello" foi colocada toda em maiúsculo 
-para ficar mais clara que uma alteração foi feita.
+A lista de comandos <<fig:09>> mostra a alteração sugerida.
+O código foi alterado mas seu resultado do programa continuou 
+igual. É uma boa prática refatorarmos os nossos códigos 
+para prepará-los para alterações de comportamento e adição 
+de funcionalidades.
+Nesse caso, o programa é extremamente simples. 
+Tal alteração é desnecessária, mas é uma boa forma de mostrar
+como utilizar o Git em um processo de refatoração.
 
 .Fazendo uma alteração
 [[fig:09, {counter:refcde}]]
@@ -20,7 +26,7 @@ main()
 ----
 
 Depois da alteração do arquivo, o comando `git status`
-apresenta um retorno diferente, como mostra a figura 
+apresenta um retorno diferente, como mostra a listagem 
 <<fig:10>>.
 Novamente o arquivo `greet.py` não esta na área de stage,
 mas agora esse arquivo está sendo monitorado. 
@@ -29,8 +35,6 @@ Podemos descartar as alterações com o comando
 `git restore greet.py` ou podemos adicionar 
 as alterações na área de stage com o comando
 `git add greet.py`.
-Adicionaremos as alterações na área de stage, como mostra a
-figura <<fig:11>>.
 
 .Status com arquivo modificado fora da area de stage
 [[fig:10, {counter:refcde}]]
@@ -41,20 +45,24 @@ On branch main
 Your branch is up to date with 'origin/main'.
 
 Changes not staged for commit:
-  (use "git add <file>..." to update what will be committed)
-  (use "git restore <file>..." to discard changes in working directory)
+  (use "git add <file>..." to update what will be committed) // <1>
+  (use "git restore <file>..." to discard changes in working directory) // <2>
 	modified:   greet.py
 
 no changes added to commit (use "git add" and/or "git commit -a")
 ----
+<1> Mostra como adicionar um arquivo na área de stage.
+<2> Mostra como descartar as alterações feitas no arquivo.
 
+Adicionaremos as alterações na área de stage, como mostra a
+listagem <<fig:11>>.
 
 .Status com arquivo modificado na da area de stage
 [[fig:11, {counter:refcde}]]
 [source]
 ----
-~/greetings$ git add greet.py 
-~/greetings$ git status
+~/greetings$ git add greet.py // <1>
+~/greetings$ git status // <2>
 On branch main
 Your branch is up to date with 'origin/main'.
 
@@ -62,27 +70,33 @@ Changes to be committed:
   (use "git restore --staged <file>..." to unstage)
 	modified:   greet.py
 ----
+<1> Adiciona o arquivo alterado na área de stage.
+<2> O resultado do comando status mudou novamente.
 
 O resultado do comando `git status` está muito parecido 
-com o da figura <<fig:06>>. Agora, em verde, não aparece
+com o da listagem <<fig:06>>. Agora, não aparece
 mais "arquivo novo" (new file), mas "modificado" (modified).
-
-A figura <<fig:12>> mostra o comando `git commit` com o
+A listagem <<fig:12>> mostra o comando `git commit` com o
 parâmetro `-m` e um comentário relacionado à alteração feita.
-O comando `git show` mostra como ficou a fotografia.
-A linha em vermelho que inicia com o sinal $-$ mostra
-o que foi removido, e as linhas em verde que iniciam com
-o sinal $+$ mostram o que foi adicionado.
 
 .Atualizando o repositório e vendo os detalhes da atualização
 [[fig:12, {counter:refcde}]]
 [source]
 ----
-~/greetings$ git commit -m 'cria função main'
+~/greetings$ git commit -m 'cria função main' // <1>
 [main e0fe2b3] cria função main
- 1 file changed, 4 insertions(+), 1 deletion(-)
+ 1 file changed, 4 insertions(+), 1 deletion(-) // <2>
 ----
+<1> Registro da fotografia com um comentário que resume as 
+alterações fotografadas.
+<2> Mostra que apenas 1 arquivo foi alterado (_1 file changed_),
+4 linhas foram inseridas (_4 insertions(+)_) e 
+1 linha foi removida (_1 deletion(-)_).
 
+O comando `git show`, na listagem <<fig:12a>>,
+mostra como ficou a fotografia.
+
+.Mostrando como a fotografia gravou as alterações 
 [[fig:12a, {counter:refcde}]]
 [source]
 ----
@@ -95,22 +109,26 @@ Date:   Wed Dec 23 08:24:50 2020 -0300
 
 diff --git a/greet.py b/greet.py
 index 693eaec..55bb9ae 100644
---- a/greet.py
-+++ b/greet.py
-@@ -1 +1,4 @@
--print("Hello!")
-+def main():
-+    print("Hello!")
-+
-+main()
+--- a/greet.py // <1>
++++ b/greet.py // <2>
+@@ -1 +1,4 @@ 
+-print("Hello!") // <3> 
++def main(): // <4>
++    print("Hello!") // <4>
++ // <4>
++main() // <4>
 ----
+<1> Versão anterior do arquivo
+<2> Versão atual do arquivo
+<3> Linha removida.
+<4> Linhas inseridas.
 
+Note que qualquer alteração em uma linha considera aquela
+linha como removida e outra linha com a alteração como inserida.
 Vamos fazer mais uma alteração no sistema, que pode ser
-vista na figura <<fig:13>>.
-Novamente, o resultado do programa é virtualmente o mesmo,
-e para que a alteração seja um pouco mais evidente, 
-a palavra _Hello_ foi colocada agora apenas com
-a primeira letra em maiúsculo.
+vista na listagem <<fig:13>>.
+Novamente, o código foi alterado sem alterar o comportamento
+do programa.
 
 .Fazendo mais uma alteração
 [[fig:13, {counter:refcde}]]
@@ -125,48 +143,13 @@ if __name__ == "__main__":
 ----
 
 Depois dessa alteração, o comando `git status`
-apresentará o mesmo retorno visto na figura <<fig:10>>.
+apresentará o mesmo retorno visto na listagem <<fig:10>>.
 Vamos adicionar à área de stage a nova alteração com
 o comando `git add greet.py`.
 Após executado esse comando, o status do repositório
-será igual ao apresentado na figura <<fig:11>>.
-
+será igual ao apresentado na listagem <<fig:11>>.
 Agora estamos prontos para executar o comando `commit` 
-como mostra a figura <<fig:14>>.
-Novamente podem ser vistas as alterações feitas observando-se
-as linhas verdes e vermelhas.
-
-.git status
-[[fig:14-a, {counter::refcde}]]
-[source]
-----
-~/greetings$ git status 
-On branch main
-Your branch is ahead of 'origin/main' by 1 commit.
-  (use "git push" to publish your local commits)
-
-Changes not staged for commit:
-  (use "git add <file>..." to update what will be committed)
-  (use "git restore <file>..." to discard changes in working directory)
-	modified:   greet.py
-
-no changes added to commit (use "git add" and/or "git commit -a")
-----
-
-.git add
-[[fig:14-b, {counter:refcde}]]
-[source]
-----
-~/greetings$ git add greet.py 
-~/greetings$ git status 
-On branch main
-Your branch is ahead of 'origin/main' by 1 commit.
-  (use "git push" to publish your local commits)
-
-Changes to be committed:
-  (use "git restore --staged <file>..." to unstage)
-	modified:   greet.py
-----
+como mostra a lista de comandos <<fig:14>>.
 
 .Atualizando com a terceira alteração
 [[fig:14, {counter:refcde}]]
@@ -177,7 +160,10 @@ Changes to be committed:
  1 file changed, 2 insertions(+), 1 deletion(-)
 ----
 
-.git show
+Novamente, podem ser vistas as alterações feitas,
+como mostrado na listagem <<fig:14a>>.
+
+.Mostrando a última fotografia
 [[fig:14a, {counter:refcde}]]
 [source]
 ----
@@ -196,52 +182,61 @@ index 55bb9ae..3062fd5 100644
  def main():
      print("Hello!")
  
--main()
-+if __name__ == "__main__":
-+    main()
+-main() // <1>
++if __name__ == "__main__": // <2>
++    main() // <2>
 ----
+<1> Linha removida.
+<2> Linhas inseridas.
 
 Agora temos cópias seguras das versões anteriores
 do nosso projeto. 
 
-
 === Listando as fotografias do repositório
 
-A figura <<fig:15>> mostra como listar as fotografias do 
+A listagem <<fig:15>> mostra como listar as fotografias do 
 sistema com o comando `git log`.
 A opção `--oneline` foi usada aqui para que 
 as fotografias sejam vistas de um forma mais compacta.
-Mas vocë deve testar sem essa opção também.
+Mas você deve testar sem essa opção também.
 
 .Listando as fotografias do repositório
 [[fig:15, {counter:refcde}]]
 [source]
 ----
 ~/greetings$ git log --oneline
-bd61894 (HEAD -> main) verifica se é o programa principal
+bd61894 (HEAD -> main) verifica se é o programa principal // <1>
 e0fe2b3 cria função main
-933fc74 (origin/main, origin/HEAD) Update README.md
+933fc74 (origin/main, origin/HEAD) Update README.md // <2>
 6c8951a cria arquivo greet.py
 58da81b Initial commit
 ----
+<1> Fotografia com o estado atual do repositório local.
+<2> Fotografia com o estado atual do repositório remoto.
 
-As fotografias do repositório são apresentadas em ordem cronológica
-reversa. Ou seja, a última fotografia é a primeira a ser apresentada
-e a primeira fotografia é a última.
-Em amarelo vemos o hash de cada fotografia.
-Normalmente, essa parte do hash é suficiente para acessar a
-fotografia.
+A palavra _HEAD_ indica o estado atual do repositório, 
+seja ele local ou remoto.
+As fotografias do repositório são apresentadas em ordem 
+cronológica reversa. Ou seja, a última fotografia é a primeira 
+a ser apresentada e a primeira fotografia é a última.
+No início de cada linha vemos uma parte do hash de cada 
+fotografia. Normalmente, essa parte do hash é suficiente para 
+acessar a fotografia.
 Por exemplo, é possível ver uma fotografia mais antiga 
 (ou mais recente) com o comando `git show <hash>`,
-onde normalmente a parte do hash que aparece na figura
+onde normalmente a parte do hash que aparece na listagem
 <<fig:15>> é suficiente para identificá-la.
-
 
 === Mostrando o conteúdo de fotografias
 
-Na figura <<fig:16>> o comando `git show
+Na listagem <<fig:16>> o comando `git show`
 mostra a fotografia anterior usando apenas a parte de seu hash
-listada na figura <<fig:15>>.
+listada na listagem <<fig:15>>.
+Note que o resultado da listagem <<fig:16>> é identico
+ao da listagem <<fig:12a>>.
+Ao seguir esses passos, lembre-se de substituir 
+o hash 'e0fe2b3' pelo hash que aparece na sua
+lista de logs. Certamente terá um valor diferente.
 
 .Vendo detalhes da fotografia anterior
 [[fig:16, {counter:refcde}]]
@@ -266,10 +261,11 @@ index 693eaec..55bb9ae 100644
 +main()
 ----
 
-A figura <<fig:17>> mostra a primeira fotografia do repositório.
+A listagem <<fig:17>> mostra a primeira fotografia do 
+arquivo `greet.py` no repositório.
 
 .Vendo detalhes da fotografia da primeira fotografia
-[[fig:17, {counter:reffg}]]
+[[fig:17, {counter:refcde}]]
 [source]
 ----
 ~/greetings$ git show 6c8951a
@@ -288,17 +284,23 @@ index 0000000..693eaec
 +print("Hello!")
 ----
 
+O comando `git show <hash>` é muito útil para 
+verificarmos se uma determinada fotografia contém
+as alteração que precisamos. 
+Despois de confirmarmos nossas suspeitas, podemos
+voltar o repositório para o estado que desejarmos.
+
 === Alterando o estado do sistema
 
 O comando `git checkout` permite colocar o repositório
 em um estado gravado em alguma fotografia. 
-A figura <<fig:18>> mostra como fazer o repositório
+A listagem <<fig:18>> mostra como fazer o repositório
 voltar para o estado em que a função main do programa
 greet foi criada. Algumas linhas do resultado foram
 substituídas por "...". Então, mais informações 
 aparecerão quando você digitar esse comando.
 Ao seguir esses passos, lembre-se de substituir 
-o hash 'e0fe2b3' pelo has que aparece na sua
+o hash 'e0fe2b3' pelo hash que aparece na sua
 lista de logs. Certamente terá um valor diferente.
 
 .Voltando o sistema para o estado da fotografia anterior
@@ -315,7 +317,7 @@ state without impacting any branches by switching back to a branch.
 HEAD is now at e0fe2b3 cria função main
 ----
 
-Veja na figura <<fig:20>> que o programa `greet.py`
+Veja na listagem <<fig:20>> que o programa `greet.py`
 voltou ao seu estado anterior.
 
 .Estados dos arquivos do sistema depois de voltar uma fotografia
@@ -331,8 +333,7 @@ main()
 
 Ao listar as fotografias do repositório, como mostra a figura 
 <<fig:19>>, o comando `git log` não mostra mais o brach main, nem a fotografia da última alteração feita.
-Além disso, *HEAD* agora está na fotografia da segunda 
-alteração.
+Além disso, *HEAD* agora está na fotografia *e0fe2b3*.
 
 .Listando fotografias tão ou mais antigas que a atual
 [[fig:19, {counter:refcde}]]
@@ -345,7 +346,8 @@ e0fe2b3 (HEAD) cria função main
 58da81b Initial commit
 ----
 
-Você pode estar se perguntando "Git é então um complexo ctrl+z?". Claro que não!
+Você pode estar se perguntando "Git é então um complexo ctrl+z?".
+Claro que não!
 A fotografia mais recente continua sendo monitorada e 
 pode ser visualizada com a opção `--all`
 no comando `git log`, como mostra a 
@@ -363,10 +365,9 @@ e0fe2b3 (HEAD) cria função main
 58da81b Initial commit
 ----
 
-Na verdade, o Git sempre adiciona informação ao repositório.
-Mesmo sendo possível remover informações de um repositório,
-isso é raramente recomendado.
-
+Na verdade, o Git quase sempre adiciona informação ao 
+repositório. Mesmo sendo possível remover informações de um 
+repositório, isso é raramente recomendado.
 A figura <<fig:22>> mostra como colocar o sistema no
 estado da fotografia mais recente.
 
@@ -381,6 +382,13 @@ Your branch is ahead of 'origin/main' by 2 commits.
   (use "git push" to publish your local commits)
 ----
 
+Qualquer alteração nos arquivos monitorados pelo repositório 
+deve ser feita enquanto o estado do repositório (HEAD)
+está apontando para um ramo (_branch_).
+Fotografias de alterações feitas fora de ramos não
+aparecem na resposta do comando `git log`, nem com a opção
+`--all``.`
+
 === Criando etiquetas para fotografias
 
 Para facilitar o acesso das fotografias pode-se etiquetá-las.
@@ -394,13 +402,15 @@ opção `-a`. Esta opção permite usar a opção
 [source]
 ----
 ~/greetings$ git tag -a v0.3 -m 'Versão bem complexa para um programa Hello World'
-~/greetings$ git log --oneline --all
-bd61894 (HEAD -> main, tag: v0.3) verifica se é o programa principal
+~/greetings$ git log --oneline --all // <1>
+bd61894 (HEAD -> main, tag: v0.3) verifica se é o programa principal // <2>
 e0fe2b3 cria função main
 933fc74 (origin/main, origin/HEAD) Update README.md
 6c8951a cria arquivo greet.py
 58da81b Initial commit
 ----
+<1> Lista fotografias do repositório.
+<2> Mostra a tag "v0.3" na linha correspondente à fotografia.
 
 O comando `git tag` coloca a etiqueta na fotografia atual
 do sistema, mas é possível etiquetar outras fotografias 
