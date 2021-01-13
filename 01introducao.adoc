@@ -1,3 +1,5 @@
+:source-highlighter: highlightjs
+:listing-caption: Lista de comandos
 :imagesdir: ./images
 [#intro]
 == Introdução: O hello world do Git

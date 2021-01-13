@@ -1,3 +1,6 @@
+:source-highlighter: highlightjs
+:listing-caption: Lista de comandos
+:imagesdir: ./images
 [#ramos]
 == Ramos no projeto
 
