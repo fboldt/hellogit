@@ -1426,13 +1426,13 @@ GitLab, para citar algumas.</p>
 <div class="paragraph">
 <p>O Git só vai tirar uma nova fotografia do sistema se algo for
 alterado e colocado na área de stage.
-A lista de comandos <a href="#fig:09">20</a> mostra a alteração sugerida.
-O código foi alterado mas seu resultado do programa continuou
-igual. É uma boa prática refatorarmos os nossos códigos
+A lista de comandos <a href="#fig:09">20</a> mostra a alteração sugerida
+para esta parte do tutorial.
+O código foi alterado mas seu resultado do programa continuou igual.
+É uma boa prática de programação refatorarmos os nossos códigos
 para prepará-los para alterações de comportamento e adição
-de funcionalidades.
-Nesse caso, o programa é extremamente simples.
-Tal alteração é desnecessária, mas é uma boa forma de mostrar
+de funcionalidades. Nesse caso, o programa é extremamente simples.
+Tal alteração seria desnecessária, mas é uma boa forma de mostrar
 como utilizar o Git em um processo de refatoração.</p>
 </div>
 <div id="fig:09" class="listingblock">
@@ -1451,9 +1451,9 @@ apresenta um retorno diferente, como mostra a listagem
 <a href="#fig:10">21</a>.
 Novamente o arquivo <code>greet.py</code> não esta na área de stage,
 mas agora esse arquivo está sendo monitorado.
-Então temos duas opções.
-Podemos descartar as alterações com o comando
-<code>git restore greet.py</code> ou podemos adicionar
+Então, temos duas opções:
+descartar as alterações com o comando
+<code>git restore greet.py</code> ou adicionar
 as alterações na área de stage com o comando
 <code>git add greet.py</code>.</p>
 </div>
@@ -1680,10 +1680,13 @@ e0fe2b3 cria função main
 <div class="colist arabic">
 <ol>
 <li>
-<p>Fotografia com o estado atual do repositório local.</p>
+<p>Fotografia com o estado atual do repositório local.
+A palavra <strong>HEAD</strong> está nesta linha.</p>
 </li>
 <li>
-<p>Fotografia com o estado atual do repositório remoto.</p>
+<p>Fotografia com o estado atual do repositório remoto.
+As palavras <strong>origin/HEAD</strong> estão nesta linha.
+Neste caso, origin indica o repositório remoto.</p>
 </li>
 </ol>
 </div>
@@ -1691,14 +1694,15 @@ e0fe2b3 cria função main
 <p>A palavra <em>HEAD</em> indica o estado atual do repositório,
 seja ele local ou remoto.
 As fotografias do repositório são apresentadas em ordem
-cronológica reversa. Ou seja, a última fotografia é a primeira
-a ser apresentada e a primeira fotografia é a última.
+cronológica reversa. Ou seja, a última fotografia registrada
+é a primeira a ser apresentada pelo comando <code>git log</code>.
 No início de cada linha vemos uma parte do hash de cada
-fotografia. Normalmente, essa parte do hash é suficiente para
-acessar a fotografia.
+fotografia. Em geral, essa parte do hash é suficiente para
+visualizar ou acessar uma fotografia.
 Por exemplo, é possível ver uma fotografia mais antiga
 (ou mais recente) com o comando <code>git show &lt;hash&gt;</code>,
-onde normalmente a parte do hash que aparece na listagem
+onde normalmente, os quatro primeiros caracteres
+da parte do hash que aparece na listagem
 <a href="#fig:15">28</a> é suficiente para identificá-la.</p>
 </div>
 </div>
@@ -1907,17 +1911,24 @@ através de seu hash, como mostra a figura <a href="#fig:25">37</a>.</p>
 <div id="fig:25" class="listingblock">
 <div class="title">Lista de comandos 37. Etiquetando uma fotografia mais antiga</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">~/greetings$ git tag -a v0.3 -m 'Versão bem complexa para um programa Hello World'</code></pre>
-</div>
-</div>
-<div id="fig:25a" class="listingblock">
-<div class="title">Lista de comandos 38. log</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">~/greetings$ git log --oneline --all
+<pre class="highlightjs highlight"><code class="language-none hljs">~/greetings$ git tag -a v0.1 -m 'Versão clássica' 6c8951a
+~/greetings$ git log --oneline --all
 bd61894 (HEAD -&gt; main, tag: v0.3) verifica se é o programa principal
 e0fe2b3 cria função main
 933fc74 (origin/main, origin/HEAD) Update README.md
-6c8951a cria arquivo greet.py
+6c8951a (tag: v0.1) cria arquivo greet.py
+58da81b Initial commit</code></pre>
+</div>
+</div>
+<div id="fig:25a" class="listingblock">
+<div class="title">Lista de comandos 38. Etiquetando uma fotografia sem deixar comentário</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">~/greetings$ git tag v0.2 e0fe2b3
+~/greetings$ git log --oneline --all
+bd61894 (HEAD -&gt; main, tag: v0.3) verifica se é o programa principal
+e0fe2b3 (tag: v0.2) cria função main
+933fc74 (origin/main, origin/HEAD) Update README.md
+6c8951a (tag: v0.1) cria arquivo greet.py
 58da81b Initial commit</code></pre>
 </div>
 </div>
@@ -1945,7 +1956,7 @@ HEAD is now at e0fe2b3 cria função main</code></pre>
 bd61894 (tag: v0.3, main) verifica se é o programa principal
 e0fe2b3 (HEAD, tag: v0.2) cria função main
 933fc74 (origin/main, origin/HEAD) Update README.md
-6c8951a cria arquivo greet.py
+6c8951a (tag: v0.1) cria arquivo greet.py
 58da81b Initial commit</code></pre>
 </div>
 </div>
@@ -1957,6 +1968,7 @@ etiqueta, como mostra a figura <a href="#fig:28">40</a>.</p>
 <div class="title">Lista de comandos 41. Listando todas as etiquetas do repositório</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-none hljs">~/greetings$ git tag
+v0.1
 v0.2
 v0.3</code></pre>
 </div>
@@ -2823,7 +2835,7 @@ sofre alterações em ramos diferentes.</p>
 <div id="footer">
 <div id="footer-text">
 Version 0.1.1 2021-01<br>
-Last updated 2021-01-07 00:29:52 UTC
+Last updated 2021-01-13 14:32:50 UTC
 </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/highlight.min.js"></script>

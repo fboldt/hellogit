@@ -1,17 +1,18 @@
 :source-highlighter: highlightjs
 :listing-caption: Lista de comandos
+:imagesdir: ./images
 [#fotografias]
 == Criando fotografias novas e acessando fotografias antigas
 
 O Git só vai tirar uma nova fotografia do sistema se algo for 
 alterado e colocado na área de stage.
-A lista de comandos <<fig:09>> mostra a alteração sugerida.
-O código foi alterado mas seu resultado do programa continuou 
-igual. É uma boa prática refatorarmos os nossos códigos 
+A lista de comandos <<fig:09>> mostra a alteração sugerida
+para esta parte do tutorial.
+O código foi alterado mas seu resultado do programa continuou igual.
+É uma boa prática de programação refatorarmos os nossos códigos 
 para prepará-los para alterações de comportamento e adição 
-de funcionalidades.
-Nesse caso, o programa é extremamente simples. 
-Tal alteração é desnecessária, mas é uma boa forma de mostrar
+de funcionalidades. Nesse caso, o programa é extremamente simples. 
+Tal alteração seria desnecessária, mas é uma boa forma de mostrar
 como utilizar o Git em um processo de refatoração.
 
 .Fazendo uma alteração
@@ -30,9 +31,9 @@ apresenta um retorno diferente, como mostra a listagem
 <<fig:10>>.
 Novamente o arquivo `greet.py` não esta na área de stage,
 mas agora esse arquivo está sendo monitorado. 
-Então temos duas opções.
-Podemos descartar as alterações com o comando 
-`git restore greet.py` ou podemos adicionar 
+Então, temos duas opções:
+descartar as alterações com o comando 
+`git restore greet.py` ou adicionar 
 as alterações na área de stage com o comando
 `git add greet.py`.
 
@@ -212,19 +213,23 @@ e0fe2b3 cria função main
 58da81b Initial commit
 ----
 <1> Fotografia com o estado atual do repositório local.
+A palavra *HEAD* está nesta linha.
 <2> Fotografia com o estado atual do repositório remoto.
+As palavras *origin/HEAD* estão nesta linha.
+Neste caso, origin indica o repositório remoto.
 
 A palavra _HEAD_ indica o estado atual do repositório, 
 seja ele local ou remoto.
 As fotografias do repositório são apresentadas em ordem 
-cronológica reversa. Ou seja, a última fotografia é a primeira 
-a ser apresentada e a primeira fotografia é a última.
+cronológica reversa. Ou seja, a última fotografia registrada
+é a primeira a ser apresentada pelo comando `git log`.
 No início de cada linha vemos uma parte do hash de cada 
-fotografia. Normalmente, essa parte do hash é suficiente para 
-acessar a fotografia.
+fotografia. Em geral, essa parte do hash é suficiente para 
+visualizar ou acessar uma fotografia.
 Por exemplo, é possível ver uma fotografia mais antiga 
 (ou mais recente) com o comando `git show <hash>`,
-onde normalmente a parte do hash que aparece na listagem
+onde normalmente, os quatro primeiros caracteres 
+da parte do hash que aparece na listagem
 <<fig:15>> é suficiente para identificá-la.
 
 === Mostrando o conteúdo de fotografias
@@ -420,18 +425,25 @@ através de seu hash, como mostra a figura <<fig:25>>.
 [[fig:25, {counter:refcde}]]
 [source]
 ----
-~/greetings$ git tag -a v0.3 -m 'Versão bem complexa para um programa Hello World'
-----
-
-.log
-[[fig:25a, {counter:refcde}]]
-[source]
-----
+~/greetings$ git tag -a v0.1 -m 'Versão clássica' 6c8951a
 ~/greetings$ git log --oneline --all
 bd61894 (HEAD -> main, tag: v0.3) verifica se é o programa principal
 e0fe2b3 cria função main
 933fc74 (origin/main, origin/HEAD) Update README.md
-6c8951a cria arquivo greet.py
+6c8951a (tag: v0.1) cria arquivo greet.py
+58da81b Initial commit
+----
+
+.Etiquetando uma fotografia sem deixar comentário
+[[fig:25a, {counter:refcde}]]
+[source]
+----
+~/greetings$ git tag v0.2 e0fe2b3
+~/greetings$ git log --oneline --all
+bd61894 (HEAD -> main, tag: v0.3) verifica se é o programa principal
+e0fe2b3 (tag: v0.2) cria função main
+933fc74 (origin/main, origin/HEAD) Update README.md
+6c8951a (tag: v0.1) cria arquivo greet.py
 58da81b Initial commit
 ----
 
@@ -460,7 +472,7 @@ HEAD is now at e0fe2b3 cria função main
 bd61894 (tag: v0.3, main) verifica se é o programa principal
 e0fe2b3 (HEAD, tag: v0.2) cria função main
 933fc74 (origin/main, origin/HEAD) Update README.md
-6c8951a cria arquivo greet.py
+6c8951a (tag: v0.1) cria arquivo greet.py
 58da81b Initial commit
 ----
 
@@ -473,6 +485,7 @@ etiqueta, como mostra a figura <<fig:28>>.
 [source]
 ----
 ~/greetings$ git tag
+v0.1
 v0.2
 v0.3
 ----
