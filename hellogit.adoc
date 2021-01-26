@@ -10,7 +10,7 @@ v0.1.1 2021-01
 :figure-caption: Figura
 :source-highlighter: highlightjs
 :listing-caption: Lista de comandos
-:pdf-page-size: [15cm, 23cm]
+//:pdf-page-size: [15cm, 23cm]
 
 include::01introducao.adoc[]
 
